@@ -12,14 +12,14 @@ public class Main {
 		boolean isValid = false;
 		Scanner sc = new Scanner(System.in);
 		do {
-			System.out.print("Kérem adja meg az email címét: ");
+			System.out.print("KÃ©rem adja meg az email cÃ­mÃ©t: ");
 			String email = sc.nextLine();
 			isValid = Validation.isValidEmailAddress(email);
 			if (!isValid) {
-				System.out.println("A megadott e-mail cím nem valid.");
+				System.out.println("A megadott e-mail cÃ­m nem valid.");
 			}
 		} while (!isValid);
-		System.out.println("A megadott e-mail cím valid.");
+		System.out.println("A megadott e-mail cÃ­m valid.");
 		sc.close();
 	}
 
