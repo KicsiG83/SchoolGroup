@@ -77,13 +77,13 @@ public class Client {
 		do {
 			System.out.print("Kérem adja meg az ügyfél típusát: ");
 			type = sc.nextLine().toUpperCase();
-			if (!type.equals("VEVŐ") && !type.equals("ELADÓ")) {
+			if (!(type.equals("VEVŐ") || type.equals("ELADÓ"))) {
 				System.out.println("A megadott adat érvénytelen (vevő vagy eladó).");
 			}else {
 				isValid = true;
 			}
 		} while (!isValid);
-		if (type == "VEVŐ") {
+		if (type.equals("VEVŐ")) {
 			clientType = ClientType.BUYER;
 		} else {
 			clientType = ClientType.SELLER;

@@ -32,9 +32,12 @@ public class FourthMenu {
 			} else {
 				JDBCUser.listOtherUserData(user.getUserId());
 				User modifiedUser = new User();
-				modifiedUser.setUserId(User.getUserById(scanner));
-				index = chooseUserParameter(scanner);
-				JDBCUser.changeUserData(scanner, modifiedUser.getUserId(), getColumn(index));
+				int id = User.getUserById(scanner);
+				if(JDBCUser.checkUserById(id)) {
+					modifiedUser.setUserId(id);
+					index = chooseUserParameter(scanner);
+					JDBCUser.changeUserData(scanner, modifiedUser.getUserId(), getColumn(index));
+				}
 			}
 			MainMenu.mainMenu(user, scanner);
 			break;

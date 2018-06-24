@@ -47,7 +47,7 @@ public class JDBCUser {
 
 	public static void listOtherUserData(int userId) throws SQLException {
 		Connection connection = JDBCConnection.createConnection();
-		String listOtherUsers = "SELECT * FROM USER_DATA WHERE USER_ID != '" + userId + "' ORDER BY USER_ID ASC";
+		String listOtherUsers = "SELECT * FROM USER_DATA WHERE USER_ID != '" + userId + "' AND STATUS != 'DELETED' ORDER BY USER_ID ASC";
 		try (PreparedStatement getUserStatment = connection.prepareStatement(listOtherUsers);
 				ResultSet rs = getUserStatment.executeQuery()) {
 			while (rs.next()) {
@@ -131,28 +131,28 @@ public class JDBCUser {
 	private static String getUserInputForChangeUserData(Scanner sc, String column) {
 		String userInput = "";
 		boolean isValid = false;
+		if (column.equals("STATUS")) {
+			System.out.println("\nFelhasználói státuszok:\n- Aktív\n- Blokkolt\n- Törölt\n");
+		}
 		do {
-			if (column.equals("STATUS")) {
-				System.out.println("\nFelhasználói státuszok:\n- Aktív\n- Blokkolt\n- Törölt\n");
-			}
 			System.out.print("\nKérem adja meg az új adatot: ");
 			String input = sc.nextLine();
 			if (column.equals("PASSWORD")) {
 				userInput = new Sha256().getSha256(input);
 				isValid = true;
 			} else if (column.equals("STATUS")) {
-				if (input.equals("Aktív")) {
+				if (input.toUpperCase().equals("AKTÍV")) {
 					isValid = true;
 					userInput = "ACTIVE";
-				} else if (input.equals("Blokkolt")) {
+				} else if (input.toUpperCase().equals("BLOKKOLT")) {
 					userInput = "BLOCKED";
 					isValid = true;
-				} else if (input.equals("Törölt")) {
+				} else if (input.toUpperCase().equals("TÖRÖLT")) {
 					userInput = "DELETED";
 					isValid = true;
 				} else {
 					System.out.println(
-							"A megadott státsz ismeretlen.\nKérem válasszon az alábbiak közül: \n- Aktív\n- Blokkolt\n- Törölt\n");
+							"\nA megadott státusz ismeretlen.\nKérem válasszon az alábbiak közül: \n- Aktív\n- Blokkolt\n- Törölt");
 				}
 			} else if (column.equals("EMAIL")) {
 				boolean result = Validation.isValidEmailAddress(input);
@@ -186,5 +186,29 @@ public class JDBCUser {
 			System.err.println("Could not list data!");
 		}
 		connection.close();
+	}
+	
+	public static boolean checkUserById(int userId) throws SQLException {
+		boolean validUser = false;
+		Connection connection = JDBCConnection.createConnection();
+		String listNewUserData = "SELECT * FROM USER_DATA WHERE USER_ID = '"+ userId + "' AND STATUS != 'DELETED'";
+		try (PreparedStatement getUserStatment = connection.prepareStatement(listNewUserData);
+				ResultSet rs = getUserStatment.executeQuery()) {
+			while (rs.next()) {
+				int id = rs.getInt(1);
+				String name = rs.getString(2);
+				String email = rs.getString(4);
+				String status = rs.getString(5);
+				System.out.println("ID: " + id + ", név: " + name + ", E-mail cím: " + email + ", Státusz: " + status);
+				validUser = true;
+			}
+			if(!validUser) {
+				System.out.println("Nincs ilyen azonosítójú felhasználó!");
+			}
+		} catch (SQLException e) {
+			System.err.println("Could not list data!");
+		}
+		connection.close();
+		return validUser;
 	}
 }
