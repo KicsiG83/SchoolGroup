@@ -4,36 +4,41 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import User.User;
+import BusinessLogicLayer.Validator;
 
 public class MainMenu {
 
-	public static void menu() throws SQLException {
-		printMenuHeader();
+	public void menu() throws SQLException {
+		new MainMenu().printMenuHeader();
 	}
 
-	private static void printMenuHeader() throws SQLException {
+	private void printMenuHeader() throws SQLException {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println(
 				"	**********************************************************************************************");
 		System.out.println(
-				"	******                    Üdvözlöm a pinCode ingatlaniroda felületén!                   ******");
+				"	******                     Üdvözlöm az A&K ingatlaniroda felületén!                     ******");
 		System.out.println(
 				"	**********************************************************************************************");
 		System.out.println("");
 		System.out.println("					B E J E L E N T K E Z É S");
 		System.out.println();
-		Login.login(scanner);
+		new Login().login(scanner);
 	}
 
-	public static void mainMenu(User user, Scanner scanner) throws SQLException {
-		int mmainMenuChoice = 0;
+	public void mainMenu(User user, Scanner scanner) throws SQLException {
+		UserInterface ui = new UserInterface();
+		Validator valid = new Validator();
 		int subMenuChoice = 0;
 		System.out.print(
 				"	1.INGATLAN ADATBÁZIS   2.ÜGYFÉL ADATBÁZIS  3.STATISZTIKÁK   4.FELHASZNÁLÓ KEZELÉS    5.KILÉPÉS"
 						+ "	 => a választott főmenü: ");
-		mmainMenuChoice = scanner.nextInt();
-		scanner.nextLine();
-		switch (mmainMenuChoice) {
+		String mainMenuChoice = ui.askString("");
+		while(!valid.isValidMenuChoice(mainMenuChoice)) {
+			mainMenuChoice = ui.askString("");
+		}
+		int menuIndex = Integer.parseInt(mainMenuChoice);
+		switch (menuIndex) {
 		case 1:
 			FirstMenu.printFirstMenu();
 			subMenuChoice = scanner.nextInt();
@@ -44,7 +49,7 @@ public class MainMenu {
 			SecondMenu.printSecondMenu();
 			subMenuChoice = scanner.nextInt();
 			scanner.nextLine();
-			SecondMenu.secondMenu(user, scanner, subMenuChoice);
+			new SecondMenu().secondMenu(user, scanner, subMenuChoice);
 			break;
 		case 3:
 			ThirdMenu.printThirdMenu();

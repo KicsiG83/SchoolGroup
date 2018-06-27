@@ -1,69 +1,67 @@
 package Client;
 
 import java.util.Scanner;
+import BusinessLogicLayer.Validator;
 
 public class Client {
-	private static String name;
-	private static String email;
-	private static String phoneNumber;
+	private  String name;
+	private String email;
+	private  String phoneNumber;
 	private String comment;
-	private static ClientType clientType;
+	private ClientType clientType;
 
-	public Client(Scanner sc) {
-		setName(sc);
-		setEmail(sc);
-		setPhoneNumber(sc);
-		setClientType(sc);
-		setComment(sc);
+
+	public Client() {
+	}
+
+	public Client(String name, String email, String phoneNumber, String comment, ClientType clientType) {
+		this.name = name;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+		this.comment = comment;
+		this.clientType = clientType;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public static void setName(Scanner sc) {
-		System.out.print("Kérem adja meg az ügyfél nevét: ");
-		name = sc.nextLine();
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getEmail() {
 		return email;
 	}
 
-	public static void setEmail(Scanner sc) {
+	public void setEmail(Scanner sc) {
 		boolean isValid = false;
 		String clientEmail = "";
 		do {
 			System.out.print("Kérem adja meg az ügyfél e-mail címét: ");
 			clientEmail = sc.nextLine();
-			isValid = Validation.isValidEmailAddress(clientEmail);
+			isValid = Validator.isValidEmailAddress(clientEmail);
 			if (!isValid) {
 				System.out.println("A megadott e-mail cím nem helyes!");
 			}
 		} while (!isValid);
-		email = clientEmail;
+		this.email = clientEmail;
 	}
 
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(Scanner sc) {
-		System.out.print("Kérem adja meg az ügyfél telefonszámát: +");
-		phoneNumber = sc.nextLine();
-	}
-
-	public ClientType getClienType() {
-		return clientType;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 	public String getComment() {
 		return comment;
 	}
 
-	public void setComment(Scanner sc) {
-		System.out.print("Kérem adja meg az ügyfél kommentjét: ");
-		this.comment = sc.nextLine();
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
 	public ClientType getClientType() {
@@ -85,6 +83,8 @@ public class Client {
 					isValid = true;
 				}
 			} catch (Exception e) {
+				sc.nextLine();
+				System.out.println("A megadott adat érvénytelen.");
 			}
 		} while (!isValid);
 		if (type == 1) {

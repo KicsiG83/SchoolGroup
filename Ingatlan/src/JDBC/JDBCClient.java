@@ -5,11 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import Client.Client;
+
 public class JDBCClient {
 
-	public static void uploadClient(String name, String email, String phoneNumber, String type, String comment)
+	public void uploadClient(Client client)
 			throws SQLException {
-		String[] clientColumns = { name, email, phoneNumber, type, comment };
+		String[] clientColumns = { client.getName(), client.getEmail(), client.getPhoneNumber(), client.getClientType().toString(), client.getComment() };
 		Connection connection = JDBCConnection.createConnection();
 		String upload = "INSERT INTO CLIENT VALUES (client_seq.nextval, ?, ?, ?, ?, ?)";
 		try (PreparedStatement clientStatement = connection.prepareStatement(upload)) {

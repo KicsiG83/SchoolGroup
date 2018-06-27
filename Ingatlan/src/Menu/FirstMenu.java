@@ -7,19 +7,20 @@ import User.User;
 public class FirstMenu {
 
 	public static void firstMenu(User user, Scanner scanner, int subManuChoice) throws SQLException {
+		MainMenu mm = new MainMenu();
 		switch (subManuChoice) {
 		case 1:
 			System.out.println("	[1] Ingatlan keresés");
-			MainMenu.mainMenu(user, scanner);
+			mm.mainMenu(user, scanner);
 
 			break;
 		case 2:
 			System.out.println("	[2] Új ingatlan hozzáadása");
-			MainMenu.mainMenu(user, scanner);
+			mm.mainMenu(user, scanner);
 			break;
 		case 3:
 			System.out.println();
-			MainMenu.mainMenu(user, scanner);
+			mm.mainMenu(user, scanner);
 			break;
 		}
 	}

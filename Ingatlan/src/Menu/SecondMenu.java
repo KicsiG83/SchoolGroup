@@ -8,23 +8,29 @@ import User.User;
 
 public class SecondMenu {
 
-	public static void secondMenu(User user, Scanner scanner, int subManuChoice) throws SQLException {
+	public void secondMenu(User user, Scanner scanner, int subManuChoice) throws SQLException {
+		UserInterface ui = new UserInterface();
+		MainMenu mm = new MainMenu();
+		Client client = new Client();
 		switch (subManuChoice) {
 		case 1:
 			System.out.println("	[1] Ügyfél keresés");
-			MainMenu.mainMenu(user, scanner);
+			mm.mainMenu(user, scanner);
 			break;
 		case 2:
 			System.out.println("	[2] Új ügyfél hozzáadása");
-			Client client = new Client(scanner);
-			JDBCClient.uploadClient(client.getName(), client.getEmail(), client.getPhoneNumber(),
-					client.getClientType().toString(), client.getComment());
+			client.setName(ui.askString("Kérem adja meg az ügyfél nevét: "));
+			client.setEmail(scanner);
+			client.setPhoneNumber(ui.askString("Kérem adja meg az ügyfél telefonszámát: +"));
+			client.setComment(ui.askString("Kérem adja meg az ügyfél kommentjét: "));
+			client.setClientType(scanner);
+			new JDBCClient().uploadClient(client);
 			JDBCClient.listNewClient();
-			MainMenu.mainMenu(user, scanner);
+			mm.mainMenu(user, scanner);
 			break;
 		case 3:
 			System.out.println();
-			MainMenu.mainMenu(user, scanner);
+			mm.mainMenu(user, scanner);
 			break;
 		}
 	}
