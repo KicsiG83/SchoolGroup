@@ -33,7 +33,7 @@ public class User {
 	}
 
 	public void setName(Scanner sc) {
-		System.out.print("Kérem adja meg a felhasználó nevét: ");
+		System.out.print("Kérem, adja meg a felhasználó nevét: ");
 		this.name = sc.nextLine();
 	}
 
@@ -56,9 +56,17 @@ public class User {
 	}
 
 	public void setPassword(Scanner sc) {
-		System.out.print("Kérem adja meg a felhasználó jelszavát: ");
-		String userPassword = sc.nextLine();
-		this.password = new Sha256().getSha256(userPassword);
+		String userPassword;
+		System.out.print("Kérem, adja meg a felhasználó jelszavát: ");
+		userPassword = sc.nextLine();
+		int strength = new PasswordValidation().calculatePasswordStrength(userPassword);
+		do {
+			if (strength < 4) {
+				System.out.println("A jelszónak legalább 8 karakter hosszúnak kell lennie és tartalmaznia kell");
+				System.out.println("legalább egy számjegyet, egy kisbetűt és egy nagybetűt!");
+			}
+		} while (strength < 4);
+		this.password = new Sha256().getSha256(password);
 	}
 
 	public String getPassword() {
@@ -73,7 +81,7 @@ public class User {
 		boolean isValid = false;
 		String userInput = "";
 		do {
-			System.out.print("Kérem adja meg a felhasználó státuszát (Aktív, Blokkolt, Törölt): ");
+			System.out.print("Kérem, adja meg a felhasználó státuszát (Aktív, Blokkolt, Törölt): ");
 			userInput = sc.nextLine();
 			if (!userInput.equals("Aktív") && !userInput.equals("Blokkolt") && !userInput.equals("Törölt")) {
 				System.out.println("A megadott adat érvénytelen.\nA választható státuszok:\n- Aktív\nBlokkolt\nTörölt");
@@ -101,7 +109,7 @@ public class User {
 		boolean isValid = false;
 		do {
 			try {
-				System.out.print("Kérem adja meg a módisítandó felhasználó azonosítóját: ");
+				System.out.print("Kérem adja meg a módosítandó felhasználó azonosítóját: ");
 				id = sc.nextInt();
 				sc.nextLine();
 				isValid = true;
