@@ -72,18 +72,22 @@ public class Client {
 
 	public void setClientType(Scanner sc) {
 		boolean isValid = false;
-		String type = "";
-		System.out.println("\nÜgyfél típusok\n- Vevő\n- Eladó");
+		int type = 0;
+		System.out.println("\nÜgyfél típusok\n1 - Vevő\n2 - Eladó");
 		do {
-			System.out.print("Kérem adja meg az ügyfél típusát: ");
-			type = sc.nextLine().toUpperCase();
-			if (!(type.equals("VEVŐ") || type.equals("ELADÓ"))) {
-				System.out.println("A megadott adat érvénytelen (vevő vagy eladó).");
-			}else {
-				isValid = true;
+			try {
+				System.out.print("Kérem adja meg az ügyfél típusát: ");
+				type = sc.nextInt();
+				sc.nextLine();
+				if (type < 1 || type > 2) {
+					System.out.println("A megadott adat érvénytelen.");
+				} else {
+					isValid = true;
+				}
+			} catch (Exception e) {
 			}
 		} while (!isValid);
-		if (type.equals("VEVŐ")) {
+		if (type == 1) {
 			clientType = ClientType.BUYER;
 		} else {
 			clientType = ClientType.SELLER;

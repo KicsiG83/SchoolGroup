@@ -35,7 +35,15 @@ public class JDBCClient {
 				String email = rs.getString(3);
 				String phone = rs.getString(4);
 				String type = rs.getString(5);
+				if(type.equals("BUYER")) {
+					type = "Vevő";
+				}else {
+					type = "Eladó";
+				}
 				String comment = rs.getString(6);
+				if(comment == null) {
+					comment = "- Nincs megjegyzés -";
+				}
 				System.out.println("\nÜgyfél azonosító: " + id + ", név: " + name + ", E-mail cím: " + email + ", Telefonszám: " + phone + ", Ügyfél típus: " + type + ", Ügyfél megjegyzés: " + comment + "\n");
 			}
 		} catch (SQLException e) {
