@@ -57,10 +57,11 @@ public class User {
 
 	public void setPassword(Scanner sc) {
 		String userPassword;
-		System.out.print("Kérem, adja meg a felhasználó jelszavát: ");
-		userPassword = sc.nextLine();
-		int strength = new PasswordValidation().calculatePasswordStrength(userPassword);
+		int strength;
 		do {
+			System.out.print("Kérem, adja meg a felhasználó jelszavát: ");
+			userPassword = sc.nextLine();
+			strength = new PasswordValidation().calculatePasswordStrength(userPassword);
 			if (strength < 4) {
 				System.out.println("A jelszónak legalább 8 karakter hosszúnak kell lennie és tartalmaznia kell");
 				System.out.println("legalább egy számjegyet, egy kisbetűt és egy nagybetűt!");
