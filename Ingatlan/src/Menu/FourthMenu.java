@@ -14,12 +14,12 @@ public class FourthMenu {
 			System.out.println("	[1] Saját jelszó módosítása");
 			JDBCUser.changeUserData(scanner, user.getUserId(), "PASSWORD");
 			subMenuChoice = 0;
-			MainMenu.mainMenu(user, scanner);
+			new MainMenu().mainMenu(user, scanner);
 			break;
 		case 2:
 			System.out.println("	[2] Új felhasználó létrehozása");
 			createNewUser(scanner);
-			MainMenu.mainMenu(user, scanner);
+			new MainMenu().mainMenu(user, scanner);
 			break;
 		case 3:
 			System.out.println("	[3] Saját vagy másik felhasználó adatainak módosítása");
@@ -39,11 +39,11 @@ public class FourthMenu {
 					JDBCUser.changeUserData(scanner, modifiedUser.getUserId(), getColumn(index));
 				}
 			}
-			MainMenu.mainMenu(user, scanner);
+			new MainMenu().mainMenu(user, scanner);
 			break;
 		case 4:
 			System.out.println();
-			MainMenu.mainMenu(user, scanner);
+			new MainMenu().mainMenu(user, scanner);
 			break;
 		}
 	}

@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import Client.Validation;
+import BusinessLogicLayer.Validator;
 import User.Sha256;
 
 public class JDBCUser {
@@ -138,8 +138,13 @@ public class JDBCUser {
 			System.out.print("\nKérem adja meg az új adatot: ");
 			String input = sc.nextLine();
 			if (column.equals("PASSWORD")) {
-				userInput = new Sha256().getSha256(input);
-				isValid = true;
+				boolean isValidPasword = new Validator().checkPasswordStrength(input);
+				if (isValidPasword) {
+					userInput = new Sha256().getSha256(input);
+					isValid = true;
+				} else {
+					isValid = false;
+				}
 			} else if (column.equals("STATUS")) {
 				if (input.toUpperCase().equals("AKTÍV")) {
 					isValid = true;
@@ -155,7 +160,7 @@ public class JDBCUser {
 							"\nA megadott státusz ismeretlen.\nKérem válasszon az alábbiak közül: \n- Aktív\n- Blokkolt\n- Törölt");
 				}
 			} else if (column.equals("EMAIL")) {
-				boolean result = Validation.isValidEmailAddress(input);
+				boolean result = new Validator().isValidEmailAddress(input);
 				if (result) {
 					userInput = input;
 					isValid = true;

@@ -1,8 +1,7 @@
 package User;
 
 import java.util.Scanner;
-import Client.Validation;
-
+import BusinessLogicLayer.Validator;
 public class User {
 	private int userId;
 	private String name;
@@ -47,7 +46,7 @@ public class User {
 		do {
 			System.out.print("Kérem adja meg a felhasználó e-mail címét: ");
 			userEmail = sc.nextLine();
-			isValid = Validation.isValidEmailAddress(userEmail);
+			isValid = new Validator().isValidEmailAddress(userEmail);
 			if (!isValid) {
 				System.out.println("A megadott e-mail cím nem helyes.");
 			}
