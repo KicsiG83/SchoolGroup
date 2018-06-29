@@ -55,9 +55,19 @@ public class User {
 	}
 
 	public void setPassword(Scanner sc) {
-		System.out.print("Kérem adja meg a felhasználó jelszavát: ");
-		String userPassword = sc.nextLine();
-		this.password = new Sha256().getSha256(userPassword);
+		boolean isValid = false;
+		do {
+			System.out.print("Kérem adja meg a felhasználó jelszavát: ");
+			String userPassword = sc.nextLine();
+			boolean isValidPassword = new Validator().checkPasswordStrength(userPassword);
+			if (isValidPassword) {
+				this.password = new Sha256().getSha256(userPassword);
+				isValid = true;
+			} else {
+				System.out.println(
+						"A megadott jelszó nem elég erős.\n(A jelszó legyen legalább 8 karakter hosszú, tartalmazzon legalább 1 kis és nagybetűt valamint legalább 1 számot.)");
+			}
+		} while (!isValid);
 	}
 
 	public String getPassword() {

@@ -31,10 +31,23 @@ public class Validator {
 		boolean isValidPassword = false;
 		if (password.matches("(^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(.{8,})$)")) {
 			isValidPassword = true;
-		}else {
-			System.out.println("A megadott jelszó nem elég erős.\n(A jelszó tartalmaazzon legalább 1 kis és nagybetűt és legalább 1 számot, minimum 8 karakter hosszú.)");
 		}
 		return isValidPassword;
 	}
 	
+	public boolean checkPhoneNumber(String phoneNumber){
+		boolean isValidPhoneNumber = false;
+		if(phoneNumber.length()<9 || phoneNumber.length()>9) {
+			
+		}else {
+			try {
+				Integer num = Integer.valueOf(phoneNumber);
+				isValidPhoneNumber = true;
+			} catch (NumberFormatException e) {
+				System.out.println("A megadott adat érvénytelen.");
+				isValidPhoneNumber = false;
+			}
+		}
+		return isValidPhoneNumber;
+	}
 }

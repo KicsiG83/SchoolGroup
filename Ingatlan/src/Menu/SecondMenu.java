@@ -20,8 +20,8 @@ public class SecondMenu {
 		case 2:
 			System.out.println("	[2] Új ügyfél hozzáadása");
 			client.setName(ui.askString("Kérem adja meg az ügyfél nevét: "));
-			client.setEmail(scanner);
-			client.setPhoneNumber(ui.askString("Kérem adja meg az ügyfél telefonszámát: +"));
+			client.setEmail(ui.getEmailAddress("Kérem adja meg az ügyfél e-mail címét: "));
+			client.setPhoneNumber(ui.getPhoneNumber("Kérem adja meg az ügyfél telefonszámát: +36"));
 			client.setComment(ui.askString("Kérem adja meg az ügyfél kommentjét: "));
 			client.setClientType(scanner);
 			new JDBCClient().uploadClient(client);

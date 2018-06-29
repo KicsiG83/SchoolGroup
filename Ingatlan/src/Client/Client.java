@@ -1,7 +1,6 @@
 package Client;
 
 import java.util.Scanner;
-import BusinessLogicLayer.Validator;
 
 public class Client {
 	private  String name;
@@ -34,17 +33,7 @@ public class Client {
 		return email;
 	}
 
-	public void setEmail(Scanner sc) {
-		boolean isValid = false;
-		String clientEmail = "";
-		do {
-			System.out.print("Kérem adja meg az ügyfél e-mail címét: ");
-			clientEmail = sc.nextLine();
-			isValid = Validator.isValidEmailAddress(clientEmail);
-			if (!isValid) {
-				System.out.println("A megadott e-mail cím nem helyes!");
-			}
-		} while (!isValid);
+	public void setEmail(String clientEmail) {
 		this.email = clientEmail;
 	}
 
