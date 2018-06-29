@@ -3,22 +3,32 @@ package Client;
 import java.util.Scanner;
 
 public class Client {
+	private int clientID;
 	private  String name;
 	private String email;
 	private  String phoneNumber;
-	private String comment;
 	private ClientType clientType;
+	private String comment;
 
 
 	public Client() {
 	}
 
-	public Client(String name, String email, String phoneNumber, String comment, ClientType clientType) {
+	public Client(int id, String name, String email, String phoneNumber, ClientType clientType, String comment) {
+		this.clientID = id;
 		this.name = name;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
-		this.comment = comment;
 		this.clientType = clientType;
+		this.comment = comment;
+	}
+
+	public int getClientID() {
+		return clientID;
+	}
+
+	public void setClientID(int clientID) {
+		this.clientID = clientID;
 	}
 
 	public String getName() {
@@ -58,6 +68,12 @@ public class Client {
 	}
 
 	public void setClientType(Scanner sc) {
+		/*
+		 * Ennek bementként egy (ClientType clientType) kéne,
+		 * és csak ezt kell csinálnia:
+		 * this.clientType = clientType;
+		 */
+		//innentől
 		boolean isValid = false;
 		int type = 0;
 		System.out.println("\nÜgyfél típusok\n1 - Vevő\n2 - Eladó");
@@ -66,6 +82,10 @@ public class Client {
 				System.out.print("Kérem adja meg az ügyfél típusát: ");
 				type = sc.nextInt();
 				sc.nextLine();
+				/*
+				 * isValidClientType metódus legyen a validator classban.
+				 * bemenete int, kimenete boolean.
+				 */
 				if (type < 1 || type > 2) {
 					System.out.println("A megadott adat érvénytelen.");
 				} else {
@@ -76,6 +96,11 @@ public class Client {
 				System.out.println("A megadott adat érvénytelen.");
 			}
 		} while (!isValid);
+		//eddig
+		/*
+		 * A userinterface-ben legyen int kimenetelű metódus
+		 * legyen askClientType (mondjuk)
+		 */
 		if (type == 1) {
 			clientType = ClientType.BUYER;
 		} else {
