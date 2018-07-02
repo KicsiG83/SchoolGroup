@@ -46,22 +46,22 @@ public class MainMenu {
 			FirstMenu.firstMenu(user, scanner, subMenuChoice);
 			break;
 		case 2:
-			SecondMenu.printSecondMenu();
+			new SecondMenu().printSecondMenu();
 			subMenuChoice = scanner.nextInt();
 			scanner.nextLine();
 			new SecondMenu().secondMenu(user, scanner, subMenuChoice);
 			break;
 		case 3:
-			ThirdMenu.printThirdMenu();
+			new ThirdMenu().printThirdMenu();
 			subMenuChoice = scanner.nextInt();
 			scanner.nextLine();
-			ThirdMenu.thirdMenu(user, scanner, subMenuChoice);
+			new ThirdMenu().thirdMenu(user, scanner, subMenuChoice);
 			break;
 		case 4:
 			FourthMenu.printFourthMenu();
 			subMenuChoice = scanner.nextInt();
 			scanner.nextLine();
-			FourthMenu.fourthMenu(user, scanner, subMenuChoice);
+			new FourthMenu().fourthMenu(user, scanner, subMenuChoice);
 			break;
 
 		case 5:

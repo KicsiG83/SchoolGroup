@@ -11,9 +11,9 @@ import User.Sha256;
 
 public class JDBCUser {
 
-	public static void uploadUser(String name, String password, String email, String status) throws SQLException {
+	public void uploadUser(String name, String password, String email, String status) throws SQLException {
 		String[] userColumns = { name, password, email, status };
-		Connection connection = JDBCConnection.createConnection();
+		Connection connection = new JDBCConnection().createConnection();
 		String upload = "INSERT INTO USER_DATA VALUES (user_seq.nextval, ?, ?, ?, ?)";
 		try (PreparedStatement userStatement = connection.prepareStatement(upload)) {
 			for (int i = 1; i <= userColumns.length; i++) {
@@ -27,8 +27,8 @@ public class JDBCUser {
 		connection.close();
 	}
 
-	public static void listAllUserData() throws SQLException {
-		Connection connection = JDBCConnection.createConnection();
+	public void listAllUserData() throws SQLException {
+		Connection connection = new JDBCConnection().createConnection();
 		String listAll = "SELECT * FROM USER_DATA ORDER BY USER_ID ASC";
 		try (PreparedStatement getUserStatment = connection.prepareStatement(listAll);
 				ResultSet rs = getUserStatment.executeQuery()) {
@@ -45,8 +45,8 @@ public class JDBCUser {
 		connection.close();
 	}
 
-	public static void listOtherUserData(int userId) throws SQLException {
-		Connection connection = JDBCConnection.createConnection();
+	public void listOtherUserData(int userId) throws SQLException {
+		Connection connection = new JDBCConnection().createConnection();
 		String listOtherUsers = "SELECT * FROM USER_DATA WHERE USER_ID != '" + userId + "' AND STATUS != 'DELETED' ORDER BY USER_ID ASC";
 		try (PreparedStatement getUserStatment = connection.prepareStatement(listOtherUsers);
 				ResultSet rs = getUserStatment.executeQuery()) {
@@ -63,8 +63,8 @@ public class JDBCUser {
 		connection.close();
 	}
 
-	public static void listUserData(int userId) throws SQLException {
-		Connection connection = JDBCConnection.createConnection();
+	public void listUserData(int userId) throws SQLException {
+		Connection connection = new JDBCConnection().createConnection();
 		String listUserData = "SELECT * FROM USER_DATA WHERE USER_ID = '" + userId + "'";
 		try (PreparedStatement getUserStatment = connection.prepareStatement(listUserData);
 				ResultSet rs = getUserStatment.executeQuery()) {
@@ -81,9 +81,9 @@ public class JDBCUser {
 		connection.close();
 	}
 
-	public static String getPassword(int userId) throws SQLException {
+	public String getPassword(int userId) throws SQLException {
 		String userPassword = "";
-		Connection connection = JDBCConnection.createConnection();
+		Connection connection = new JDBCConnection().createConnection();
 		String listAll = "SELECT PASSWORD FROM USER_DATA WHERE USER_ID = '" + userId + "'";
 		try (PreparedStatement getUserStatment = connection.prepareStatement(listAll);
 				ResultSet rs = getUserStatment.executeQuery()) {
@@ -98,9 +98,9 @@ public class JDBCUser {
 		return userPassword;
 	}
 
-	public static String getStatus(int userId) throws SQLException {
+	public String getStatus(int userId) throws SQLException {
 		String userStatus = "";
-		Connection connection = JDBCConnection.createConnection();
+		Connection connection = new JDBCConnection().createConnection();
 		String getUserStatus = "SELECT STATUS FROM USER_DATA WHERE USER_ID = '" + userId + "'";
 		try (PreparedStatement getUserStatment = connection.prepareStatement(getUserStatus);
 				ResultSet rs = getUserStatment.executeQuery()) {
@@ -115,9 +115,9 @@ public class JDBCUser {
 		return userStatus;
 	}
 
-	public static void changeUserData(Scanner sc, int userId, String column) throws SQLException {
+	public void changeUserData(Scanner sc, int userId, String column) throws SQLException {
 		String userInput = getUserInputForChangeUserData(sc, column);
-		Connection connection = JDBCConnection.createConnection();
+		Connection connection = new JDBCConnection().createConnection();
 		String updateUserData = "UPDATE USER_DATA SET " + column + " = '" + userInput + "' WHERE USER_ID = '" + userId
 				+ "'";
 		try (PreparedStatement getUserUpdateStatement = connection.prepareStatement(updateUserData)) {
@@ -128,7 +128,7 @@ public class JDBCUser {
 		connection.close();
 	}
 
-	private static String getUserInputForChangeUserData(Scanner sc, String column) {
+	private String getUserInputForChangeUserData(Scanner sc, String column) {
 		String userInput = "";
 		boolean isValid = false;
 		if (column.equals("STATUS")) {
@@ -175,8 +175,8 @@ public class JDBCUser {
 		return userInput;
 	}
 
-	public static void listNewUserData() throws SQLException {
-		Connection connection = JDBCConnection.createConnection();
+	public void listNewUserData() throws SQLException {
+		Connection connection = new JDBCConnection().createConnection();
 		String listNewUserData = "SELECT * FROM USER_DATA WHERE USER_ID = (SELECT MAX(USER_ID) FROM USER_DATA)";
 		try (PreparedStatement getUserStatment = connection.prepareStatement(listNewUserData);
 				ResultSet rs = getUserStatment.executeQuery()) {
@@ -193,9 +193,9 @@ public class JDBCUser {
 		connection.close();
 	}
 	
-	public static boolean checkUserById(int userId) throws SQLException {
+	public boolean checkUserById(int userId) throws SQLException {
 		boolean validUser = false;
-		Connection connection = JDBCConnection.createConnection();
+		Connection connection = new JDBCConnection().createConnection();
 		String listNewUserData = "SELECT * FROM USER_DATA WHERE USER_ID = '"+ userId + "' AND STATUS != 'DELETED'";
 		try (PreparedStatement getUserStatment = connection.prepareStatement(listNewUserData);
 				ResultSet rs = getUserStatment.executeQuery()) {

@@ -20,13 +20,14 @@ public class Login {
 		int userID = 0;
 		String userPassword = "";
 		String userStatus;
+		JDBCUser jdbcUser = new JDBCUser();
 		do {
 			userID = idValidator(scanner, valid, userID);
 			System.out.print("	    		  	    	   ╚ Jelszó    : ");
 			String password = scanner.nextLine();
 			userPassword = new Sha256().getSha256(password);
-			userStatus = JDBCUser.getStatus(userID);
-			if (userPassword.equals(JDBCUser.getPassword(userID)) && UserStatus.ACTIVE.toString().equals(userStatus)) {
+			userStatus = jdbcUser.getStatus(userID);
+			if (userPassword.equals(jdbcUser.getPassword(userID)) && UserStatus.ACTIVE.toString().equals(userStatus)) {
 				user.setUserId(userID);
 				System.out.println();
 				System.out.println("				 	 Sikeresen bejelentkezett!");
@@ -44,7 +45,7 @@ public class Login {
 				System.out.println();
 			}
 
-		} while (!userPassword.equals(JDBCUser.getPassword(userID)));
+		} while (!userPassword.equals(jdbcUser.getPassword(userID)));
 	}
 
 	private int idValidator(Scanner scanner, boolean isValid, int userID) {

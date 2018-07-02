@@ -12,7 +12,7 @@ public class JDBCClient {
 	public void uploadClient(Client client)
 			throws SQLException {
 		String[] clientColumns = { client.getName(), client.getEmail(), client.getPhoneNumber(), client.getClientType().toString(), client.getComment() };
-		Connection connection = JDBCConnection.createConnection();
+		Connection connection = new JDBCConnection().createConnection();
 		String upload = "INSERT INTO CLIENT VALUES (client_seq.nextval, ?, ?, ?, ?, ?)";
 		try (PreparedStatement clientStatement = connection.prepareStatement(upload)) {
 			for (int i = 1; i <= clientColumns.length; i++) {
@@ -26,8 +26,8 @@ public class JDBCClient {
 		connection.close();
 	}
 	
-	public static void listNewClient() throws SQLException {
-		Connection connection = JDBCConnection.createConnection();
+	public void listNewClient() throws SQLException {
+		Connection connection = new JDBCConnection().createConnection();
 		String listNewClientData = "SELECT * FROM CLIENT WHERE CLIENT_ID = (SELECT MAX(CLIENT_ID) FROM CLIENT)";
 		//ArrayList<Client> clientList = new ArrayList<Client>();
 		try (PreparedStatement getClientStatment = connection.prepareStatement(listNewClientData);

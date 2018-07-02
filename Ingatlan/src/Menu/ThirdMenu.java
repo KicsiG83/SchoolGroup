@@ -7,24 +7,25 @@ import User.User;
 
 public class ThirdMenu {
 
-	public static void thirdMenu(User user, Scanner scanner, int subManuChoice) throws SQLException {
+	public void thirdMenu(User user, Scanner scanner, int subManuChoice) throws SQLException {
+		MainMenu call = new MainMenu();
 		switch (subManuChoice) {
 		case 1:
 			System.out.println("	[1] Eladási statisztikák");
-			MainMenu.mainMenu(user, scanner);
+			call.mainMenu(user, scanner);
 			break;
 		case 2:
 			System.out.println("	[2] Keresési statisztikák");
-			MainMenu.mainMenu(user, scanner);
+			call.mainMenu(user, scanner);
 			break;
 		case 3:
 			System.out.println();
-			MainMenu.mainMenu(user, scanner);
+			call.mainMenu(user, scanner);
 			break;
 		}
 	}
 
-	public static void printThirdMenu() {
+	public void printThirdMenu() {
 		System.out.println("	 					  	 ║");
 		System.out.println("	 						 ╠ [1] Eladási statisztikák");
 		System.out.println("	 						 ╠ [2] Keresési statisztikák");

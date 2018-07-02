@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 public class JDBCConnection {
 
-	private static Connection connection;
+	private Connection connection;
 
-	public static Connection createConnection() {
+	public Connection createConnection() {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "admin";
 		String password = "admin";

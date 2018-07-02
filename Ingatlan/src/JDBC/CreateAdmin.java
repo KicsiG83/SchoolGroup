@@ -11,7 +11,7 @@ public class CreateAdmin {
 		String name = "admin";
 		String password = new Sha256().getSha256("admin");
 		String email = "admin@ingatlan.hu";
-		JDBCUser.uploadUser(name, password, email, UserStatus.ACTIVE.toString());
+		new JDBCUser().uploadUser(name, password, email, UserStatus.ACTIVE.toString());
 	}
 	
 }

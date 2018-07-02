@@ -8,11 +8,11 @@ import User.User;
 
 public class FourthMenu {
 
-	public static void fourthMenu(User user, Scanner scanner, int subMenuChoice) throws SQLException {
+	public void fourthMenu(User user, Scanner scanner, int subMenuChoice) throws SQLException {
 		switch (subMenuChoice) {
 		case 1:
 			System.out.println("	[1] Saját jelszó módosítása");
-			JDBCUser.changeUserData(scanner, user.getUserId(), "PASSWORD");
+			new JDBCUser().changeUserData(scanner, user.getUserId(), "PASSWORD");
 			subMenuChoice = 0;
 			new MainMenu().mainMenu(user, scanner);
 			break;
@@ -25,18 +25,19 @@ public class FourthMenu {
 			System.out.println("	[3] Saját vagy másik felhasználó adatainak módosítása");
 			int index = 0;
 			int function = selectSubMenuFunction(scanner);
+			JDBCUser jdbcUser = new JDBCUser();
 			if (function == 1) {
-				JDBCUser.listUserData(user.getUserId());
+				jdbcUser.listUserData(user.getUserId());
 				index = chooseUserParameter(scanner);
-				JDBCUser.changeUserData(scanner, user.getUserId(), getColumn(index));
+				jdbcUser.changeUserData(scanner, user.getUserId(), getColumn(index));
 			} else {
-				JDBCUser.listOtherUserData(user.getUserId());
+				jdbcUser.listOtherUserData(user.getUserId());
 				User modifiedUser = new User();
 				int id = User.getUserById(scanner);
-				if(JDBCUser.checkUserById(id)) {
+				if(jdbcUser.checkUserById(id)) {
 					modifiedUser.setUserId(id);
 					index = chooseUserParameter(scanner);
-					JDBCUser.changeUserData(scanner, modifiedUser.getUserId(), getColumn(index));
+					jdbcUser.changeUserData(scanner, modifiedUser.getUserId(), getColumn(index));
 				}
 			}
 			new MainMenu().mainMenu(user, scanner);
@@ -102,12 +103,12 @@ public class FourthMenu {
 		return index;
 	}
 
-	private static void createNewUser(Scanner scanner) throws SQLException {
+	private void createNewUser(Scanner scanner) throws SQLException {
 		User newUser = new User(scanner);
-		JDBCUser.uploadUser(newUser.getName(), newUser.getPassword(), newUser.getEmail(),
+		new JDBCUser().uploadUser(newUser.getName(), newUser.getPassword(), newUser.getEmail(),
 				newUser.getStatus().toString());
 		System.out.print("\nAz új felhasználó adatai: ");
-		JDBCUser.listNewUserData();
+		new JDBCUser().listNewUserData();
 		System.out.println();
 	}
 

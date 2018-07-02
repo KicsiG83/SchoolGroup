@@ -4,14 +4,15 @@ import java.util.Scanner;
 
 public class Client {
 	private int clientID;
-	private  String name;
+	private String name;
 	private String email;
-	private  String phoneNumber;
+	private String phoneNumber;
 	private ClientType clientType;
 	private String comment;
 
 
 	public Client() {
+		super();
 	}
 
 	public Client(int id, String name, String email, String phoneNumber, ClientType clientType, String comment) {
@@ -66,13 +67,13 @@ public class Client {
 	public ClientType getClientType() {
 		return clientType;
 	}
-
-	public void setClientType(Scanner sc) {
-		/*
-		 * Ennek bementként egy (ClientType clientType) kéne,
-		 * és csak ezt kell csinálnia:
-		 * this.clientType = clientType;
-		 */
+	
+	public void setClientType(ClientType clientType) {
+		this.clientType = clientType;
+	}
+	
+	public void setClientTypeByUser(Scanner sc) {
+		
 		//innentől
 		boolean isValid = false;
 		int type = 0;

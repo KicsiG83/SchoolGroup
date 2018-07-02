@@ -23,9 +23,9 @@ public class SecondMenu {
 			client.setEmail(ui.getEmailAddress("Kérem adja meg az ügyfél e-mail címét: "));
 			client.setPhoneNumber(ui.getPhoneNumber("Kérem adja meg az ügyfél telefonszámát: +36"));
 			client.setComment(ui.askString("Kérem adja meg az ügyfél kommentjét: "));
-			client.setClientType(scanner);
+			client.setClientTypeByUser(scanner);
 			new JDBCClient().uploadClient(client);
-			JDBCClient.listNewClient();
+			new JDBCClient().listNewClient();
 			mm.mainMenu(user, scanner);
 			break;
 		case 3:
@@ -35,7 +35,7 @@ public class SecondMenu {
 		}
 	}
 
-	public static void printSecondMenu() {
+	public void printSecondMenu() {
 		System.out.println("				   	 ║");
 		System.out.println("				 	 ╠ [1] Ügyfél keresés");
 		System.out.println("				 	 ╠ [2] Új ügyfél hozzáadása");

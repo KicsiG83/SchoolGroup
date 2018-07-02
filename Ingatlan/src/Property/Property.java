@@ -1,208 +1,223 @@
 package Property;
 
-import Address.Address;
-
 public class Property {
-	/**
-	 * Kötelezően megadandó mezők
-	 */
 	private int propertyID;
-	private Address address;
+	private int clientID;
+	private int userID;
 	private PropertyType propertyType;
-	private boolean elevator;
-	private String description;
-	private boolean balcony;
-	private boolean airConditioned;
-	private double heigth; // méterben
 	private int size; // négyzetméterben
+	private int groundSize = 0; //csak ház és irodánál nem nulla
 	private int numberOfRooms;
-
-	public Property(int propertyID, Address address, PropertyType propertyType, boolean elevator, String description,
-			boolean balcony, boolean airConditioned, double heigth, int size, int numberOfRooms) {
-		this.propertyID = propertyID;
-		this.address = address;
-		this.propertyType = propertyType;
-		this.elevator = elevator;
-		this.description = description;
-		this.balcony = balcony;
-		this.airConditioned = airConditioned;
-		this.heigth = heigth;
-		this.size = size;
-		this.numberOfRooms = numberOfRooms;
+	private int numberOfHalfRooms;
+	private int price; // a DB-ben forintban tároljuk, ha vki eur-ban adja meg, átszámáljuk.
+	private String StreetAndNumber;
+	private City city;
+	private Material material; // anyag
+	private Toilet wc;
+	private EnergeticLevel level;
+	private PropertyCondition condition;
+	private String description;
+	private AdvertisingStatus status;
+	private int countNUmber; //megtekintések száma, a DB-ben így hívják
+	/*private String pic1;
+	private String pic2;
+	private String pic3;*/
+	
+	public Property() {
 	}
 
-	/**
-	 * Nem kötelező megadni
-	 */
-	private PropertyCondition condition;
-	private boolean garden;
-	private Perspective view;
-	private BuildingSiting siting;
-	private HeatingType heating;
-	private ParkingOption parking;
-	private Conveniences conveniences;
-	private Mansard attic;
-	private Toilet wc;
-	private Material material;
+	public Property(int propertyID, int clientID, int userID, PropertyType propertyType, int size, int groundSize,
+			int numberOfRooms, int numberOfHalfRooms, int price, String streetAndNumber, City city, Material material,
+			Toilet wc, EnergeticLevel level, PropertyCondition condition, String description, AdvertisingStatus status,
+			int countNUmber) {
+		super();
+		this.propertyID = propertyID;
+		this.clientID = clientID;
+		this.userID = userID;
+		this.propertyType = propertyType;
+		this.size = size;
+		this.groundSize = groundSize;
+		this.numberOfRooms = numberOfRooms;
+		this.numberOfHalfRooms = numberOfHalfRooms;
+		this.price = price;
+		StreetAndNumber = streetAndNumber;
+		this.city = city;
+		this.material = material;
+		this.wc = wc;
+		this.level = level;
+		this.condition = condition;
+		this.description = description;
+		this.status = status;
+		this.countNUmber = countNUmber;
+	}
 
 	public int getPropertyID() {
 		return propertyID;
-	}
-
-	public Address getAddress() {
-		return address;
-	}
-
-	public PropertyType getPropertyType() {
-		return propertyType;
-	}
-
-	public boolean isElevator() {
-		return elevator;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public boolean isBalcony() {
-		return balcony;
-	}
-
-	public boolean isAirConditioned() {
-		return airConditioned;
-	}
-
-	public double getHeigth() {
-		return heigth;
-	}
-
-	public int getSize() {
-		return size;
-	}
-
-	public int getNumberOfRooms() {
-		return numberOfRooms;
-	}
-
-	public PropertyCondition getCondition() {
-		return condition;
-	}
-
-	public boolean isGarden() {
-		return garden;
-	}
-
-	public Perspective getView() {
-		return view;
-	}
-
-	public BuildingSiting getSiting() {
-		return siting;
-	}
-
-	public HeatingType getHeating() {
-		return heating;
-	}
-
-	public ParkingOption getParking() {
-		return parking;
-	}
-
-	public Conveniences getConveniences() {
-		return conveniences;
-	}
-
-	public Mansard getAttic() {
-		return attic;
-	}
-
-	public Toilet getWc() {
-		return wc;
-	}
-
-	public Material getMaterial() {
-		return material;
 	}
 
 	public void setPropertyID(int propertyID) {
 		this.propertyID = propertyID;
 	}
 
-	public void setAddress(Address address) {
-		this.address = address;
+	public PropertyType getPropertyType() {
+		return propertyType;
 	}
 
 	public void setPropertyType(PropertyType propertyType) {
 		this.propertyType = propertyType;
 	}
 
-	public void setElevator(boolean elevator) {
-		this.elevator = elevator;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public void setBalcony(boolean balcony) {
-		this.balcony = balcony;
-	}
-
-	public void setAirConditioned(boolean airConditioned) {
-		this.airConditioned = airConditioned;
-	}
-
-	public void setHeigth(double heigth) {
-		this.heigth = heigth;
+	public int getSize() {
+		return size;
 	}
 
 	public void setSize(int size) {
 		this.size = size;
 	}
 
+	public int getGroundSize() {
+		return groundSize;
+	}
+
+	public void setGroundSize(int groundSize) {
+		this.groundSize = groundSize;
+	}
+
+	public int getNumberOfRooms() {
+		return numberOfRooms;
+	}
+
 	public void setNumberOfRooms(int numberOfRooms) {
 		this.numberOfRooms = numberOfRooms;
 	}
 
-	public void setCondition(PropertyCondition condition) {
-		this.condition = condition;
+	public int getNumberOfHalfRooms() {
+		return numberOfHalfRooms;
 	}
 
-	public void setGarden(boolean garden) {
-		this.garden = garden;
+	public void setNumberOfHalfRooms(int numberOfHalfRooms) {
+		this.numberOfHalfRooms = numberOfHalfRooms;
 	}
 
-	public void setView(Perspective view) {
-		this.view = view;
+	public int getPrice() {
+		return price;
 	}
 
-	public void setSiting(BuildingSiting siting) {
-		this.siting = siting;
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
-	public void setHeating(HeatingType heating) {
-		this.heating = heating;
+	public String getStreetAndNumber() {
+		return StreetAndNumber;
 	}
 
-	public void setParking(ParkingOption parking) {
-		this.parking = parking;
+	public void setStreetAndNumber(String streetAndNumber) {
+		StreetAndNumber = streetAndNumber;
 	}
 
-	public void setConveniences(Conveniences conveniences) {
-		this.conveniences = conveniences;
+	public City getCity() {
+		return city;
 	}
 
-	public void setAttic(Mansard attic) {
-		this.attic = attic;
+	public void setCity(City city) {
+		this.city = city;
 	}
 
-	public void setWc(Toilet wc) {
-		this.wc = wc;
+	public Material getMaterial() {
+		return material;
 	}
 
 	public void setMaterial(Material material) {
 		this.material = material;
 	}
 
+	public Toilet getWc() {
+		return wc;
+	}
+
+	public void setWc(Toilet wc) {
+		this.wc = wc;
+	}
+
+	public EnergeticLevel getLevel() {
+		return level;
+	}
+
+	public void setLevel(EnergeticLevel level) {
+		this.level = level;
+	}
+
+	public PropertyCondition getCondition() {
+		return condition;
+	}
+
+	public void setCondition(PropertyCondition condition) {
+		this.condition = condition;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public AdvertisingStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(AdvertisingStatus status) {
+		this.status = status;
+	}
+
+	public int getClientID() {
+		return clientID;
+	}
+
+	public void setClientID(int clientID) {
+		this.clientID = clientID;
+	}
+
+	public int getUserID() {
+		return userID;
+	}
+
+	public void setUserID(int userID) {
+		this.userID = userID;
+	}
+
+	public int getCountNUmber() {
+		return countNUmber;
+	}
+
+	public void setCountNUmber(int countNUmber) {
+		this.countNUmber = countNUmber;
+	}
+
+	/*public String getPic1() {
+		return pic1;
+	}
+
+	public void setPic1(String pic1) {
+		this.pic1 = pic1;
+	}
+
+	public String getPic2() {
+		return pic2;
+	}
+
+	public void setPic2(String pic2) {
+		this.pic2 = pic2;
+	}
+
+	public String getPic3() {
+		return pic3;
+	}
+
+	public void setPic3(String pic3) {
+		this.pic3 = pic3;
+	}*/
+	
+	
 }
