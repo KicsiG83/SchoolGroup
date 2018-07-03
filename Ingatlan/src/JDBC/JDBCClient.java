@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import Client.Client;
+import Client.ClientType;
 
 public class JDBCClient {
 
@@ -26,48 +28,34 @@ public class JDBCClient {
 		connection.close();
 	}
 	
+<<<<<<< Updated upstream
 	public void listNewClient() throws SQLException {
 		Connection connection = new JDBCConnection().createConnection();
+=======
+	public ArrayList<Client> listNewClient() throws SQLException {
+		Connection connection = JDBCConnection.createConnection();
+>>>>>>> Stashed changes
 		String listNewClientData = "SELECT * FROM CLIENT WHERE CLIENT_ID = (SELECT MAX(CLIENT_ID) FROM CLIENT)";
-		//ArrayList<Client> clientList = new ArrayList<Client>();
+		ArrayList<Client> clientList = new ArrayList<Client>();
 		try (PreparedStatement getClientStatment = connection.prepareStatement(listNewClientData);
 				ResultSet rs = getClientStatment.executeQuery()) {
 			while (rs.next()) {
-				/*
-				 * 
-				 * String type = rs.getString(5);
-				 * ClientType ct = new ClientType();
-				 * if(type.equals("BUYER")) {
-					ct = ClientType.BUYER;
-				 * }
-				 * else {
-				 * ct = ClientType.SELLER;
-				 * }
-				 * Client client = new Client(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),ct,rs.getString(6));
-				 * clientList.add(client);
-				 */
-				
-				
-				int id = rs.getInt(1);
-				String name = rs.getString(2);
-				String email = rs.getString(3);
-				String phone = rs.getString(4);
 				String type = rs.getString(5);
-				if(type.equals("BUYER")) {
-					type = "Vevő";
-				}else {
-					type = "Eladó";
+				ClientType ct;
+				if (type.equals("BUYER")) {
+					ct = ClientType.BUYER;
+				} else {
+					ct = ClientType.SELLER;
 				}
-				String comment = rs.getString(6);
-				//return clientList;
-				if(comment == null) {
-					comment = "- Nincs megjegyzés -";
-				}
-				System.out.println("\nÜgyfél azonosító: " + id + ", név: " + name + ", E-mail cím: " + email + ", Telefonszám: " + phone + ", Ügyfél típus: " + type + ", Ügyfél megjegyzés: " + comment + "\n");
+				Client client = new Client(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), ct,
+						rs.getString(6));
+				clientList.add(client);
+
 			}
 		} catch (SQLException e) {
 			System.err.println("Could not list data!");
 		}
 		connection.close();
+		return clientList;
 	}
 }
