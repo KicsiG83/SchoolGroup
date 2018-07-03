@@ -28,10 +28,6 @@ public class JDBCClient {
 		connection.close();
 	}
 	
-<<<<<<< Updated upstream
-	public void listNewClient() throws SQLException {
-		Connection connection = new JDBCConnection().createConnection();
-=======
 	public ArrayList<Client> listNewClient() throws SQLException {
 		Connection connection = JDBCConnection.createConnection();
 >>>>>>> Stashed changes

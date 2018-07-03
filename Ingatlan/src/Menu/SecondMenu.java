@@ -25,11 +25,7 @@ public class SecondMenu {
 			client.setComment(ui.askString("Kérem adja meg az ügyfél kommentjét: "));
 			client.setClientTypeByUser(scanner);
 			new JDBCClient().uploadClient(client);
-<<<<<<< Updated upstream
-			new JDBCClient().listNewClient();
-=======
 //			JDBCClient.listNewClient();
->>>>>>> Stashed changes
 			mm.mainMenu(user, scanner);
 			break;
 		case 3:

@@ -1,4 +1,0 @@
-INDEX VERSION 1.131+E:\Doksik\AK_AK\java\1 project\SchoolGroup\.metadata\.plugins\org.eclipse.jdt.core
-1575697051.index
-1489729114.index
-3353811681.index
