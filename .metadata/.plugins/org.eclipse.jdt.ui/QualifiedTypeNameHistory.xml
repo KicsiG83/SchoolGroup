@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<<<<<<< Updated upstream
-    <fullyQualifiedTypeName name="GUI.UserInterface"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
-    <fullyQualifiedTypeName name="BusinessLogicLayer.Tester.Tester"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="Client.Client"/>
-    <fullyQualifiedTypeName name="Property.Property"/>
-    <fullyQualifiedTypeName name="JDBC.TestData"/>
-=======
-<fullyQualifiedTypeName name="GUI.UserInterface"/>
-<fullyQualifiedTypeName name="java.util.Scanner"/>
->>>>>>> Stashed changes
+    <fullyQualifiedTypeName name="BusinessLogicLayer.ClientTools"/>
+    <fullyQualifiedTypeName name="Property.PropertyType"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="JDBC.JDBCSearchPreferences"/>
+    <fullyQualifiedTypeName name="Client.SearchPreferences"/>
 </qualifiedTypeNameHistroy>

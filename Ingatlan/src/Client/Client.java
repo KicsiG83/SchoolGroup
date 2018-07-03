@@ -9,19 +9,21 @@ public class Client {
 	private String phoneNumber;
 	private ClientType clientType;
 	private String comment;
+	private boolean hasPreferences;
 
 
 	public Client() {
 		super();
 	}
 
-	public Client(int id, String name, String email, String phoneNumber, ClientType clientType, String comment) {
+	public Client(int id, String name, String email, String phoneNumber, ClientType clientType, String comment, boolean hasPreferences) {
 		this.clientID = id;
 		this.name = name;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
 		this.clientType = clientType;
 		this.comment = comment;
+		this.hasPreferences = hasPreferences;
 	}
 
 	public int getClientID() {
@@ -72,6 +74,14 @@ public class Client {
 		this.clientType = clientType;
 	}
 	
+	public boolean isHasPreferences() {
+		return hasPreferences;
+	}
+
+	public void setHasPreferences(boolean hasPreferences) {
+		this.hasPreferences = hasPreferences;
+	}
+
 	public void setClientTypeByUser(Scanner sc) {
 		
 		//innentől
@@ -107,6 +117,14 @@ public class Client {
 		} else {
 			clientType = ClientType.SELLER;
 		}
+	}
+
+	@Override
+	public String toString() {
+		String prefs = isHasPreferences() == true ? "Vannak" : "Nincsenek";
+		return "Ügyfél ID=" + clientID + ", Név=" + name + ", email=" + email + ", telefon=" + phoneNumber
+				+ ", típusa=" + clientType.getTextual() + ", megjegyzés=[" + comment + "], Preferenciák: "
+				+ prefs;
 	}
 
 }

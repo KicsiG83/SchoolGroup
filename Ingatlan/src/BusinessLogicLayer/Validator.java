@@ -1,11 +1,21 @@
 package BusinessLogicLayer;
 
 public class Validator {
-
-	public boolean isValidMenuChoice(String s) {
+	public boolean isValidLimitValue(String value) {
+		try {
+			int result = Integer.parseInt(value);
+			if(result>0) {
+				return true;
+			}
+			
+		} catch(Exception e) {			
+		}
+		return false;
+	}
+	public boolean isValidMenuChoice(String s, int numberOfOptions) {
 		try {
 			int num = Integer.parseInt(s);
-			if (num < 0 || num > 5) {
+			if (num < 0 || num > numberOfOptions) {
 				printError();
 				return false;
 			}

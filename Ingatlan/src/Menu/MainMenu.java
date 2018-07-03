@@ -34,7 +34,7 @@ public class MainMenu {
 				"	1.INGATLAN ADATBÁZIS   2.ÜGYFÉL ADATBÁZIS  3.STATISZTIKÁK   4.FELHASZNÁLÓ KEZELÉS    5.KILÉPÉS"
 						+ "	 => a választott főmenü: ");
 		String mainMenuChoice = ui.askString("");
-		while(!valid.isValidMenuChoice(mainMenuChoice)) {
+		while(!valid.isValidMenuChoice(mainMenuChoice,5)) {
 			mainMenuChoice = ui.askString("");
 		}
 		int menuIndex = Integer.parseInt(mainMenuChoice);

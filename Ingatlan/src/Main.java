@@ -9,7 +9,7 @@ public class Main {
 		new Main().run();
 	}
 	public void run() throws SQLException {
-		new MainMenu().menu();
 //		new TestData().generate();
+		new MainMenu().menu();
 	}
 }

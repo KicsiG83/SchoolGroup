@@ -50,6 +50,7 @@ public class JDBCProperty {
 			propertyStatement.executeBatch();
 		} catch (SQLException e) {
 			System.err.println("Could not upload to property database!");
+			System.out.println(property.toString());
 		}
 		connection.close();
 	}

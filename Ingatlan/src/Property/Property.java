@@ -10,7 +10,7 @@ public class Property {
 	private int numberOfRooms;
 	private int numberOfHalfRooms;
 	private int price; // a DB-ben forintban tároljuk, ha vki eur-ban adja meg, átszámáljuk.
-	private String StreetAndNumber;
+	private String streetAndNumber;
 	private City city;
 	private Material material; // anyag
 	private Toilet wc;
@@ -40,7 +40,7 @@ public class Property {
 		this.numberOfRooms = numberOfRooms;
 		this.numberOfHalfRooms = numberOfHalfRooms;
 		this.price = price;
-		StreetAndNumber = streetAndNumber;
+		streetAndNumber = streetAndNumber;
 		this.city = city;
 		this.material = material;
 		this.wc = wc;
@@ -108,11 +108,11 @@ public class Property {
 	}
 
 	public String getStreetAndNumber() {
-		return StreetAndNumber;
+		return streetAndNumber;
 	}
 
 	public void setStreetAndNumber(String streetAndNumber) {
-		StreetAndNumber = streetAndNumber;
+		this.streetAndNumber = streetAndNumber;
 	}
 
 	public City getCity() {
@@ -193,6 +193,16 @@ public class Property {
 
 	public void setCountNUmber(int countNUmber) {
 		this.countNUmber = countNUmber;
+	}
+
+	@Override
+	public String toString() {
+		return "Property [propertyID=" + propertyID + ", clientID=" + clientID + ", userID=" + userID
+				+ ", propertyType=" + propertyType + ", size=" + size + ", groundSize=" + groundSize
+				+ ", numberOfRooms=" + numberOfRooms + ", numberOfHalfRooms=" + numberOfHalfRooms + ", price=" + price
+				+ ", streetAndNumber=" + streetAndNumber + ", city=" + city + ", material=" + material + ", wc=" + wc
+				+ ", level=" + level + ", condition=" + condition + ", description=" + description + ", status="
+				+ status + ", countNUmber=" + countNUmber + "]";
 	}
 
 	/*public String getPic1() {

@@ -14,7 +14,8 @@ public class Tester {
 	private String[] lastNames = {"Tóth","Kovács","Kiss","Nagy","Vámos","Varga","Kádár","Szabó","Molnár"};
 	private String[] firstNames = {"József","Béla","Géza","László","István",
 			"Zsuzsanna","Mária","Erzsébet","Ágnes","Anna"};
-	
+	private String[] keyWords = {"medence","erkély","garázs", "központi fűtés","cirko","gázkonvektor",
+			"belső udvar","közlekedés","nap","csendes","vásárlás","orvos","levegő"};
 	public ArrayList<Client> generateTestClients() {
 		ArrayList<Client> listOfTestClients = new ArrayList<Client>();
 		int clientIDCounter = 0;
@@ -24,7 +25,27 @@ public class Tester {
 		}
 		return listOfTestClients;
 	}
-	
+	public SearchPreferences generateOnePreferences(int searchID, int clientID) {
+		SearchPreferences prefs = new SearchPreferences();
+		prefs.setSearchID(searchID);
+		prefs.setClientID(clientID);
+		prefs.setPropertyType(setTestPropertyType());
+		prefs.setSizeMin(rnd.nextInt(15)+10);
+		prefs.setSizeMax(rnd.nextInt(450)+50);
+		prefs.setPriceMin((rnd.nextInt(4)+1)*1000000);
+		prefs.setPriceMax((rnd.nextInt(150)+50)*1000000);
+		prefs.setSearchType(setTestAdvertisingStatus());
+		prefs.setCity(setTestCity());
+		prefs.setKeyWord1(setTestKeyWord());
+		prefs.setKeyWord2(setTestKeyWord());
+		prefs.setKeyWord3(setTestKeyWord());
+		return prefs;
+		
+	}
+	private String setTestKeyWord() {
+		String keyWord = keyWords[rnd.nextInt(keyWords.length)];
+		return keyWord;
+	}
 	public Client generateOneClient(int clientIDCounter) {
 		Client testClient = new Client();
 		testClient.setClientID(clientIDCounter);
@@ -34,14 +55,21 @@ public class Tester {
 		testClient.setPhoneNumber(generatePhoneNumber());
 		testClient.setClientType(setTestClientType(clientIDCounter));
 		testClient.setComment("Nincs megjegyzés");
+		testClient.setHasPreferences(setTestPreferences(testClient.getClientType()));
 		return testClient;
 	}
 
-	private ClientType setTestClientType(int clientIDCounter) {
-		if(clientIDCounter <= 50) {
-			return ClientType.SELLER;			
+	private boolean setTestPreferences(ClientType clientType) {
+		if(clientType.equals(ClientType.BUYER)) {
+			return true;
 		}
-		return ClientType.BUYER;
+		return false;
+	}
+	private ClientType setTestClientType(int clientIDCounter) {
+		if(clientIDCounter % 3 == 0) {
+			return ClientType.BUYER;			
+		}
+		return ClientType.SELLER;
 	}
 
 	private String generatePhoneNumber() {
@@ -86,8 +114,8 @@ public class Tester {
 
 	private String generateName() {
 		String name;
-		String lastName = lastNames[rnd.nextInt(9)];
-		String firstName = firstNames[rnd.nextInt(10)];
+		String lastName = lastNames[rnd.nextInt(lastNames.length)];
+		String firstName = firstNames[rnd.nextInt(firstNames.length)];
 		name = lastName + " " + firstName;
 		return name;
 	}
@@ -97,7 +125,7 @@ public class Tester {
 		int propIDCounter = 0;
 		int userID = 1;
 		
-		for(int i=0;i<300;i++) {
+		for(int i=0;i<1;i++) {
 			propIDCounter++;
 			listOftestProperties.add(generateOneProperty(propIDCounter,userID));
 		}
@@ -107,7 +135,7 @@ public class Tester {
 	public Property generateOneProperty(int propIDCounter,int userID) {
 		Property testProp = new Property();
 		testProp.setPropertyID(propIDCounter);
-		testProp.setClientID(98);//erre kell figyelni
+		testProp.setClientID(177);//ezt kell állítani.
 		testProp.setUserID(userID);
 		PropertyType testPropType = setTestPropertyType();
 		testProp.setPropertyType(testPropType);
@@ -134,22 +162,22 @@ public class Tester {
 	}
 
 	private PropertyCondition setTestCondition() {
-		PropertyCondition cond = PropertyCondition.values()[rnd.nextInt(7)];
+		PropertyCondition cond = PropertyCondition.values()[rnd.nextInt(PropertyCondition.values().length)];
 		return cond;
 	}
 
 	private EnergeticLevel setTestEnergeticLevel() {
-		EnergeticLevel level = EnergeticLevel.values()[rnd.nextInt(4)];
+		EnergeticLevel level = EnergeticLevel.values()[rnd.nextInt(EnergeticLevel.values().length)];
 		return level;
 	}
 
 	private Material setTestMaterial() {
-		Material mat = Material.values()[rnd.nextInt(5)];
+		Material mat = Material.values()[rnd.nextInt(Material.values().length)];
 		return mat;
 	}
 
 	private String setTestAddress() {
-		String street = streets[rnd.nextInt(6)];
+		String street = streets[rnd.nextInt(streets.length)];
 		String num = Integer.toString(rnd.nextInt(99)+1);
 		return street + " " + num;
 	}
@@ -164,15 +192,15 @@ public class Tester {
 	}
 
 	private PropertyType setTestPropertyType() {
-		PropertyType type = PropertyType.values()[rnd.nextInt(4)];
+		PropertyType type = PropertyType.values()[rnd.nextInt(PropertyType.values().length)];
 		return type;
 	}
 	private City setTestCity() {
-		City city = City.values()[rnd.nextInt(5)];
+		City city = City.values()[rnd.nextInt(City.values().length-1)];
 		return city;
 	}
 	private Toilet setTestToilet() {
-		Toilet wc = Toilet.values()[rnd.nextInt(2)];
+		Toilet wc = Toilet.values()[rnd.nextInt(Toilet.values().length)];
 		return wc;
 	}
 
