@@ -1,6 +1,5 @@
 import java.sql.SQLException;
 
-import JDBC.TestData;
 import Menu.MainMenu;
 
 public class Main {
@@ -9,7 +8,7 @@ public class Main {
 		new Main().run();
 	}
 	public void run() throws SQLException {
-//		new TestData().generate();
 		new MainMenu().menu();
+	
 	}
 }
