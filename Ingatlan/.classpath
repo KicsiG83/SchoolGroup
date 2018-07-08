@@ -11,5 +11,8 @@
 	<classpathentry kind="lib" path="D:/Java/SchoolGroup/Ingatlan/src/lib/itext-pdfa-5.5.9.jar"/>
 	<classpathentry kind="lib" path="D:/Java/SchoolGroup/Ingatlan/src/lib/itext-xtra-5.5.9.jar"/>
 	<classpathentry kind="lib" path="D:/Java/SchoolGroup/Ingatlan/src/lib/xmlworker-5.5.9.jar"/>
+	<classpathentry kind="lib" path="D:/Java/SchoolGroup/Ingatlan/src/lib/activation.jar"/>
+	<classpathentry kind="lib" path="D:/Java/SchoolGroup/Ingatlan/src/lib/java-mail-1.4.4.jar"/>
+	<classpathentry kind="lib" path="D:/Java/SchoolGroup/Ingatlan/src/lib/jsse.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

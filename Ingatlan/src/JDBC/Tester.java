@@ -135,7 +135,7 @@ public class Tester {
 	public Property generateOneProperty(int propIDCounter,int userID) {
 		Property testProp = new Property();
 		testProp.setPropertyID(propIDCounter);
-		testProp.setClientID(177);//ezt kell állítani.
+		testProp.setClientID(1);//ezt kell állítani.
 		testProp.setUserID(userID);
 		PropertyType testPropType = setTestPropertyType();
 		testProp.setPropertyType(testPropType);
