@@ -15,7 +15,21 @@ public class Validator {
 	public boolean isValidMenuChoice(String s, int numberOfOptions) {
 		try {
 			int num = Integer.parseInt(s);
-			if (num < 0 || num > numberOfOptions) {
+			if (num <= 0 || num > numberOfOptions) {
+				printError();
+				return false;
+			}
+		} catch (Exception e) {
+			printError();
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean isValidMenuChoice(int s, int numberOfOptions) {
+		try {
+			int num = s;
+			if (num <= 0 || num > numberOfOptions) {
 				printError();
 				return false;
 			}
@@ -27,7 +41,7 @@ public class Validator {
 	}
 
 	private void printError() {
-		System.out.println("A megadott érték érvénytelen.");
+		System.out.println("													A megadott érték érvénytelen!");
 	}
 
 	public boolean isValidEmailAddress(String email) {

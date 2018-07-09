@@ -16,6 +16,13 @@ public class UserInterface {
 		String userInput = sc.nextLine();
 		return userInput;
 	}
+	
+	public int askInteger(String message) {
+		System.out.print(message);
+		int userInput = sc.nextInt();
+		sc.nextLine();
+		return userInput;
+	}
 
 	public String getEmailAddress(String message) {
 		boolean isValid = false;

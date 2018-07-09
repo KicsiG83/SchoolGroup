@@ -15,9 +15,14 @@ public class SecondMenu {
 		MainMenu mm = new MainMenu();
 		Client client = new Client();
 		ClientTools clientTools = new ClientTools();
+		SecondMenuSubMenus sm = new SecondMenuSubMenus();
 		switch (subManuChoice) {
 		case 1:
-			System.out.println("	[1] Összes ügyfél lekérése");
+			System.out.println("	[1] Ügyfél keresés╗");
+			System.out.println("   	                  ║");
+			System.out.println(" 	                  ╠ {1} Név alapján");
+			System.out.println(" 	                  ╚ {2} ID alapján");
+			sm.firstSubMeu();
 			ArrayList<Client> list = clientTools.getClientListfromDB();
 			int n = list.size();
 			for(int i=0;i<n;i++) {
@@ -27,7 +32,11 @@ public class SecondMenu {
 			mm.mainMenu(user, scanner);
 			break;
 		case 2:
-			System.out.println("	[2] Új ügyfél hozzáadása");
+			System.out.println("	[2] Új Ügyfél hozzáadása╗");
+			System.out.println("   	                        ║");
+			System.out.println(" 	                        ╠ {1} Mentés");
+			System.out.println(" 	                        ╚ {2} Elvetés");
+			sm.secondSubMeu();
 			client.setName(ui.askString("Kérem adja meg az ügyfél nevét: "));
 			client.setEmail(ui.getEmailAddress("Kérem adja meg az ügyfél e-mail címét: "));
 			client.setPhoneNumber(ui.getPhoneNumber("Kérem adja meg az ügyfél telefonszámát: +36"));
@@ -66,12 +75,10 @@ public class SecondMenu {
 
 	public void printSecondMenu() {
 		System.out.println("				   	 ║");
-		System.out.println("				 	 ╠ [1] Összes ügyfél");
-		System.out.println("				 	 ╠ [2] Új ügyfél hozzáadása");
+		System.out.println("				 	 ╠ [1] Ügyfél keresés");
+		System.out.println("				 	 ╠ [2] Új Ügyfél hozzáadása");
 		System.out.println("	 				 ╚ [3] Vissza a főmenübe");
-		System.out.print(
-				"	                                                                                              "
-						+ "	 => a választott almenü: ");
+
 	}
 
 }
