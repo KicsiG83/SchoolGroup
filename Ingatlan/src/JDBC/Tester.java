@@ -125,7 +125,7 @@ public class Tester {
 		int propIDCounter = 0;
 		int userID = 1;
 		
-		for(int i=0;i<1;i++) {
+		for(int i=0;i<300;i++) {
 			propIDCounter++;
 			listOftestProperties.add(generateOneProperty(propIDCounter,userID));
 		}

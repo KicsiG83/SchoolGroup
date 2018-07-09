@@ -1,16 +1,21 @@
 package Menu;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import BusinessLogicLayer.ClientTools;
 import Client.*;
+import Property.AdvertisingStatus;
+import Property.City;
+import Property.PropertyType;
 import User.User;
 
 public class SecondMenu {
 
-	public void secondMenu(User user, Scanner scanner, int subManuChoice) throws SQLException {
+	public void secondMenu(User user, Scanner scanner, int subManuChoice) throws SQLException, MalformedURLException, IOException {
 		UserInterface ui = new UserInterface();
 		MainMenu mm = new MainMenu();
 		Client client = new Client();
@@ -43,13 +48,28 @@ public class SecondMenu {
 				SearchPreferences prefs = new SearchPreferences();
 				prefs.setSearchID(0);
 				prefs.setClientID(checkerClient.getClientID());
-				prefs.setPropertyType(ui.askPropertyType());
-				prefs.setSizeMin(ui.askLimitOfValue("területének","minimumát"));
-				prefs.setSizeMax(ui.askLimitOfValue("területének","maximumát"));
-				prefs.setPriceMin(ui.askLimitOfValue("árának","minimumát"));
-				prefs.setPriceMax(ui.askLimitOfValue("árának","maximumát"));
-				prefs.setSearchType(ui.askAdvertisingType());
-				prefs.setCity(ui.askCity());
+				PropertyType pt = ui.askPropertyType();
+				while(pt == null) {
+					System.err.println("Kötelező választani.");
+					pt = ui.askPropertyType();
+				}
+				prefs.setPropertyType(pt);
+				prefs.setSizeMin(ui.askLimitOfValue("területének","minimumát négyzetméterben"));
+				prefs.setSizeMax(ui.askLimitOfValue("területének","maximumát négyzetméterben"));
+				prefs.setPriceMin(ui.askLimitOfValue("árának","minimumát forintban"));
+				prefs.setPriceMax(ui.askLimitOfValue("árának","maximumát forintban"));
+				AdvertisingStatus status = ui.askAdvertisingType();
+				while(status == null) {
+					System.err.println("Kötelező választani.");
+					status = ui.askAdvertisingType();
+				}
+				prefs.setSearchType(status);
+				City city = ui.askCity();
+				while(city == null) {
+					System.err.println("Kötelező választani.");
+					city = ui.askCity();
+				}
+				prefs.setCity(city);
 				prefs.setKeyWord1(ui.askKeyWord());
 				prefs.setKeyWord2(ui.askKeyWord());
 				prefs.setKeyWord3(ui.askKeyWord());

@@ -2,22 +2,15 @@ package JDBC;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-import Property.Property;
+import Property.*;
 
 public class JDBCProperty {
 
-	public void uploadProperty(Property property
-			/*int clientId, int userId, String adType, String addressType, String price,
-			String city, String district, String street, String streetNumber, String floor, String doorNumber,
-			String elevator, String status, String addressSize, String roomNumber, String balcony,
-			String airConditioner, String garden, String panelProgram, String height, String propertyCondition,
-			String description, int counter*/
-			) throws SQLException {
-		/*String[] propertyColumns = { adType, addressType, price, city, district, street, streetNumber, floor,
-				doorNumber, elevator, status, addressSize, roomNumber, balcony, airConditioner, garden, panelProgram,
-				height, propertyCondition, description };*/
+	public void uploadProperty(Property property) throws SQLException {
 		Connection connection = new JDBCConnection().createConnection();
 		String upload = "INSERT INTO PROPERTY VALUES (PROPERTY_SEQ.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try (PreparedStatement propertyStatement = connection.prepareStatement(upload)) {
@@ -38,14 +31,6 @@ public class JDBCProperty {
 			propertyStatement.setString(15, property.getDescription());
 			propertyStatement.setString(16, property.getStatus().getTextual());
 			propertyStatement.setInt(17, property.getCountNUmber());
-			/*
-			for (int i = 0; i < propertyColumns.length; i++) {
-				int index = i + 3;
-				System.out.println(index + " - " + propertyColumns[i]);
-				propertyStatement.setString(index, propertyColumns[i]);
-			}
-			propertyStatement.setInt(23, counter);
-			*/
 			propertyStatement.addBatch();
 			propertyStatement.executeBatch();
 		} catch (SQLException e) {
@@ -53,6 +38,247 @@ public class JDBCProperty {
 			System.out.println(property.toString());
 		}
 		connection.close();
+	}
+
+	public ArrayList<Property> getAllProperty() throws SQLException {
+		Connection connection = new JDBCConnection().createConnection();
+		ArrayList<Property> propertyList = new ArrayList<Property>();
+		
+		String listNewPropertyData = "SELECT * FROM PROPERTY";
+		try (PreparedStatement getPropertyStatment = connection.prepareStatement(listNewPropertyData);
+				ResultSet rs = getPropertyStatment.executeQuery()) {
+			while (rs.next()) {
+				Property prop = new Property();
+				prop.setPropertyID(rs.getInt(1));
+				prop.setClientID(rs.getInt(2));
+				prop.setUserID(rs.getInt(3));
+				PropertyType type = getPropertyType(rs.getString(4));
+				prop.setPropertyType(type);
+				prop.setSize(rs.getInt(5));
+				if(type == PropertyType.HOUSE || type == PropertyType.OFFICE) {
+					prop.setGroundSize(rs.getInt(6));
+				}
+				prop.setNumberOfRooms(rs.getInt(7));
+				prop.setNumberOfHalfRooms(rs.getInt(8));
+				prop.setPrice(rs.getInt(9));
+				prop.setStreetAndNumber(rs.getString(10));
+				City city = getCity(rs.getString(11));
+				prop.setCity(city);
+				prop.setMaterial(getMaterial(rs.getString(12)));
+				Toilet wc = rs.getString(13).equals("Külön helységben") ? Toilet.ALONE : Toilet.IN_BATHROOM;
+				prop.setWc(wc);
+				EnergeticLevel level = getLevel(rs.getString(14));
+				prop.setLevel(level);
+				PropertyCondition condition = getCondition(rs.getString(15));
+				prop.setCondition(condition);
+				prop.setDescription(rs.getString(16));
+				AdvertisingStatus status = getStatus(rs.getString(17));
+				prop.setStatus(status);
+				prop.setCountNUmber(rs.getInt(18));
+				propertyList.add(prop);
+			}
+		} catch (SQLException e) {
+			System.err.println("Could not list data!");
+		}
+		connection.close();		
+		return propertyList;
+	}
+
+	public Property getLastProperty() throws SQLException {
+		Connection connection = new JDBCConnection().createConnection();
+		String listNewPropertyData = "SELECT * FROM PROPERTY WHERE PROPERTY_ID = (SELECT MAX(PROPERTY_ID) FROM PROPERTY)";
+		Property prop = new Property();
+		try (PreparedStatement getPropertyStatment = connection.prepareStatement(listNewPropertyData);
+				ResultSet rs = getPropertyStatment.executeQuery()) {
+			while (rs.next()) {
+				prop.setPropertyID(rs.getInt(1));
+				prop.setClientID(rs.getInt(2));
+				prop.setUserID(rs.getInt(3));
+				PropertyType type = getPropertyType(rs.getString(4));
+				prop.setPropertyType(type);
+				prop.setSize(rs.getInt(5));
+				if(type == PropertyType.HOUSE || type == PropertyType.OFFICE) {
+					prop.setGroundSize(rs.getInt(6));
+				}
+				prop.setNumberOfRooms(rs.getInt(7));
+				prop.setNumberOfHalfRooms(rs.getInt(8));
+				prop.setPrice(rs.getInt(9));
+				prop.setStreetAndNumber(rs.getString(10));
+				City city = getCity(rs.getString(11));
+				prop.setCity(city);
+				prop.setMaterial(getMaterial(rs.getString(12)));
+				Toilet wc = rs.getString(13).equals("Külön helységben") ? Toilet.ALONE : Toilet.IN_BATHROOM;
+				prop.setWc(wc);
+				EnergeticLevel level = getLevel(rs.getString(14));
+				prop.setLevel(level);
+				PropertyCondition condition = getCondition(rs.getString(15));
+				prop.setCondition(condition);
+				prop.setDescription(rs.getString(16));
+				AdvertisingStatus status = getStatus(rs.getString(17));
+				prop.setStatus(status);
+				prop.setCountNUmber(rs.getInt(18));
+			}
+		} catch (SQLException e) {
+			System.err.println("Could not list data!");
+		}
+		connection.close();
+		return prop;
+	}
+
+	private AdvertisingStatus getStatus(String string) {
+		switch(string) {
+		case "Eladó":
+			return AdvertisingStatus.FORSALE;
+		case "Eladva":
+			return AdvertisingStatus.SOLD;
+		case "Kiadva":
+			return AdvertisingStatus.RENTED;
+		case "Kiadó":
+			return AdvertisingStatus.FORRENT;
+		case "Lezárva":
+			return AdvertisingStatus.CLOSED;
+		default:
+			return null;
+		}
+	}
+
+	private PropertyCondition getCondition(String string) {
+		switch(string) {
+		case "Új":
+			return PropertyCondition.NEW;
+		case "Újszerű":
+			return PropertyCondition.NEWSY;
+		case "Felújított":
+			return PropertyCondition.RENOVATED;
+		case "Jó":
+			return PropertyCondition.GOOD;
+		case "Közepes":
+			return PropertyCondition.MID;
+		case "Felújítandó":
+			return PropertyCondition.BAD;
+		case "Befejezetlen":
+			return PropertyCondition.UNDER_CONDTRUCTION;		
+		default:
+			return null;
+		}
+	}
+
+	private EnergeticLevel getLevel(String string) {
+		switch(string) {
+		case "A":
+			return EnergeticLevel.A;
+		case "B":
+			return EnergeticLevel.B;
+		case "C":
+			return EnergeticLevel.C;
+		case "D":
+			return EnergeticLevel.D;
+		default:
+			return null;
+		}
+	}
+
+	private Material getMaterial(String string) {
+		switch(string) {
+		case "Tégla":
+			return Material.BRICK;
+		case "Panel":
+			return Material.PANEL;
+		case "Kő":
+			return Material.STONE;
+		case "Vályog":
+			return Material.ADOBE;
+		case "Csusztatott zsalus":
+			return Material.SHRIVELED_SHUTTER;
+		default:
+			return null;
+		}
+	}
+
+	private City getCity(String string) {
+		switch(string) {
+		case "Budapest":
+			return City.BP;
+		case "Szeged":
+			return City.SZEGED;
+		case "Pécs":
+			return City.PECS;
+		case "Siófok":
+			return City.SIOFOK;
+		case "Győr":
+			return City.GYOR;
+		default:
+			return City.OTHER;
+		}
+		
+	}
+
+	private PropertyType getPropertyType(String string) {
+		switch(string) {
+		case "Ház":
+			return PropertyType.HOUSE;
+		case "Lakás":
+			return PropertyType.APARTMENT;
+		case "Iroda":
+			return PropertyType.OFFICE;
+		case "Telek":
+			return PropertyType.PLOT;
+		default:
+			return null;
+		}
+			
+	}
+	public void runSetterQuery(String query) throws SQLException {
+		Connection connection = new JDBCConnection().createConnection();
+		try (PreparedStatement getPropertyStatment = connection.prepareStatement(query);
+				ResultSet rs = getPropertyStatment.executeQuery()) {}
+		catch (SQLException e) {
+			System.err.println("Could not update data!");
+		}
+		connection.close();
+		return;
+	}
+	public ArrayList<Property> runGetterQuery(String query) throws SQLException {
+		Connection connection = new JDBCConnection().createConnection();
+		ArrayList<Property> propertyList = new ArrayList<Property>();
+		try (PreparedStatement getPropertyStatment = connection.prepareStatement(query);
+				ResultSet rs = getPropertyStatment.executeQuery()) {
+			while (rs.next()) {
+				Property prop = new Property();
+				prop.setPropertyID(rs.getInt(1));
+				prop.setClientID(rs.getInt(2));
+				prop.setUserID(rs.getInt(3));
+				PropertyType type = getPropertyType(rs.getString(4));
+				prop.setPropertyType(type);
+				prop.setSize(rs.getInt(5));
+				if(type == PropertyType.HOUSE || type == PropertyType.OFFICE) {
+					prop.setGroundSize(rs.getInt(6));
+				}
+				prop.setNumberOfRooms(rs.getInt(7));
+				prop.setNumberOfHalfRooms(rs.getInt(8));
+				prop.setPrice(rs.getInt(9));
+				prop.setStreetAndNumber(rs.getString(10));
+				City city = getCity(rs.getString(11));
+				prop.setCity(city);
+				prop.setMaterial(getMaterial(rs.getString(12)));
+				Toilet wc = rs.getString(13).equals("Külön helységben") ? Toilet.ALONE : Toilet.IN_BATHROOM;
+				prop.setWc(wc);
+				EnergeticLevel level = getLevel(rs.getString(14));
+				prop.setLevel(level);
+				PropertyCondition condition = getCondition(rs.getString(15));
+				prop.setCondition(condition);
+				prop.setDescription(rs.getString(16));
+				AdvertisingStatus status = getStatus(rs.getString(17));
+				prop.setStatus(status);
+				prop.setCountNUmber(rs.getInt(18));
+				propertyList.add(prop);
+			}
+		} catch (SQLException e) {
+			System.err.println("Could not list data!");
+		}
+		connection.close();		
+		return propertyList;
+		
 	}
 
 }

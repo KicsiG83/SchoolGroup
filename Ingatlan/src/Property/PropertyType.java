@@ -10,4 +10,5 @@ public enum PropertyType {
 	private PropertyType(String text) {
 		textual = text;
 	}
+	
 }

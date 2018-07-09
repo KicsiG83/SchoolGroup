@@ -1,5 +1,7 @@
 package Menu;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -13,8 +15,10 @@ public class Login {
 	 * 
 	 * @param scanner
 	 * @throws SQLException
+	 * @throws IOException 
+	 * @throws MalformedURLException 
 	 */
-	public void login(Scanner scanner) throws SQLException {
+	public void login(Scanner scanner) throws SQLException, MalformedURLException, IOException {
 		User user = new User();
 		boolean valid = false;
 		int userID = 0;

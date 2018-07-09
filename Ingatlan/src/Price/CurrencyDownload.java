@@ -7,7 +7,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class CurrencyDownload {
-	public static double valueOfOneEURinHUF() throws MalformedURLException, IOException {
+	public double valueOfOneEURinHUF() throws MalformedURLException, IOException {
 		URL oracle = new URL("http://www.mnb.hu/");
 		BufferedReader in = new BufferedReader(new InputStreamReader(oracle.openStream()));
 

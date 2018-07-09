@@ -1,7 +1,7 @@
 package Property;
 
 public enum City {
-	BP("Budapest"),SZEGED("Szeged"),PECS("Pécs"),SIOFOK("Siófok"),GYOR("Győr"),OTHER("");
+	BP("Budapest"),SZEGED("Szeged"),PECS("Pécs"),SIOFOK("Siófok"),GYOR("Győr"),OTHER("Egyéb");
 	
 private String textual;
 	

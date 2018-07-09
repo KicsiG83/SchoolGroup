@@ -1,5 +1,7 @@
 package Menu;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -7,7 +9,7 @@ import User.User;
 
 public class ThirdMenu {
 
-	public void thirdMenu(User user, Scanner scanner, int subManuChoice) throws SQLException {
+	public void thirdMenu(User user, Scanner scanner, int subManuChoice) throws SQLException, MalformedURLException, IOException {
 		MainMenu call = new MainMenu();
 		switch (subManuChoice) {
 		case 1:

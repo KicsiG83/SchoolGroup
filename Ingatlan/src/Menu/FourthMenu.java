@@ -1,5 +1,7 @@
 package Menu;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -8,7 +10,7 @@ import User.User;
 
 public class FourthMenu {
 
-	public void fourthMenu(User user, Scanner scanner, int subMenuChoice) throws SQLException {
+	public void fourthMenu(User user, Scanner scanner, int subMenuChoice) throws SQLException, MalformedURLException, IOException {
 		switch (subMenuChoice) {
 		case 1:
 			System.out.println("	[1] Saját jelszó módosítása");
@@ -49,7 +51,7 @@ public class FourthMenu {
 		}
 	}
 
-	public static void printFourthMenu() {
+	public void printFourthMenu() {
 		System.out.println("	 							  	 ║");
 		System.out.println("								 	 ╠ [1] Saját jelszó módosítása");
 		System.out.println("								 	 ╠ [2] Új felhasználó létrehozása");

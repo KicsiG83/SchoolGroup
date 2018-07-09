@@ -1,4 +1,7 @@
 package Property;
+import java.io.IOException;
+
+import Price.CurrencyDownload;
 
 public class Property {
 	private int propertyID;
@@ -40,7 +43,7 @@ public class Property {
 		this.numberOfRooms = numberOfRooms;
 		this.numberOfHalfRooms = numberOfHalfRooms;
 		this.price = price;
-		streetAndNumber = streetAndNumber;
+		this.streetAndNumber = streetAndNumber;
 		this.city = city;
 		this.material = material;
 		this.wc = wc;
@@ -197,12 +200,20 @@ public class Property {
 
 	@Override
 	public String toString() {
+		double oneEuro=1;
+		try {
+			oneEuro = new CurrencyDownload().valueOfOneEURinHUF();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "Property [propertyID=" + propertyID + ", clientID=" + clientID + ", userID=" + userID
-				+ ", propertyType=" + propertyType + ", size=" + size + ", groundSize=" + groundSize
-				+ ", numberOfRooms=" + numberOfRooms + ", numberOfHalfRooms=" + numberOfHalfRooms + ", price=" + price
-				+ ", streetAndNumber=" + streetAndNumber + ", city=" + city + ", material=" + material + ", wc=" + wc
-				+ ", level=" + level + ", condition=" + condition + ", description=" + description + ", status="
-				+ status + ", countNUmber=" + countNUmber + "]";
+				+ ", propertyType=" + propertyType.getTextual() + ", size=" + size + ", groundSize=" + groundSize
+				+ ", numberOfRooms=" + numberOfRooms + ", numberOfHalfRooms=" + numberOfHalfRooms + ", "
+						+ "price(HUF)=" + price + ", price(EUR)=" + (int)(price / oneEuro)  
+				+ ", streetAndNumber=" + streetAndNumber + ", city=" + city.getTextual() + ", material=" + material.getTextual() + ", wc=" + wc.getTextual()
+				+ ", level=" + level.getTextual() + ", condition=" + condition.getTextual() + ", description=" + description + ", status="
+				+ status.getTextual() + ", countNUmber=" + countNUmber + "]";
 	}
 
 	/*public String getPic1() {
