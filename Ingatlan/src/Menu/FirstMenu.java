@@ -161,6 +161,7 @@ public class FirstMenu {
 			if(result.equals(null)) {
 				System.out.println("Nincs ilyen ingatlan.");
 			} else {
+				propertyTools.increase(propID);
 				System.out.println(result.toString());
 			}
 			break;

@@ -26,7 +26,6 @@ public class PropertyTools {
 		if(resultList.size() == 0) {
 			return null;
 		} else  {
-			increaseViews(propID);
 			return resultList.get(0);
 		}
 	}
@@ -105,7 +104,7 @@ public class PropertyTools {
 		ArrayList<Property> result = jdbcProperty.runGetterQuery(str);
 		return result;
 	}
-	private void increaseViews(int propID) throws SQLException {
+	public void increaseViews(int propID) throws SQLException {
 		String query = "UPDATE PROPERTY SET COUNT_NUMBER = (SELECT COUNT_NUMBER FROM PROPERTY WHERE PROPERTY_ID =" + propID + ")+ 1 WHERE PROPERTY_ID =" +  propID;
 		jdbcProperty.runSetterQuery(query);
 		
