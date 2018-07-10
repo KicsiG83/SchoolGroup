@@ -67,7 +67,7 @@ public class UserInterface {
 			if (isValidPhoneNumber) {
 				isValid = true;
 			} else {
-				System.out.println("A megadott adat érvénytelen.");
+				System.out.println("\nÉrvénytelen adat.\nÉrvényes körzetszámok: 20/30/31/70 ezután 7 számjegy.\n");
 			}
 		} while (!isValid);
 		return userInput;

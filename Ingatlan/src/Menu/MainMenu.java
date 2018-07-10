@@ -56,40 +56,31 @@ public class MainMenu {
 			firstMenu.firstMenu(user, scanner, subMenuChoice);
 			break;
 		case 2:
-			SecondMenu secondMenu = new SecondMenu();
-			secondMenu.printSecondMenu();
-			String subMenuIndex2 = ui.askString("");
-			while(!valid.isValidMenuChoice(subMenuIndex2,3)) {
-				System.err.println("\n					!!!Nincs ilyen menüpont!!!");
-				System.out.print("=> a választott menü: ");
-				subMenuIndex2 = ui.askString("");
-			}
-			subMenuChoice = Integer.parseInt(subMenuIndex2);
-			secondMenu.secondMenu(user, scanner, subMenuChoice);
+			new SecondMenu().printSecondMenu();
+			do {
+				subMenuChoice = ui.askString(
+						"													 => a választott 'Ügyfél adatbázis' almenü: ");
+			} while (!valid.isValidMenuChoice(subMenuChoice, 3));
+			subMenuIndex = Integer.parseInt(subMenuChoice);
+			new SecondMenu().secondMenu(user, scanner, subMenuIndex);
 			break;
 		case 3:
-			ThirdMenu thirdMenu = new ThirdMenu();
-			thirdMenu.printThirdMenu();			
-			String subMenuIndex3 = ui.askString("");
-			while(!valid.isValidMenuChoice(subMenuIndex3,3)) {
-				System.err.println("\n					!!!Nincs ilyen menüpont!!!");
-				System.out.print("=> a választott menü: ");
-				subMenuIndex3 = ui.askString("");
-			}
-			subMenuChoice = Integer.parseInt(subMenuIndex3);
-			thirdMenu.thirdMenu(user, scanner, subMenuChoice);
+			new ThirdMenu().printThirdMenu();
+			do {
+				subMenuChoice = ui.askString(
+						"													 => a választott 'Statisztikák' almenü: ");
+			} while (!valid.isValidMenuChoice(subMenuChoice, 3));
+			subMenuIndex = Integer.parseInt(subMenuChoice);
+			new ThirdMenu().thirdMenu(user, scanner, subMenuIndex);
 			break;
 		case 4:
-			FourthMenu fourthMenu = new FourthMenu();
-			fourthMenu.printFourthMenu();
-			String subMenuIndex4 = ui.askString("");
-			while(!valid.isValidMenuChoice(subMenuIndex4,4)) {
-				System.err.println("\n					!!!Nincs ilyen menüpont!!!");
-				System.out.print("=> a választott menü: ");
-				subMenuIndex4 = ui.askString("");
-			}
-			subMenuChoice = Integer.parseInt(subMenuIndex4);			
-			fourthMenu.fourthMenu(user, scanner, subMenuChoice);
+			FourthMenu.printFourthMenu();
+			do {
+				subMenuChoice = ui.askString(
+						"													 => a választott 'Felhasználó kezelés' almenü: ");
+			} while (!valid.isValidMenuChoice(subMenuChoice, 4));
+			subMenuIndex = Integer.parseInt(subMenuChoice);
+			new FourthMenu().fourthMenu(user, scanner, subMenuIndex);
 			break;
 
 		case 5:
