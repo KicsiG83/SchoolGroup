@@ -99,7 +99,7 @@ public class FirstMenu {
 		}
 	}
 
-	private void propertyEditing(UserInterface ui, PropertyTools propertyTools) throws SQLException {
+	private void propertyEditing(UserInterface ui, PropertyTools propertyTools) throws SQLException, MalformedURLException, IOException {
 		System.out.println("	   	 	   	 ║");
 		System.out.println("	   	 	   	 ╠ [1] Ingatlanok listázása keresési feltételekkel");
 		System.out.println("	   	 	   	 ╠ [2] Ingatlan keresés azonosító alapján");
@@ -161,14 +161,64 @@ public class FirstMenu {
 			if(result.equals(null)) {
 				System.out.println("Nincs ilyen ingatlan.");
 			} else {
-				propertyTools.increase(propID);
+				propertyTools.increaseViews(propID);
 				System.out.println(result.toString());
 			}
 			break;
 		case 3:
+			int updatePropID = ui.askNumber("Adja meg a frissíteni kívánt ingatlan azonosítóját: ");
+			Property updateResult = propertyTools.getPropertyWithPropertyID(updatePropID);
+			if(updateResult.equals(null)) {
+				System.out.println("Nincs ilyen ingatlan.");
+				break;
+			} else {
+				System.out.println("Adatok cserélése: ");
+				System.out.println("Ha nem ad meg értéket, az adat nem frissül.\n");
+				
+				String updateClientID = ui.askString("Új ügyfél azonosítót: ");
+				String updateUserID = ui.askString("Új felhasználó azonosítót: ");
+				System.out.println("Új ingatlan típus: ");
+				pt = ui.askPropertyType();
+				String updatePropertyType = pt == null ? "" : pt.getTextual();
+				String updateSize = ui.askString("Új terület: ");
+				String updateGroundSize = ui.askString("Új udvar terület: ");
+				String updateRoomNumber = ui.askString("Új 'szobaszám': ");
+				String updateHalfRoomNumber = ui.askString("Új 'félszobaszám': ");
+				System.out.println("Új ár:");
+				int price = ui.askPrice();
+				String updatePrice = price == 0 ? "" : Integer.toString(price);
+				String updateStreetAndNumber = ui.askString("Új cím: ");
+				System.out.println("Új település:");
+				city = ui.askCity();
+				String updateCity = city == null ? "" : city.getTextual();
+				System.out.println("Új építési anyag: ");
+				mat = ui.askMaterial();
+				String updateMaterial = mat == null ? "" : mat.getTextual();
+				System.out.println("Új 'WC elhelyezkedés': ");
+				wc = ui.askToilet();
+				String updateToilet = wc == null ? "" : wc.getTextual();
+				System.out.println("Új energetikai besorolás: ");
+				el = ui.askEnergeticLevel();
+				String updateLevel = el == null ? "" : el.getTextual();
+				System.out.println("Új 'ingatlan állapot': ");
+				cond = ui.askCondition();
+				String updateCondition = cond == null ? "" : cond.getTextual();
+				String updateDescription = ui.askString("Új leírás: ");
+				System.out.println("Új hirdetési állapot: ");
+				status = ui.askAdvertisingType();
+				String updateStatus = status == null ? "" : status.getTextual();
+				propertyTools.update(updatePropID,updateClientID,updateUserID,
+						updatePropertyType,updateSize,updateGroundSize,updateRoomNumber,updateHalfRoomNumber,
+						updatePrice,updateStreetAndNumber,updateCity,updateMaterial,
+						updateToilet,updateLevel,updateCondition,updateDescription,updateStatus);
+				updateResult = propertyTools.getPropertyWithPropertyID(updatePropID);
+				System.out.println("A módosított ingatlan: ");
+				System.out.println(updateResult.toString());
+				break;
+			}
 		case 4:
 			System.out.println();
-			return;
+			break;
 		}
 		
 	}

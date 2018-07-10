@@ -41,20 +41,6 @@ public class Validator {
 		return true;
 	}
 
-	public boolean isValidMenuChoice(int s, int numberOfOptions) {
-		try {
-			int num = s;
-			if (num <= 0 || num > numberOfOptions) {
-				printError();
-				return false;
-			}
-		} catch (Exception e) {
-			printError();
-			return false;
-		}
-		return true;
-	}
-
 	private void printError() {
 		System.out.println("													A megadott érték érvénytelen!");
 	}

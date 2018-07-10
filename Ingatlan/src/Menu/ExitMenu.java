@@ -2,7 +2,7 @@ package Menu;
 
 public class ExitMenu {
 
-	public static void printExitMenu() {
+	public void printExitMenu() {
 		System.out.println("	  									 		  ║");
 		System.out.println("	  									 		  ║");
 		System.out.println("										A program kilép.  ╝");

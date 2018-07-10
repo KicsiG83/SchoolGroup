@@ -57,7 +57,7 @@ public class PropertyTools {
 		} catch(Exception e) {}
 		try {
 			Integer.parseInt(searchRoomNumberMin);
-			String queryRooms = " NUMBER_OF_ROOMS > " + searchRoomNumberMin;
+			String queryRooms = " NUMBER_OF_ROOMS >= " + searchRoomNumberMin;
 			query = query + queryRooms + querySeparator ;
 		} catch(Exception e) {}
 		try {
@@ -108,5 +108,86 @@ public class PropertyTools {
 		String query = "UPDATE PROPERTY SET COUNT_NUMBER = (SELECT COUNT_NUMBER FROM PROPERTY WHERE PROPERTY_ID =" + propID + ")+ 1 WHERE PROPERTY_ID =" +  propID;
 		jdbcProperty.runSetterQuery(query);
 		
+	}
+	public void update(int updatePropID, String updateClientID, String updateUserID, String updatePropertyType,
+			String updateSize, String updateGroundSize, String updateRoomNumber, String updateHalfRoomNumber, String updatePrice,
+			String updateStreetAndNumber, String updateCity, String updateMaterial, String updateToilet,
+			String updateLevel, String updateCondition, String updateDescription, String updateStatus) throws SQLException {
+		String[] analisator = new String[17];
+		int index = 0;
+		String query = "";
+		String update = "UPDATE PROPERTY SET ";
+		String where = " WHERE PROPERTY_ID =" + updatePropID;
+		if(!updateClientID.equals("")) {
+			analisator[index] = "CLIENT_ID =" + updateClientID;
+			index++;
+		}
+		if(!updateUserID.equals("")) {
+			analisator[index] = "USER_ID =" + updateUserID;
+			index++;
+		}
+		if(!updatePropertyType.equals("")) {
+			analisator[index] = "PROPERTY_TYPE = '" + updatePropertyType + "'";
+			index++;
+		}
+		if(!updateSize.equals("")) {
+			analisator[index] = "PROPERTY_SIZE =" + updateSize;
+			index++;
+		}
+		if(!updateGroundSize.equals("")) {
+			analisator[index] = "GROUND_SIZE =" + updateGroundSize;
+			index++;
+		}
+		if(!updateRoomNumber.equals("")) {
+			analisator[index] = "NUMBER_OF_ROOMS =" + updateRoomNumber;
+			index++;
+		}
+		if(!updateHalfRoomNumber.equals("")) {
+			analisator[index] = "NUMBER_OF_HALFROOM =" + updateHalfRoomNumber;
+			index++;
+		}
+		if(!updatePrice.equals("")) {
+			analisator[index] = "PRICE =" + updatePrice;
+			index++;
+		}
+		if(!updateStreetAndNumber.equals("")) {
+			analisator[index] = "STREET_AND_NUMBER = '" + updateStreetAndNumber + "'";
+			index++;
+		}
+		if(!updateCity.equals("")) {
+			analisator[index] = "CITY = '" + updateCity + "'";
+			index++;
+		}
+		if(!updateMaterial.equals("")) {
+			analisator[index] = "MATERIALS = '" + updateMaterial + "'";
+			index++;
+		}
+		if(!updateToilet.equals("")) {
+			analisator[index] = "WC = '" + updateToilet + "'";
+			index++;
+		}
+		if(!updateLevel.equals("")) {
+			analisator[index] = "ENERGETIC_LEVEL =" + updateLevel;
+			index++;
+		}
+		if(!updateCondition.equals("")) {
+			analisator[index] = "PROPERTY_CONDITION = '" + updateCondition + "'";
+			index++;
+		}
+		if(!updateDescription.equals("")) {
+			analisator[index] = "DESCRIPTION = '" + updateDescription + "'";
+			index++;
+		}
+		if(!updateStatus.equals("")) {
+			analisator[index] = "AD_STATUS = '" + updateStatus + "'";
+			index++;
+		}
+		String sep = "";
+		for(int i=0;i<index;i++) {
+			query = query + sep + analisator[i];
+			sep = ",";
+		}
+		query = update + query + where;
+		jdbcProperty.runSetterQuery(query);
 	}
 }

@@ -180,6 +180,9 @@ public class UserInterface {
 		}
 		System.out.print("Választott pénznem: ");
 		String userChoice  = sc.nextLine();
+		if(userChoice.equals("")) {
+			return 0;
+		}
 		while(!new Validator().isValidMenuChoice(userChoice, Currency.values().length)) {
 			System.out.println("Adja meg újra!");
 			System.out.print("Választott pénznem: ");

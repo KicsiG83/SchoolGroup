@@ -47,14 +47,16 @@ public class MainMenu {
 		case 1:
 			FirstMenu firstMenu = new FirstMenu();
 			firstMenu.printFirstMenu();
+			System.out.print(
+					"													 => a választott almenü: ");
 			String subMenuIndex1 = ui.askString("");
 			while(!valid.isValidMenuChoice(subMenuIndex1,3)) {
 				System.err.println("\n					!!!Nincs ilyen menüpont!!!");
-				System.out.print("=> a választott menü: ");
+				System.out.print("=> a választott almenü: ");
 				subMenuIndex1 = ui.askString("");
 			}
-			subMenuChoice = Integer.parseInt(subMenuIndex1);			
-			firstMenu.firstMenu(user, scanner, subMenuChoice);
+			int subMenuChoice1 = Integer.parseInt(subMenuIndex1);			
+			firstMenu.firstMenu(user, scanner, subMenuChoice1);
 			break;
 		case 2:
 			new SecondMenu().printSecondMenu();
@@ -75,7 +77,7 @@ public class MainMenu {
 			new ThirdMenu().thirdMenu(user, scanner, subMenuIndex);
 			break;
 		case 4:
-			FourthMenu.printFourthMenu();
+			new FourthMenu().printFourthMenu();
 			do {
 				subMenuChoice = ui.askString(
 						"													 => a választott 'Felhasználó kezelés' almenü: ");
@@ -85,7 +87,7 @@ public class MainMenu {
 			break;
 
 		case 5:
-			ExitMenu.printExitMenu();
+			new ExitMenu().printExitMenu();
 			break;
 		}
 	}
