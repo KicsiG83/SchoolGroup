@@ -8,6 +8,7 @@
     <fullyQualifiedTypeName name="JDBC.TestData"/>
     <fullyQualifiedTypeName name="GUI.UserInterface"/>
     <fullyQualifiedTypeName name="java.util.Scanner"/>
+<<<<<<< HEAD
     <fullyQualifiedTypeName name="JDBC.JDBCProperty"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="Property.Property"/>
@@ -22,4 +23,10 @@
     <fullyQualifiedTypeName name="Property.PropertyCondition"/>
     <fullyQualifiedTypeName name="Property.AdvertisingStatus"/>
     <fullyQualifiedTypeName name="Property.PropertyType"/>
+=======
+    <fullyQualifiedTypeName name="Menu.MainMenu"/>
+    <fullyQualifiedTypeName name="Menu.FirstMenu"/>
+    <fullyQualifiedTypeName name="Menu.FirstMenuFirstSubMenu"/>
+    <fullyQualifiedTypeName name="Menu.SecondMenuSubMenus"/>
+>>>>>>> MenüBővítés
 </qualifiedTypeNameHistroy>

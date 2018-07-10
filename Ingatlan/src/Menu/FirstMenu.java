@@ -177,9 +177,7 @@ public class FirstMenu {
 		System.out.println("	 	 ╠ [1] Ingatlan kezelés");
 		System.out.println("	 	 ╠ [2] Új ingatlan hozzáadása");
 		System.out.println("	 	 ╚ [3] Vissza a főmenübe");
-		System.out.print(
-				"	                                                                                              "
-						+ "	 => a választott almenü: ");
+
 	}
 
 }

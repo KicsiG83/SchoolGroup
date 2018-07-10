@@ -19,12 +19,12 @@ public class FourthMenu {
 			new MainMenu().mainMenu(user, scanner);
 			break;
 		case 2:
-			System.out.println("	[2] Új felhasználó létrehozása");
+			System.out.println("	[2] Új felhasználó létrehozása (admin)");
 			createNewUser(scanner);
 			new MainMenu().mainMenu(user, scanner);
 			break;
 		case 3:
-			System.out.println("	[3] Saját vagy másik felhasználó adatainak módosítása");
+			System.out.println("	[3] Saját vagy másik felhasználó adatainak módosítása (admin)");
 			int index = 0;
 			int function = selectSubMenuFunction(scanner);
 			JDBCUser jdbcUser = new JDBCUser();
@@ -58,9 +58,7 @@ public class FourthMenu {
 		System.out
 				.println("								 	 ╠ [3] Saját vagy egyéb felhasználó adatainak módosítása");
 		System.out.println("	 								 ╚ [4] Vissza a főmenübe");
-		System.out.print(
-				"	                                                                                              "
-						+ "	 => a választott almenü: ");
+
 	}
 
 	private static String getColumn(int index) {

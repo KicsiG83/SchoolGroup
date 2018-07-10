@@ -32,9 +32,7 @@ public class ThirdMenu {
 		System.out.println("	 						 ╠ [1] Eladási statisztikák");
 		System.out.println("	 						 ╠ [2] Keresési statisztikák");
 		System.out.println("	 						 ╚ [3] Vissza a főmenübe");
-		System.out.print(
-				"	                                                                                              "
-						+ "	 => a választott almenü: ");
+
 	}
 
 }

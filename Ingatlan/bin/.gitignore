@@ -1,4 +1,5 @@
 /JDBC/
+<<<<<<< HEAD
 /Main.class
 /Menu/
 /Price/
@@ -9,3 +10,7 @@
 /Document/
 /Email/
 /lib/
+=======
+/BusinessLogicLayer/
+/Menu/
+>>>>>>> MenüBővítés

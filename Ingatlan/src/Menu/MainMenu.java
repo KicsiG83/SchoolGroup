@@ -31,7 +31,7 @@ public class MainMenu {
 	public void mainMenu(User user, Scanner scanner) throws SQLException, MalformedURLException, IOException {
 		UserInterface ui = new UserInterface();
 		Validator valid = new Validator();
-		int subMenuChoice = 0;
+		String subMenuChoice="";
 		System.out.print(
 				"	1.INGATLAN ADATBÁZIS   2.ÜGYFÉL ADATBÁZIS  3.STATISZTIKÁK   4.FELHASZNÁLÓ KEZELÉS    5.KILÉPÉS"
 						+ "	 => a választott főmenü: ");
@@ -42,6 +42,7 @@ public class MainMenu {
 			mainMenuChoice = ui.askString("");
 		}
 		int menuIndex = Integer.parseInt(mainMenuChoice);
+		int subMenuIndex=0;
 		switch (menuIndex) {
 		case 1:
 			FirstMenu firstMenu = new FirstMenu();
@@ -60,7 +61,7 @@ public class MainMenu {
 			do {
 				subMenuChoice = ui.askString(
 						"													 => a választott 'Ügyfél adatbázis' almenü: ");
-			} while (!valid.isValidMenuChoice(subMenuChoice, 3));
+			} while (!valid.isValidMenuChoice(subMenuIndex, 3));
 			subMenuIndex = Integer.parseInt(subMenuChoice);
 			new SecondMenu().secondMenu(user, scanner, subMenuIndex);
 			break;
@@ -69,7 +70,7 @@ public class MainMenu {
 			do {
 				subMenuChoice = ui.askString(
 						"													 => a választott 'Statisztikák' almenü: ");
-			} while (!valid.isValidMenuChoice(subMenuChoice, 3));
+			} while (!valid.isValidMenuChoice(subMenuIndex, 3));
 			subMenuIndex = Integer.parseInt(subMenuChoice);
 			new ThirdMenu().thirdMenu(user, scanner, subMenuIndex);
 			break;
@@ -78,7 +79,7 @@ public class MainMenu {
 			do {
 				subMenuChoice = ui.askString(
 						"													 => a választott 'Felhasználó kezelés' almenü: ");
-			} while (!valid.isValidMenuChoice(subMenuChoice, 4));
+			} while (!valid.isValidMenuChoice(subMenuIndex, 4));
 			subMenuIndex = Integer.parseInt(subMenuChoice);
 			new FourthMenu().fourthMenu(user, scanner, subMenuIndex);
 			break;
