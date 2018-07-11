@@ -11,20 +11,29 @@ import User.User;
 public class FourthMenu {
 
 	public void fourthMenu(User user, Scanner scanner, int subMenuChoice) throws SQLException, MalformedURLException, IOException {
+		int currentUserID = user.getUserId();
 		switch (subMenuChoice) {
 		case 1:
 			System.out.println("	[1] Saját jelszó módosítása");
-			new JDBCUser().changeUserData(scanner, user.getUserId(), "PASSWORD");
+			new JDBCUser().changeUserData(scanner, currentUserID, "PASSWORD");
 			subMenuChoice = 0;
 			new MainMenu().mainMenu(user, scanner);
 			break;
 		case 2:
+			if(currentUserID != 1) {
+				System.err.println("Nincs hozzá jogosultsága!");
+				break;
+			}
 			System.out.println("	[2] Új felhasználó létrehozása (admin)");
 			createNewUser(scanner);
 			new MainMenu().mainMenu(user, scanner);
 			break;
 		case 3:
-			System.out.println("	[3] Saját vagy másik felhasználó adatainak módosítása (admin)");
+			if(currentUserID != 1) {
+				System.err.println("Nincs hozzá jogosultsága!");
+				break;
+			}
+			System.out.println("	[3] Felhasználó adatainak módosítása (admin)");
 			int index = 0;
 			int function = selectSubMenuFunction(scanner);
 			JDBCUser jdbcUser = new JDBCUser();

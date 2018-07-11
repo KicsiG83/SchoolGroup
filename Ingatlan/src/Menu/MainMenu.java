@@ -73,7 +73,7 @@ public class MainMenu {
 			do {
 				subMenuChoice = ui.askString(
 						"													 => a választott 'Statisztikák' almenü: ");
-			} while (!valid.isValidMenuChoice(subMenuIndex, 3));
+			} while (!valid.isValidMenuChoice(subMenuChoice, 3));
 			subMenuIndex = Integer.parseInt(subMenuChoice);
 			new ThirdMenu().thirdMenu(user, scanner, subMenuIndex);
 			break;
@@ -82,7 +82,7 @@ public class MainMenu {
 			do {
 				subMenuChoice = ui.askString(
 						"													 => a választott 'Felhasználó kezelés' almenü: ");
-			} while (!valid.isValidMenuChoice(subMenuIndex, 4));
+			} while (!valid.isValidMenuChoice(subMenuChoice, 4));
 			subMenuIndex = Integer.parseInt(subMenuChoice);
 			new FourthMenu().fourthMenu(user, scanner, subMenuIndex);
 			break;
