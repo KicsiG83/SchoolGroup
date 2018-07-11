@@ -31,31 +31,30 @@ public class MainMenu {
 	public void mainMenu(User user, Scanner scanner) throws SQLException, MalformedURLException, IOException {
 		UserInterface ui = new UserInterface();
 		Validator valid = new Validator();
-		String subMenuChoice="";
+		String subMenuChoice = "";
 		System.out.print(
 				"	1.INGATLAN ADATBÁZIS   2.ÜGYFÉL ADATBÁZIS  3.STATISZTIKÁK   4.FELHASZNÁLÓ KEZELÉS    5.KILÉPÉS"
 						+ "	 => a választott főmenü: ");
 		String mainMenuChoice = ui.askString("");
-		while(!valid.isValidMenuChoice(mainMenuChoice,5)) {
+		while (!valid.isValidMenuChoice(mainMenuChoice, 5)) {
 			System.err.println("\n					!!!Nincs ilyen menüpont!!!");
 			System.out.print("=> a választott főmenü: ");
 			mainMenuChoice = ui.askString("");
 		}
 		int menuIndex = Integer.parseInt(mainMenuChoice);
-		int subMenuIndex=0;
+		int subMenuIndex = 0;
 		switch (menuIndex) {
 		case 1:
 			FirstMenu firstMenu = new FirstMenu();
 			firstMenu.printFirstMenu();
-			System.out.print(
-					"													 => a választott almenü: ");
+			System.out.print("													 => a választott almenü: ");
 			String subMenuIndex1 = ui.askString("");
-			while(!valid.isValidMenuChoice(subMenuIndex1,3)) {
+			while (!valid.isValidMenuChoice(subMenuIndex1, 3)) {
 				System.err.println("\n					!!!Nincs ilyen menüpont!!!");
 				System.out.print("=> a választott almenü: ");
 				subMenuIndex1 = ui.askString("");
 			}
-			int subMenuChoice1 = Integer.parseInt(subMenuIndex1);			
+			int subMenuChoice1 = Integer.parseInt(subMenuIndex1);
 			firstMenu.firstMenu(user, scanner, subMenuChoice1);
 			break;
 		case 2:
@@ -86,7 +85,6 @@ public class MainMenu {
 			subMenuIndex = Integer.parseInt(subMenuChoice);
 			new FourthMenu().fourthMenu(user, scanner, subMenuIndex);
 			break;
-
 		case 5:
 			new ExitMenu().printExitMenu();
 			break;

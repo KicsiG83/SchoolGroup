@@ -6,12 +6,12 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="E:/Doksik/AK_AK/java/1 project/SchoolGroup/Ingatlan/src/lib/activation.jar"/>
-	<classpathentry kind="lib" path="E:/Doksik/AK_AK/java/1 project/SchoolGroup/Ingatlan/src/lib/itextpdf-5.5.9.jar"/>
-	<classpathentry kind="lib" path="E:/Doksik/AK_AK/java/1 project/SchoolGroup/Ingatlan/src/lib/itext-pdfa-5.5.9.jar"/>
-	<classpathentry kind="lib" path="E:/Doksik/AK_AK/java/1 project/SchoolGroup/Ingatlan/src/lib/itext-xtra-5.5.9.jar"/>
-	<classpathentry kind="lib" path="E:/Doksik/AK_AK/java/1 project/SchoolGroup/Ingatlan/src/lib/java-mail-1.4.4.jar"/>
-	<classpathentry kind="lib" path="E:/Doksik/AK_AK/java/1 project/SchoolGroup/Ingatlan/src/lib/ojdbc6-11.2.03.jar"/>
-	<classpathentry kind="lib" path="E:/Doksik/AK_AK/java/1 project/SchoolGroup/Ingatlan/src/lib/xmlworker-5.5.9.jar"/>
+	<classpathentry kind="lib" path="lib/activation.jar"/>
+	<classpathentry kind="lib" path="lib/itext-pdfa-5.5.9.jar"/>
+	<classpathentry kind="lib" path="lib/itext-xtra-5.5.9.jar"/>
+	<classpathentry kind="lib" path="lib/itextpdf-5.5.9.jar"/>
+	<classpathentry kind="lib" path="lib/java-mail-1.4.4.jar"/>
+	<classpathentry kind="lib" path="lib/ojdbc6-11.2.03.jar"/>
+	<classpathentry kind="lib" path="lib/xmlworker-5.5.9.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>

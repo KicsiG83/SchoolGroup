@@ -36,7 +36,6 @@ public class Login {
 				System.out.println();
 				System.out.println("				 	 Sikeresen bejelentkezett!");
 				System.out.println();
-				new MainMenu().mainMenu(user, scanner);
 			} else if (!UserStatus.ACTIVE.toString().equals(userStatus)) {
 				valid = false;
 				System.out.println();
@@ -50,6 +49,7 @@ public class Login {
 			}
 
 		} while (!userPassword.equals(jdbcUser.getPassword(userID)));
+		new MainMenu().mainMenu(user, scanner);
 	}
 
 	private int idValidator(Scanner scanner, boolean isValid, int userID) {

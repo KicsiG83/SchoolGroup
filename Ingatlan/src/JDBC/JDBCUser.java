@@ -143,6 +143,7 @@ public class JDBCUser {
 					userInput = new Sha256().getSha256(input);
 					isValid = true;
 				} else {
+					System.out.println("A megadott adat érvénytelen.\nA jelszó legalább 8 karakter hosszú, tartalmaz legalább 1 kis és nagy betűt, valamint legalább 1 számot.");
 					isValid = false;
 				}
 			} else if (column.equals("STATUS")) {

@@ -22,6 +22,7 @@ public class FourthMenu {
 		case 2:
 			if(currentUserID != 1) {
 				System.err.println("Nincs hozzá jogosultsága!");
+				new MainMenu().mainMenu(user, scanner);
 				break;
 			}
 			System.out.println("	[2] Új felhasználó létrehozása (admin)");
@@ -31,6 +32,7 @@ public class FourthMenu {
 		case 3:
 			if(currentUserID != 1) {
 				System.err.println("Nincs hozzá jogosultsága!");
+				new MainMenu().mainMenu(user, scanner);
 				break;
 			}
 			System.out.println("	[3] Felhasználó adatainak módosítása (admin)");
