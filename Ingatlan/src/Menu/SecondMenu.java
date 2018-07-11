@@ -69,7 +69,7 @@ public class SecondMenu {
 					String searchPhone = ui.askString("Szerepel a telefonszámában: ");
 					System.out.println("Csak a kiválasztott típusúak: ");
 					ClientType ct = ui.askCLientType();
-					String searchClientType = ct == null ? "" : ct.getTextual();
+					String searchClientType = ct == null ? "" : ct.toString();
 					String searchComment = ui.askString("Szerepel a kommentjében: ");
 					boolean hasPref = ui.askHasPreferences();
 					String searchHasPrefs = "" + hasPref;
