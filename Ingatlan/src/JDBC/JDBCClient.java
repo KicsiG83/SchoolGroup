@@ -82,4 +82,44 @@ public class JDBCClient {
 		connection.close();
 		return clientListFromDB;
 	}
+
+	public ArrayList<Client> runGetterQuery(String query) throws SQLException {
+		Connection connection = new JDBCConnection().createConnection();
+		ArrayList<Client> result = new ArrayList<Client>();
+		try (PreparedStatement statment = connection.prepareStatement(query);
+				ResultSet rs = statment.executeQuery()) {
+			while (rs.next()) {
+				Client client = new Client();
+				client.setClientID(rs.getInt(1));
+				client.setName(rs.getString(2));
+				client.setEmail(rs.getString(3));
+				client.setPhoneNumber(rs.getString(4));
+				ClientType ct = rs.getString(5).equalsIgnoreCase("seller") ? ClientType.SELLER : ClientType.BUYER;
+				client.setClientType(ct);
+				client.setComment(rs.getString(6));
+				boolean hasPrefs = rs.getString(7).equalsIgnoreCase("true") ? true : false;
+				client.setHasPreferences(hasPrefs);
+				result.add(client);
+			}
+		} catch (SQLException e) {
+			System.err.println("Could not list data!");
+		}
+		connection.close();		
+		return result;
+	}
+
+	public void runSetterQuery(String query) throws SQLException {
+		Connection connection = new JDBCConnection().createConnection();
+		try (PreparedStatement clientStatment = connection.prepareStatement(query);
+				ResultSet rs = clientStatment.executeQuery()) {
+			clientStatment.addBatch();
+			clientStatment.executeBatch();
+		}
+		catch (SQLException e) {
+			System.err.println("Could not update data!");
+		}
+		connection.close();
+		return;
+		
+	}
 }

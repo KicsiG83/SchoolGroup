@@ -32,7 +32,7 @@ public class FirstMenu {
 
 			break;
 		case 2:
-			System.out.println("		[2] Új ingatlan hozzáadása");
+			System.out.println("		[2] Új ingatlan hozzáadása\n");
 			Property prop = new Property();
 			prop.setClientID(ui.askNumber("Add meg az ügyfél azonosítóját: "));
 			prop.setUserID(ui.askNumber("Add meg a saját felhasználói azonosítódat: "));
@@ -101,10 +101,10 @@ public class FirstMenu {
 
 	private void propertyEditing(UserInterface ui, PropertyTools propertyTools) throws SQLException, MalformedURLException, IOException {
 		System.out.println("	   	 	   	 ║");
-		System.out.println("	   	 	   	 ╠ [1] Ingatlanok listázása keresési feltételekkel");
-		System.out.println("	   	 	   	 ╠ [2] Ingatlan keresés azonosító alapján");
-		System.out.println("	   	 	   	 ╠ [3] Ingatlan adatainak megváltoztatása");
-		System.out.println("	   	 	   	 ╚ [4] Visszalépés");
+		System.out.println("	   	 	   	 ╠ {1} Ingatlanok listázása keresési feltételekkel");
+		System.out.println("	   	 	   	 ╠ {2} Ingatlan keresés azonosító alapján");
+		System.out.println("	   	 	   	 ╠ {3} Ingatlan adatainak megváltoztatása");
+		System.out.println("	   	 	   	 ╚ {4} Visszalépés");
 		System.out.print(
 				"	                                                                                              "
 						+ "	 => a választott almenü: ");

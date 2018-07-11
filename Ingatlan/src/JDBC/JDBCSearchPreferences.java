@@ -2,6 +2,7 @@ package JDBC;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import Client.SearchPreferences;
@@ -31,5 +32,45 @@ public class JDBCSearchPreferences {
 			System.out.println(prefs.toString());
 		}
 		connection.close();
+	}
+
+	public SearchPreferences runGetterQuery(String query) throws SQLException {
+		JDBCProperty helper = new JDBCProperty();
+		Connection connection = new JDBCConnection().createConnection();
+		SearchPreferences clientPrefs = new SearchPreferences();
+		try (PreparedStatement propertyStatment = connection.prepareStatement(query);
+				ResultSet rs = propertyStatment.executeQuery()) {
+			while(rs.next()) {
+				clientPrefs.setSearchID(rs.getInt(1));
+				clientPrefs.setClientID(rs.getInt(2));
+				clientPrefs.setPropertyType(helper.getPropertyType(rs.getString(3)));
+				clientPrefs.setSizeMin(Integer.parseInt(rs.getString(4)));
+				clientPrefs.setSizeMax(Integer.parseInt(rs.getString(5)));
+				clientPrefs.setPriceMin(Integer.parseInt(rs.getString(6)));
+				clientPrefs.setPriceMax(Integer.parseInt(rs.getString(7)));
+				clientPrefs.setSearchType(helper.getStatus(rs.getString(8)));
+				clientPrefs.setCity(helper.getCity(rs.getString(9)));
+				clientPrefs.setKeyWord1(rs.getString(10));
+				clientPrefs.setKeyWord2(rs.getString(11));
+				clientPrefs.setKeyWord3(rs.getString(12));
+			}
+		}catch (SQLException e) {
+			System.err.println("Could not list data!");
+		}
+		connection.close();
+		return clientPrefs;
+	}
+
+	public void runSetterQuery(String query) throws SQLException {
+		Connection connection = new JDBCConnection().createConnection();
+		try (PreparedStatement propertyStatment = connection.prepareStatement(query);
+				ResultSet rs = propertyStatment.executeQuery()) {
+			propertyStatment.addBatch();
+			propertyStatment.executeBatch();
+		} catch (SQLException e) {
+			System.err.println("Could upload data!");
+		}
+		connection.close();
+		
 	}
 }

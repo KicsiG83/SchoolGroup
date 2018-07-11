@@ -4,25 +4,37 @@ import BusinessLogicLayer.Validator;
 
 public class SecondMenuSubMenus {
 
-	public void firstSubMeu() {
+	public int firstSubMeu() {
 		UserInterface ui = new UserInterface();
 		Validator valid = new Validator();
 		String subMenuChoice ="";
 		 do {
 			subMenuChoice = ui.askString(
-					"													 => a választott 'Ügyfél keresés' almenü: ");
-		} while (!valid.isValidMenuChoice(subMenuChoice, 3));
+					"													 => a választott 'Ügyfél kezelés' almenü: ");
+		} while (!valid.isValidMenuChoice(subMenuChoice, 5));
 		switch (Integer.parseInt(subMenuChoice)) {
 		case 1:
-			System.out.println("	{1} Név alapján");
-			break;
+			System.out.println("	{1} Keresés ID alapján");
+			return 1;
 		case 2:
-			System.out.println("	{2} ID alapján");
-			break;
+			System.out.println("	{2} Keresés név alapján");
+			return 2;
+		case 3:
+			System.out.println("	{3} Ügyfelek listázása");
+			return 3;
+		case 4:
+			System.out.println("				{4} Adatok módosítása ID alapján");
+			return 4;
+		case 5:
+			System.out.println("	{5} Vissza a főmenübe");
+			return 4;
+		default:
+			return 5;
+			
 		}
 	}
 	
-	public void secondSubMeu() {
+	public int secondSubMeu() {
 		UserInterface ui = new UserInterface();
 		Validator valid = new Validator();
 		String subMenuChoice ="";
@@ -33,10 +45,11 @@ public class SecondMenuSubMenus {
 		switch (Integer.parseInt(subMenuChoice)) {
 		case 1:
 			System.out.println("	{1} Mentés");
-			break;
+			return 1;
 		case 2:
-			System.out.println("	{2} Elvetés");
-			break;
+			System.out.println("	{2} Vissza a főmenübe");
+			return 2;
+		default: return 0; 
 		}
 	}
 }

@@ -1,32 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="BusinessLogicLayer.Tester.Tester"/>
-    <fullyQualifiedTypeName name="Client.Client"/>
-    <fullyQualifiedTypeName name="BusinessLogicLayer.ClientTools"/>
     <fullyQualifiedTypeName name="JDBC.JDBCSearchPreferences"/>
-    <fullyQualifiedTypeName name="Client.SearchPreferences"/>
-    <fullyQualifiedTypeName name="JDBC.TestData"/>
-    <fullyQualifiedTypeName name="GUI.UserInterface"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
-<<<<<<< HEAD
-    <fullyQualifiedTypeName name="JDBC.JDBCProperty"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="Property.Property"/>
-    <fullyQualifiedTypeName name="BusinessLogicLayer.PropertyTools"/>
-    <fullyQualifiedTypeName name="Price.Currency"/>
-    <fullyQualifiedTypeName name="Price.CurrencyDownload"/>
-    <fullyQualifiedTypeName name="Menu.UserInterface"/>
-    <fullyQualifiedTypeName name="Property.City"/>
-    <fullyQualifiedTypeName name="Property.Material"/>
-    <fullyQualifiedTypeName name="Property.Toilet"/>
-    <fullyQualifiedTypeName name="Property.EnergeticLevel"/>
-    <fullyQualifiedTypeName name="Property.PropertyCondition"/>
+    <fullyQualifiedTypeName name="BusinessLogicLayer.Validator"/>
     <fullyQualifiedTypeName name="Property.AdvertisingStatus"/>
-    <fullyQualifiedTypeName name="Property.PropertyType"/>
-=======
-    <fullyQualifiedTypeName name="Menu.MainMenu"/>
-    <fullyQualifiedTypeName name="Menu.FirstMenu"/>
-    <fullyQualifiedTypeName name="Menu.FirstMenuFirstSubMenu"/>
-    <fullyQualifiedTypeName name="Menu.SecondMenuSubMenus"/>
->>>>>>> MenüBővítés
 </qualifiedTypeNameHistroy>

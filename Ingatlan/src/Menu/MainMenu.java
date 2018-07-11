@@ -59,13 +59,14 @@ public class MainMenu {
 			firstMenu.firstMenu(user, scanner, subMenuChoice1);
 			break;
 		case 2:
-			new SecondMenu().printSecondMenu();
+			SecondMenu secondMenu = new SecondMenu();
+			secondMenu.printSecondMenu();
 			do {
 				subMenuChoice = ui.askString(
 						"													 => a választott 'Ügyfél adatbázis' almenü: ");
-			} while (!valid.isValidMenuChoice(subMenuIndex, 3));
+			} while (!valid.isValidMenuChoice(subMenuChoice, 3));
 			subMenuIndex = Integer.parseInt(subMenuChoice);
-			new SecondMenu().secondMenu(user, scanner, subMenuIndex);
+			secondMenu.secondMenu(user, scanner, subMenuIndex);
 			break;
 		case 3:
 			new ThirdMenu().printThirdMenu();

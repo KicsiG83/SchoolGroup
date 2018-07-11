@@ -102,9 +102,9 @@ public class SearchPreferences {
 
 	@Override
 	public String toString() {
-		return "SearchPreferences [searchID=" + searchID + ", clientID=" + clientID + ", propertyType=" + propertyType
+		return "SearchPreferences [searchID=" + searchID + ", clientID=" + clientID + ", propertyType=" + propertyType.getTextual()
 				+ ", sizeMin=" + sizeMin + ", sizeMax=" + sizeMax + ", priceMin=" + priceMin + ", priceMax=" + priceMax
-				+ ", searchType=" + searchType + ", city=" + city + ", keyWord1=" + keyWord1 + ", keyWord2=" + keyWord2
+				+ ", searchType=" + searchType.getTextual() + ", city=" + city.getTextual() + ", keyWord1=" + keyWord1 + ", keyWord2=" + keyWord2
 				+ ", keyWord3=" + keyWord3 + "]";
 	}
 	

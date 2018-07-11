@@ -5,6 +5,7 @@ import java.net.MalformedURLException;
 import java.util.Scanner;
 
 import BusinessLogicLayer.Validator;
+import Client.ClientType;
 import Property.AdvertisingStatus;
 import Property.City;
 import Property.EnergeticLevel;
@@ -303,6 +304,52 @@ public class UserInterface {
 			case 7: return PropertyCondition.values()[6];
 
 			default: return null;
+		}
+	}
+	public ClientType askCLientType() {
+		System.out.println("Kérem, adja meg az ügyfél típusát!");
+		for(int i=0; i<ClientType.values().length;i++) {
+			System.out.println((i+1)+" - " + ClientType.values()[i].getTextual());
+		}
+		System.out.print("Választott típus: ");
+		String userChoice  = sc.nextLine();
+		if(userChoice.equals("")) {
+			return null;
+		}
+		while(!new Validator().isValidMenuChoice(userChoice, ClientType.values().length)) {
+			System.out.println("Adja meg újra!");
+			System.out.print("Választott állapot: ");
+			userChoice  = sc.nextLine();
+		}
+		int optionNumber = Integer.parseInt(userChoice);
+		switch(optionNumber) {
+			case 1: return ClientType.values()[0];
+			case 2: return ClientType.values()[1];
+
+			default: return null;
+		}
+	}
+	public boolean askHasPreferences() {
+		System.out.println("Vannak-e preferenciái?");
+		System.out.println("1 - vannak");
+		System.out.println("2 - nincsenek");
+		System.out.print("Válasz: ");
+		String userChoice  = sc.nextLine();
+		if(userChoice.equals("")) {
+			return false;
+		}
+		while(!new Validator().isValidMenuChoice(userChoice, ClientType.values().length)) {
+			System.out.println("Adja meg újra!");
+			System.out.print("Válasz: ");
+			userChoice  = sc.nextLine();
+		}
+		int optionNumber = Integer.parseInt(userChoice);
+		switch(optionNumber) {
+			case 1:
+				return true;
+			default:
+				return false;
+				
 		}
 	}
 	

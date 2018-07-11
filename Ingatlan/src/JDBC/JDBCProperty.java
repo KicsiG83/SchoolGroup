@@ -125,7 +125,7 @@ public class JDBCProperty {
 		return prop;
 	}
 
-	private AdvertisingStatus getStatus(String string) {
+	public AdvertisingStatus getStatus(String string) {
 		switch(string) {
 		case "Eladó":
 			return AdvertisingStatus.FORSALE;
@@ -195,7 +195,7 @@ public class JDBCProperty {
 		}
 	}
 
-	private City getCity(String string) {
+	public City getCity(String string) {
 		switch(string) {
 		case "Budapest":
 			return City.BP;
@@ -213,7 +213,7 @@ public class JDBCProperty {
 		
 	}
 
-	private PropertyType getPropertyType(String string) {
+	public PropertyType getPropertyType(String string) {
 		switch(string) {
 		case "Ház":
 			return PropertyType.HOUSE;

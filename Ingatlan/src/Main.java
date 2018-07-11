@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.sql.SQLException;
 
+import JDBC.TestData;
 import Menu.MainMenu;
 
 public class Main {
@@ -11,6 +12,6 @@ public class Main {
 	}
 	public void run() throws SQLException, MalformedURLException, IOException {
 		new MainMenu().menu();
-
+//		new TestData().generate();
 	}
 }
