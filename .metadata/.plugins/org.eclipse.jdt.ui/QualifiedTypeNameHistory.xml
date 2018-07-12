@@ -3,4 +3,5 @@
     <fullyQualifiedTypeName name="JDBC.JDBCSearchPreferences"/>
     <fullyQualifiedTypeName name="BusinessLogicLayer.Validator"/>
     <fullyQualifiedTypeName name="Property.AdvertisingStatus"/>
+    <fullyQualifiedTypeName name="Menu.UserInterface"/>
 </qualifiedTypeNameHistroy>

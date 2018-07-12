@@ -193,6 +193,7 @@ public class UserInterface {
 		switch(userChoice) {
 		case "1":
 			cur = Currency.HUF;
+			break;
 		case "2":
 			cur = Currency.EU;
 		}
