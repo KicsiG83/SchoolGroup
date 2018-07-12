@@ -71,8 +71,7 @@ public class SecondMenu {
 					ClientType ct = ui.askCLientType();
 					String searchClientType = ct == null ? "" : ct.toString();
 					String searchComment = ui.askString("Szerepel a kommentjében: ");
-					boolean hasPref = ui.askHasPreferences();
-					String searchHasPrefs = "" + hasPref;
+					String searchHasPrefs = ui.askHasPreferencesInString();					
 					resultList = clientTools.search(searchEmail,searchPhone,searchClientType,
 							searchComment,searchHasPrefs);
 					if(resultList.size() == 0) {
@@ -84,6 +83,7 @@ public class SecondMenu {
 						}
 						System.out.println();
 					}
+					break;
 				case 4:
 					System.out.println("					    ║");
 					System.out.println("					    ╠<1> Ügyfél törlése");
@@ -200,6 +200,7 @@ public class SecondMenu {
 							System.out.println();
 							break;
 					}
+					break;
 				case 5:
 					System.out.println();
 					break;

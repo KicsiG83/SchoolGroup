@@ -353,5 +353,28 @@ public class UserInterface {
 				
 		}
 	}
+	public String askHasPreferencesInString() {
+		System.out.println("Vannak-e preferenciái?");
+		System.out.println("1 - vannak");
+		System.out.println("2 - nincsenek");
+		System.out.print("Válasz: ");
+		String userChoice  = sc.nextLine();
+		if(userChoice.equals("")) {
+			return "";
+		}
+		while(!new Validator().isValidMenuChoice(userChoice, ClientType.values().length)) {
+			System.out.println("Adja meg újra!");
+			System.out.print("Válasz: ");
+			userChoice  = sc.nextLine();
+		}
+		int optionNumber = Integer.parseInt(userChoice);
+		switch(optionNumber) {
+			case 1:
+				return "true";
+			default:
+				return "false";
+				
+		}
+	}
 	
 }
