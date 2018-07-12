@@ -105,7 +105,7 @@ public class PropertyTools {
 		return result;
 	}
 	public void increaseViews(int propID) throws SQLException {
-		String query = "UPDATE PROPERTY SET COUNT_NUMBER = (SELECT COUNT_NUMBER FROM PROPERTY WHERE PROPERTY_ID =" + propID + ")+ 1 WHERE PROPERTY_ID =" +  propID;
+		String query = "UPDATE PROPERTY SET COUNT_NUMBER = COUNT_NUMBER + 1 WHERE PROPERTY_ID =" +  propID;
 		jdbcProperty.runSetterQuery(query);
 		
 	}

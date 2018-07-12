@@ -231,7 +231,7 @@ public class JDBCProperty {
 	public void runSetterQuery(String query) throws SQLException {
 		Connection connection = new JDBCConnection().createConnection();
 		try (PreparedStatement getPropertyStatment = connection.prepareStatement(query);
-				ResultSet rs = getPropertyStatment.executeQuery()) {
+				/*ResultSet rs = getPropertyStatment.executeQuery()*/) {
 			getPropertyStatment.addBatch();
 			getPropertyStatment.executeBatch();
 		}
