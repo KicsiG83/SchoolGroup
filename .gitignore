@@ -1,5 +1,5 @@
 .gitignore
-.metadata
+*.metadata/*
 /.metadata/
 /.recommenders/
 
