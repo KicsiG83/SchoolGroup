@@ -120,22 +120,22 @@ public class Tester {
 		return name;
 	}
 
-	public ArrayList<Property> generateTestProperties() {
+	public ArrayList<Property> generateTestProperties(int clientID) {
 		ArrayList<Property> listOftestProperties = new ArrayList<Property>();
 		int propIDCounter = 0;
 		int userID = 1;
 		
 		for(int i=0;i<300;i++) {
 			propIDCounter++;
-			listOftestProperties.add(generateOneProperty(propIDCounter,userID));
+			listOftestProperties.add(generateOneProperty(propIDCounter,userID,clientID));
 		}
 		return listOftestProperties;
 	}
 	
-	public Property generateOneProperty(int propIDCounter,int userID) {
+	public Property generateOneProperty(int propIDCounter,int userID, int clientID) {
 		Property testProp = new Property();
 		testProp.setPropertyID(propIDCounter);
-		testProp.setClientID(177);//ezt kell állítani.
+		testProp.setClientID(clientID);//ezt kell állítani.
 		testProp.setUserID(userID);
 		PropertyType testPropType = setTestPropertyType();
 		testProp.setPropertyType(testPropType);

@@ -4,4 +4,6 @@
     <fullyQualifiedTypeName name="BusinessLogicLayer.Validator"/>
     <fullyQualifiedTypeName name="Property.AdvertisingStatus"/>
     <fullyQualifiedTypeName name="Menu.UserInterface"/>
+    <fullyQualifiedTypeName name="JDBC.TestData"/>
+    <fullyQualifiedTypeName name="Client.Client"/>
 </qualifiedTypeNameHistroy>

@@ -7,16 +7,15 @@ import Client.*;
 import Property.Property;
 
 public class TestData {
+	
 	public Tester tester = new Tester();
-	/**
-	 * A használata előtt létre kell, hozni a menüből egy felhasználót.
-	 * Ennek ID-jét ki kell lesni a DB-ből.
-	 * tester.generateOneProperty() metódus kommenttel jelölt sorában, ezt az ID-t kell megadni,
-	 * @throws SQLException
-	 */
+
 	public void generate() throws SQLException {
-		ArrayList<Client> testClients = tester.generateTestClients();
 		JDBCClient jdbcClient = new JDBCClient();
+		Client primeOwner = new Client(0, "Prime Owner", "prime.owner@fakemail.bazsi", "201000000", ClientType.SELLER, "", false);
+		jdbcClient.uploadClient(primeOwner);
+		primeOwner = jdbcClient.getLastClient();
+		ArrayList<Client> testClients = tester.generateTestClients();
 		int searchID = 0;
 		for(Client client : testClients) {
 			jdbcClient.uploadClient(client);
@@ -27,8 +26,7 @@ public class TestData {
 				new JDBCSearchPreferences().uploadPreferences(prefs);
 			}
 		}
-		
-		ArrayList<Property> testProperties = tester.generateTestProperties();
+		ArrayList<Property> testProperties = tester.generateTestProperties(primeOwner.getClientID());
 		for(Property property : testProperties) {
 			new JDBCProperty().uploadProperty(property);
 		}
