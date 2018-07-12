@@ -261,22 +261,22 @@ public class SecondMenu {
 		}
 		prefs.setCity(city);
 		String keyWord = ui.askKeyWord();
-		while(keyWord.equals("")) {
+		/*while(keyWord.equals("")) {
 			System.err.println("Kötelező megadni.");
 			keyWord = ui.askKeyWord();
-		}
+		}*/
 		prefs.setKeyWord1(keyWord);
 		keyWord = ui.askKeyWord();
-		while(keyWord.equals("")) {
+		/*while(keyWord.equals("")) {
 			System.err.println("Kötelező megadni.");
 			keyWord = ui.askKeyWord();
-		}
+		}*/
 		prefs.setKeyWord2(keyWord);
 		keyWord = ui.askKeyWord();
-		while(keyWord.equals("")) {
+		/*while(keyWord.equals("")) {
 			System.err.println("Kötelező megadni.");
 			keyWord = ui.askKeyWord();
-		}
+		}*/
 		prefs.setKeyWord3(keyWord);
 		return prefs;
 	}
