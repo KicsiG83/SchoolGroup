@@ -40,7 +40,7 @@ public class ClientTools {
 		
 	}
 	public ArrayList<Client> getClientWithName(String searchClientName) throws SQLException {
-		String query = "SELECT * FROM CLIENT WHERE CLIENT_NAME LIKE '" + searchClientName +"'";
+		String query = "SELECT * FROM CLIENT WHERE CLIENT_NAME LIKE '%" + searchClientName +"%'";
 		ArrayList<Client> resultList = jdbcClient.runGetterQuery(query);
 		return resultList;
 	}
@@ -51,7 +51,7 @@ public class ClientTools {
 	}
 	public ArrayList<Client> search(String searchEmail, String searchPhone, String searchClientType,
 			String searchComment, String searchHasPrefs) throws SQLException {
-		String query = "SELECT * FROM CLIENT WHERE ";
+		String query = "SELECT * FROM CLIENT";
 		String[] helper = new String[5];
 		int index =0;
 		if(!searchEmail.equals("")) {
@@ -74,7 +74,7 @@ public class ClientTools {
 			helper[index] = "HAS_PREFERENCES LIKE '%" + searchHasPrefs + "%'";
 			index++;		
 		}
-		String sep = "";
+		String sep = " WHERE ";
 		for(int i=0;i<index;i++) {
 			query = query + sep + helper[i];
 			sep = " AND ";

@@ -96,12 +96,18 @@ public class JDBCClient {
 				client.setPhoneNumber(rs.getString(4));
 				ClientType ct = rs.getString(5).equalsIgnoreCase("seller") ? ClientType.SELLER : ClientType.BUYER;
 				client.setClientType(ct);
-				client.setComment(rs.getString(6));
+				String comment = rs.getString(6);
+				if(comment != null) {
+					client.setComment(rs.getString(6));
+				} else {
+					client.setComment("Nincs megjegyzés");
+				}
 				boolean hasPrefs = rs.getString(7).equalsIgnoreCase("true") ? true : false;
 				client.setHasPreferences(hasPrefs);
 				result.add(client);
 			}
 		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 			System.err.println("Could not list data!");
 		}
 		connection.close();		

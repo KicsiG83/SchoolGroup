@@ -77,7 +77,7 @@ public class SecondMenu {
 					if(resultList.size() == 0) {
 						System.out.println("Nincs ilyen ügyfél.");
 					} else {
-						System.out.println("\n Megfelelő ügyfelek: ");
+						System.out.println("\nMegfelelő ügyfelek: ");
 						for(Client item : resultList) {
 							System.out.println(item.toString());
 						}
