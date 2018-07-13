@@ -22,7 +22,7 @@ public class JDBCUser {
 			userStatement.addBatch();
 			userStatement.executeBatch();
 		} catch (SQLException e) {
-			System.err.println("Could not upload to database!");
+			System.err.println("Sikerrtelen feltöltés");
 		}
 		connection.close();
 	}
@@ -40,7 +40,7 @@ public class JDBCUser {
 				System.out.println("ID: " + id + ", név: " + name + ", E-mail cím: " + email + ", Státusz: " + status);
 			}
 		} catch (SQLException e) {
-			System.err.println("Could not list data!");
+			System.err.println("A felhasználó adatai nem hozzáférhetőek.");
 		}
 		connection.close();
 	}
@@ -58,7 +58,7 @@ public class JDBCUser {
 				System.out.println("ID: " + id + ", név: " + name + ", E-mail cím: " + email + ", Státusz: " + status);
 			}
 		} catch (SQLException e) {
-			System.err.println("Could not list data!");
+			System.err.println("Adatok megjelenítése sikertelen");
 		}
 		connection.close();
 	}
@@ -76,7 +76,7 @@ public class JDBCUser {
 				System.out.println("ID: " + id + ", név: " + name + ", E-mail cím: " + email + ", Státusz: " + status);
 			}
 		} catch (SQLException e) {
-			System.err.println("Could not list data!");
+			System.err.println("Adatok megjelenítése sikertelen");
 		}
 		connection.close();
 	}
@@ -92,7 +92,7 @@ public class JDBCUser {
 				userPassword = password;
 			}
 		} catch (SQLException e) {
-			System.err.println("Could not list data!");
+			System.err.println("Adatok megjelenítése sikertelen");
 		}
 		connection.close();
 		return userPassword;
@@ -109,7 +109,7 @@ public class JDBCUser {
 				userStatus = status;
 			}
 		} catch (SQLException e) {
-			System.err.println("Could not list data!");
+			System.err.println("Adatok megjelenítése sikertelen");
 		}
 		connection.close();
 		return userStatus;
@@ -123,7 +123,7 @@ public class JDBCUser {
 		try (PreparedStatement getUserUpdateStatement = connection.prepareStatement(updateUserData)) {
 			getUserUpdateStatement.executeUpdate();
 		} catch (SQLException e) {
-			System.err.println("Could not upload to database!");
+			System.err.println("Adatok módosítása sikertelen.");
 		}
 		connection.close();
 	}
@@ -189,7 +189,7 @@ public class JDBCUser {
 				System.out.println("ID: " + id + ", név: " + name + ", E-mail cím: " + email + ", Státusz: " + status);
 			}
 		} catch (SQLException e) {
-			System.err.println("Could not list data!");
+			System.err.println("Adatok megjelenítése sikertelen");
 		}
 		connection.close();
 	}
@@ -212,7 +212,7 @@ public class JDBCUser {
 				System.out.println("Nincs ilyen azonosítójú felhasználó!");
 			}
 		} catch (SQLException e) {
-			System.err.println("Could not list data!");
+			System.err.println("Adatok megjelenítése sikertelen");
 		}
 		connection.close();
 		return validUser;

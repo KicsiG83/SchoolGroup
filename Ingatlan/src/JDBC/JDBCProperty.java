@@ -34,9 +34,9 @@ public class JDBCProperty {
 			propertyStatement.addBatch();
 			propertyStatement.executeBatch();
 		} catch (SQLException e) {
-			System.err.println("Could not upload to property database!");
-			System.out.println(property.toString());
+			System.err.println("Sikertelen feltöltés");
 		}
+		System.out.println("Sikeres feltöltés");
 		connection.close();
 	}
 
@@ -78,7 +78,7 @@ public class JDBCProperty {
 				propertyList.add(prop);
 			}
 		} catch (SQLException e) {
-			System.err.println("Could not list data!");
+			System.err.println("Az ingatlanok adatai nem hozzáférhetők");
 		}
 		connection.close();		
 		return propertyList;
@@ -119,7 +119,7 @@ public class JDBCProperty {
 				prop.setCountNUmber(rs.getInt(18));
 			}
 		} catch (SQLException e) {
-			System.err.println("Could not list data!");
+			System.err.println("Az ingatlan adatai nem hozzáférhetők");
 		}
 		connection.close();
 		return prop;
@@ -236,7 +236,7 @@ public class JDBCProperty {
 			getPropertyStatment.executeBatch();
 		}
 		catch (SQLException e) {
-			System.err.println("Could not update data!");
+			System.err.println("A módisítás sikertelen.");
 		}
 		connection.close();
 		return;
@@ -277,7 +277,7 @@ public class JDBCProperty {
 				propertyList.add(prop);
 			}
 		} catch (SQLException e) {
-			System.err.println("Could not list data!");
+			System.err.println("Ingatlan(ok) adatai nem hozzáférhetők.");
 		}
 		connection.close();		
 		return propertyList;

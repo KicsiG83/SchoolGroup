@@ -55,7 +55,7 @@ public class JDBCSearchPreferences {
 				clientPrefs.setKeyWord3(rs.getString(12));
 			}
 		}catch (SQLException e) {
-			System.err.println("Could not list data!");
+			System.err.println("Adatok megjelenítése sikertelen");
 		}
 		connection.close();
 		return clientPrefs;
@@ -68,7 +68,7 @@ public class JDBCSearchPreferences {
 			propertyStatment.addBatch();
 			propertyStatment.executeBatch();
 		} catch (SQLException e) {
-			System.err.println("Could upload data!");
+			System.err.println("A feltöltés sikertelen.");
 		}
 		connection.close();
 		

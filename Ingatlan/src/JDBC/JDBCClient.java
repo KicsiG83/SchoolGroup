@@ -23,7 +23,7 @@ public class JDBCClient {
 			clientStatement.addBatch();
 			clientStatement.executeBatch();
 		} catch (SQLException e) {
-			System.err.println("Could not upload to client database!");
+			System.err.println("Sikertelen feltöltés :P");
 			System.out.println(client.toString());
 		}
 		connection.close();
@@ -49,7 +49,7 @@ public class JDBCClient {
 				
 			}
 		} catch (SQLException e) {
-			System.err.println("Could not list data!");
+			System.err.println("Az ügyfél adatai nem hozzáférhetőek.");
 		}
 		connection.close();
 		return client;
@@ -77,7 +77,7 @@ public class JDBCClient {
 				
 			}
 		} catch (SQLException e) {
-			System.err.println("Could not list data!");
+			System.err.println("Az ügyfelek adatai nem hozzáférhetőek.");
 		}
 		connection.close();
 		return clientListFromDB;
@@ -107,8 +107,7 @@ public class JDBCClient {
 				result.add(client);
 			}
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			System.err.println("Could not list data!");
+			System.err.println("Az ügyfelek adatai nem hozzáférhetőek.");
 		}
 		connection.close();		
 		return result;
@@ -122,7 +121,7 @@ public class JDBCClient {
 			clientStatment.executeBatch();
 		}
 		catch (SQLException e) {
-			System.err.println("Could not update data!");
+			System.err.println("A módosítás sikertelen.");
 		}
 		connection.close();
 		return;

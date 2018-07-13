@@ -17,7 +17,7 @@ public class JDBCConnection {
 		try {
 			connection = DriverManager.getConnection(url, user, password);
 		} catch (SQLException e) {
-			System.err.println("Could not initialize database connection");
+			System.err.println("Adatbázis kapcsolódási hiba.");
 			System.out.println(e.toString());
 		}
 		return connection;

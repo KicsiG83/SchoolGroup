@@ -162,6 +162,7 @@ public class UserInterface {
 			case 3: return City.values()[2];
 			case 4: return City.values()[3];
 			case 5: return City.values()[4];
+			case 6: return City.values()[5];
 			
 			default: return null;
 		}
