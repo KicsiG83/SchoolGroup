@@ -85,7 +85,7 @@ public class User {
 			System.out.print("Kérem adja meg a felhasználó státuszát (Aktív, Blokkolt, Törölt): ");
 			userInput = sc.nextLine();
 			if (!userInput.equals("Aktív") && !userInput.equals("Blokkolt") && !userInput.equals("Törölt")) {
-				System.out.println("A megadott adat érvénytelen.\nA választható státuszok:\n- Aktív\nBlokkolt\nTörölt");
+				System.out.println("A megadott adat érvénytelen.\nA választható státuszok:\n- Aktív\n- Blokkolt\n- Törölt");
 				isValid = false;
 			} else {
 				isValid = true;

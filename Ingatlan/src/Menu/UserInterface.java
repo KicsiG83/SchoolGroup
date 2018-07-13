@@ -19,6 +19,24 @@ public class UserInterface {
 
 	private Scanner sc = new Scanner(System.in);
 
+	public int askBuyerId(String message) {
+		System.out.print(message);
+		String userInput = sc.nextLine();
+		boolean isValid = false;
+		int result = 0;
+		while(!isValid) {
+			try {
+				result = Integer.parseInt(userInput);
+				isValid = true;
+			}catch(Exception e) {
+				System.out.println("Nem megfelelő adat!");
+				System.out.print("Adja meg újra: ");
+				userInput = sc.nextLine();
+			}
+		}
+		return result;
+	}
+	
 	public String askString(String message) {
 		System.out.print(message);
 		String userInput = sc.nextLine();
@@ -162,6 +180,7 @@ public class UserInterface {
 			case 3: return City.values()[2];
 			case 4: return City.values()[3];
 			case 5: return City.values()[4];
+			case 6: return City.values()[5];
 			
 			default: return null;
 		}

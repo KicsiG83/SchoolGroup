@@ -1,16 +1,23 @@
-/JDBC/
-<<<<<<< HEAD
 /Main.class
-/Menu/
-/Price/
-/Property/
-/User/
-/Client/
+/.classpath
+/.project
+/.settings/
 /BusinessLogicLayer/
+/Client/
 /Document/
 /Email/
+/Helper/
+/JDBC/
+/Main/
+/Menu/
+<<<<<<< Updated upstream
+/Price/
+/Property/
+/Times New Roman.ttf
+/User/
+/configuration.yml
 /lib/
 =======
-/BusinessLogicLayer/
-/Menu/
->>>>>>> MenüBővítés
+/JDBC/
+/Property/
+>>>>>>> Stashed changes

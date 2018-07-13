@@ -1,4 +1,5 @@
 package Property;
+
 import java.io.IOException;
 
 import Price.CurrencyDownload;
@@ -9,7 +10,7 @@ public class Property {
 	private int userID;
 	private PropertyType propertyType;
 	private int size; // négyzetméterben
-	private int groundSize = 0; //csak ház és irodánál nem nulla
+	private int groundSize = 0; // csak ház és irodánál nem nulla
 	private int numberOfRooms;
 	private int numberOfHalfRooms;
 	private int price; // a DB-ben forintban tároljuk, ha vki eur-ban adja meg, átszámáljuk.
@@ -21,11 +22,11 @@ public class Property {
 	private PropertyCondition condition;
 	private String description;
 	private AdvertisingStatus status;
-	private int countNUmber; //megtekintések száma, a DB-ben így hívják
-	/*private String pic1;
-	private String pic2;
-	private String pic3;*/
-	
+	private int countNUmber; // megtekintések száma, a DB-ben így hívják
+	/*
+	 * private String pic1; private String pic2; private String pic3;
+	 */
+
 	public Property() {
 	}
 
@@ -200,45 +201,19 @@ public class Property {
 
 	@Override
 	public String toString() {
-		double oneEuro=1;
+		double oneEuro = 1;
 		try {
 			oneEuro = new CurrencyDownload().valueOfOneEURinHUF();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "Property [propertyID=" + propertyID + ", clientID=" + clientID + ", userID=" + userID
 				+ ", propertyType=" + propertyType.getTextual() + ", size=" + size + ", groundSize=" + groundSize
-				+ ", numberOfRooms=" + numberOfRooms + ", numberOfHalfRooms=" + numberOfHalfRooms + ", "
-						+ "price(HUF)=" + price + ", price(EUR)=" + (int)(price / oneEuro)  
-				+ ", streetAndNumber=" + streetAndNumber + ", city=" + city.getTextual() + ", material=" + material.getTextual() + ", wc=" + wc.getTextual()
-				+ ", level=" + level.getTextual() + ", condition=" + condition.getTextual() + ", description=" + description + ", status="
-				+ status.getTextual() + ", countNUmber=" + countNUmber + "]";
+				+ ", numberOfRooms=" + numberOfRooms + ", numberOfHalfRooms=" + numberOfHalfRooms + ", " + "price(HUF)="
+				+ price + ", price(EUR)=" + (int) (price / oneEuro) + ", streetAndNumber=" + streetAndNumber + ", city="
+				+ city.getTextual() + ", material=" + material.getTextual() + ", wc=" + wc.getTextual() + ", level="
+				+ level.getTextual() + ", condition=" + condition.getTextual() + ", description=" + description
+				+ ", status=" + status.getTextual() + ", countNUmber=" + countNUmber + "]";
 	}
 
-	/*public String getPic1() {
-		return pic1;
-	}
-
-	public void setPic1(String pic1) {
-		this.pic1 = pic1;
-	}
-
-	public String getPic2() {
-		return pic2;
-	}
-
-	public void setPic2(String pic2) {
-		this.pic2 = pic2;
-	}
-
-	public String getPic3() {
-		return pic3;
-	}
-
-	public void setPic3(String pic3) {
-		this.pic3 = pic3;
-	}*/
-	
-	
 }

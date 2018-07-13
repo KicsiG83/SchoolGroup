@@ -72,7 +72,7 @@ public class FourthMenu {
 
 	}
 
-	private static String getColumn(int index) {
+	private String getColumn(int index) {
 		String column = "";
 		switch (index) {
 		case 1:
@@ -91,7 +91,7 @@ public class FourthMenu {
 		return column;
 	}
 
-	private static int selectSubMenuFunction(Scanner scanner) {
+	private int selectSubMenuFunction(Scanner scanner) {
 		boolean isValid = false;
 		int index = 0;
 		System.out.println(
@@ -115,7 +115,7 @@ public class FourthMenu {
 	}
 
 	private void createNewUser(Scanner scanner) throws SQLException {
-		User newUser = new User(scanner);
+User newUser = new User(scanner);
 		new JDBCUser().uploadUser(newUser.getName(), newUser.getPassword(), newUser.getEmail(),
 				newUser.getStatus().toString());
 		System.out.print("\nAz új felhasználó adatai: ");
@@ -123,7 +123,7 @@ public class FourthMenu {
 		System.out.println();
 	}
 
-	private static int chooseUserParameter(Scanner scanner) {
+	private int chooseUserParameter(Scanner scanner) {
 		boolean isValid = false;
 		int index = 0;
 		System.out.println("\nKérem válasszon\n1 - Felhasználó név\n2 - Jelszó\n3 - E-mail cím\n4 - Státusz\n");

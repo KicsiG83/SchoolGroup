@@ -23,7 +23,7 @@ public class JDBCClient {
 			clientStatement.addBatch();
 			clientStatement.executeBatch();
 		} catch (SQLException e) {
-			System.err.println("Could not upload to client database!");
+			System.err.println("Sikertelen feltöltés :P");
 			System.out.println(client.toString());
 		}
 		connection.close();
@@ -49,7 +49,7 @@ public class JDBCClient {
 				
 			}
 		} catch (SQLException e) {
-			System.err.println("Could not list data!");
+			System.err.println("Az ügyfél adatai nem hozzáférhetőek.");
 		}
 		connection.close();
 		return client;
@@ -77,7 +77,7 @@ public class JDBCClient {
 				
 			}
 		} catch (SQLException e) {
-			System.err.println("Could not list data!");
+			System.err.println("Az ügyfelek adatai nem hozzáférhetőek.");
 		}
 		connection.close();
 		return clientListFromDB;
@@ -107,8 +107,7 @@ public class JDBCClient {
 				result.add(client);
 			}
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			System.err.println("Could not list data!");
+			System.err.println("Az ügyfelek adatai nem hozzáférhetőek.");
 		}
 		connection.close();		
 		return result;
@@ -122,10 +121,51 @@ public class JDBCClient {
 			clientStatment.executeBatch();
 		}
 		catch (SQLException e) {
-			System.err.println("Could not update data!");
+			System.err.println("A módosítás sikertelen.");
 		}
 		connection.close();
 		return;
-		
+	}
+	
+	public Client getClientById(int clientId) throws SQLException {
+		Connection connection = new JDBCConnection().createConnection();
+		String listNewClientData = "SELECT * FROM CLIENT WHERE CLIENT_ID = '" + clientId + "'";
+		Client client = new Client();
+		try (PreparedStatement getClientStatment = connection.prepareStatement(listNewClientData);
+				ResultSet rs = getClientStatment.executeQuery()) {
+			while (rs.next()) {
+				String type = rs.getString(5);
+				ClientType ct;
+				if (type.equals("BUYER")) {
+					ct = ClientType.BUYER;
+				} else {
+					ct = ClientType.SELLER;
+				}
+				boolean hasPrefs = rs.getString(7).equalsIgnoreCase("TRUE") ? true : false;
+				client = new Client(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), ct,
+						rs.getString(6),hasPrefs);
+				
+			}
+		} catch (SQLException e) {
+			System.err.println("Could not list data!");
+		}
+		connection.close();
+		return client;
+	}
+	
+	public String getClientNameByClientId(int clientId) throws SQLException {
+		Connection connection = new JDBCConnection().createConnection();
+		String listNewClientData = "SELECT CLIENT_NAME FROM CLIENT WHERE CLIENT_ID = '" + clientId + "'";
+		String name = "";
+		try (PreparedStatement getClientStatment = connection.prepareStatement(listNewClientData);
+				ResultSet rs = getClientStatment.executeQuery()) {
+			while (rs.next()) {
+				name = rs.getString(1);
+			}
+		} catch (SQLException e) {
+			System.err.println("Could not list data!");
+		}
+		connection.close();
+		return name;
 	}
 }
