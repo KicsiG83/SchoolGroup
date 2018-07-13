@@ -118,10 +118,10 @@ public class SearchPreferences {
 
 	@Override
 	public String toString() {
-		return "SearchPreferences [searchID=" + searchID + ", clientID=" + clientID + ", propertyType="
-				+ propertyType.getTextual() + ", sizeMin=" + sizeMin + ", sizeMax=" + sizeMax + ", priceMin=" + priceMin
-				+ ", priceMax=" + priceMax + ", searchType=" + searchType.getTextual() + ", city=" + city.getTextual()
-				+ ", keyWord1=" + keyWord1 + ", keyWord2=" + keyWord2 + ", keyWord3=" + keyWord3 + "]";
+		return "Az ügyfél mentett keresési adatai: Keresés ID: " + searchID + ", Ügyfél ID: " + clientID + ", Ingatlan típusa: "
+				+ propertyType.getTextual() + ", Ingatan méret spektruma: " + sizeMin + " - " + sizeMax + ", Ingatlan ár spektruma: " + priceMin
+				+ " - " + priceMax + ", Keresés típusa: " + searchType.getTextual() + ", Város: " + city.getTextual()
+				+ ", Kulcsszavak: " + keyWord1 + ", " + keyWord2 + ", " + keyWord3;
 	}
 
 }

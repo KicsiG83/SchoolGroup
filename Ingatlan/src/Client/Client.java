@@ -122,8 +122,8 @@ public class Client {
 	@Override
 	public String toString() {
 		String prefs = isHasPreferences() == true ? "Vannak" : "Nincsenek";
-		return "Ügyfél ID=" + clientID + ", Név=" + name + ", email=" + email + ", telefon=" + phoneNumber
-				+ ", típusa=" + clientType.getTextual() + ", megjegyzés=[" + comment + "], Preferenciák: "
+		return "Ügyfél ID: " + clientID + ", Név: " + name + ", Email: " + email + ", Telefon: " + phoneNumber
+				+ ", Típusa: " + clientType.getTextual() + ", Megjegyzés: " + comment + "; Preferenciák: "
 				+ prefs;
 	}
 
