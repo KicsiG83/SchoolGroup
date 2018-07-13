@@ -131,10 +131,23 @@ public class FirstMenu {
 			PropertyType pt = ui.askPropertyType();
 			String searchPropertyType = pt == null ? "" : pt.getTextual();
 			String searchSizeMin = Integer.toString(ui.askLimitOfValue("területének", "minimumát négyzetméterben"));
-			String searchSizeMax = Integer.toString(ui.askLimitOfValue("területének", "maximumát négyzetméterben"));
+			String searchSizeMax="";
+			do {
+				searchSizeMax = Integer.toString(ui.askLimitOfValue("területének", "maximumát négyzetméterben"));
+				if (Integer.parseInt(searchSizeMax)<Integer.parseInt(searchSizeMin)) {
+					System.out.println("Kérem nagyobb értéket adjon meg mint a minimum négyzetméter!");
+				}
+			} while (Integer.parseInt(searchSizeMax)<Integer.parseInt(searchSizeMin));			
 			String searchRoomNumberMin = Integer.toString(ui.askLimitOfValue("legalább", "hány szobával rendelkezzen"));
-			String searchPriceMin = Integer.toString(ui.askLimitOfValue("árának", "minimumát forintban"));
-			String searchPriceMax = Integer.toString(ui.askLimitOfValue("árának", "maximumát forintban"));
+			String searchPriceMin = Integer.toString(ui.askLimitOfValue("árának","minimumát forintban"));
+			String searchPriceMax="";
+			do {
+				searchPriceMax = Integer.toString(ui.askLimitOfValue("árának","maximumát forintban"));
+				if (Integer.parseInt(searchPriceMax)<Integer.parseInt(searchPriceMin)) {
+					System.out.println("Kérem nagyobb értéket adjon meg mint a minimum ár!");
+				}
+			} while (Integer.parseInt(searchPriceMax)<Integer.parseInt(searchPriceMin));
+			
 			City city = ui.askCity();
 			String searchCity = city == null ? "" : city.getTextual();
 			Material mat = ui.askMaterial();

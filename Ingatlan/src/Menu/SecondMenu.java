@@ -22,6 +22,7 @@ public class SecondMenu {
 		Client client = new Client();
 		ClientTools clientTools = new ClientTools();
 		SecondMenuSubMenus sm = new SecondMenuSubMenus();
+		
 		switch (subManuChoice) {
 		case 1:
 			System.out.println("				[1] Ügyfél kezelés");
@@ -32,6 +33,7 @@ public class SecondMenu {
 			System.out.println("				             ╠ {4} Adatok módosítása ID alapján");
 			System.out.println("				             ╚ {5} Visszalépés");
 			int firstMenuChoice = sm.firstSubMeu();
+			
 			switch(firstMenuChoice) {
 				case 1:
 					int searchClientID = ui.askNumber("Adja meg az érdekelt ügyfél azonosítóját: ");
@@ -197,11 +199,13 @@ public class SecondMenu {
 							System.out.println();
 							break;
 						case 5:
+							
 							System.out.println();
 							break;
 					}
 					break;
-				case 5:
+					
+				case 5:	
 					System.out.println();
 					break;
 			}
