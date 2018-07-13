@@ -19,6 +19,24 @@ public class UserInterface {
 
 	private Scanner sc = new Scanner(System.in);
 
+	public int askBuyerId(String message) {
+		System.out.print(message);
+		String userInput = sc.nextLine();
+		boolean isValid = false;
+		int result = 0;
+		while(!isValid) {
+			try {
+				result = Integer.parseInt(userInput);
+				isValid = true;
+			}catch(Exception e) {
+				System.out.println("Nem megfelelő adat!");
+				System.out.print("Adja meg újra: ");
+				userInput = sc.nextLine();
+			}
+		}
+		return result;
+	}
+	
 	public String askString(String message) {
 		System.out.print(message);
 		String userInput = sc.nextLine();

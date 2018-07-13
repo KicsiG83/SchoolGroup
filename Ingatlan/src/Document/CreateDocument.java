@@ -7,50 +7,30 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfWriter;
+
+import Property.Property;
+
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class CreateDocument {
 
 	public static final String FONT = "Times New Roman.ttf";
 
-//	LocalDateTime now = LocalDateTime.now();
-//	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-//	String formatDateTime = now.format(formatter);
-//	String seller = "Kiss Géza";
-//	String buyer = "Nagy Piroska";
-//	String city = "Budapest";
-//	String street = "Teszt utca 5";
-//	int size = 70;
-//	int price = 30;
-//	String date = formatDateTime.toString();
-//	String advance = "10%";
-//	int caution = 2;
-//	new CreateDocument(DocumentTemplate.SALE, seller, buyer, city, street, size, price, date, advance, now);
-//	new CreateDocument(DocumentTemplate.RENTAL, seller, buyer, date, city, street, size, price, caution, date, now);
-	
-	
-	
-	public CreateDocument(String documentum, String seller, String buyer, String city, String street, int size,
-			int price, String date, String advance, LocalDateTime now) {
-		documentum = String.format(documentum, seller, buyer, city, street, size, price, date, advance);
-		try {
-			Document document = new Document();
-			Paragraph p = new Paragraph(documentum,
-					new Font(BaseFont.createFont(FONT, BaseFont.IDENTITY_H, BaseFont.EMBEDDED), 12));
-			PdfWriter.getInstance(document, new FileOutputStream(
-					"d:/Contract_" + now.getHour() + now.getMinute() + now.getSecond() + now.getNano() + ".pdf"));
-			document.open();
-			document.add(p);
-			document.close();
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		System.out.println("itext PDF program executed");
-	}
+	LocalDateTime now = LocalDateTime.now();
 
-	public CreateDocument(String documentum, String owner, String charterer, String date, String city, String street,
-			int size, int price , int caution, String cause, LocalDateTime now) {
-		documentum = String.format(documentum, owner, charterer, date, city, street, size, price, caution, cause);
+	public CreateDocument(Property property, String buyerName, String documentum, String sellerName, int index) {
+		String advance = "10%";
+		int caution = 2;
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+		String formatDateTime = now.format(formatter);
+		if (index == 1) {
+			documentum = String.format(documentum, sellerName, buyerName, property.getCity(),
+					property.getStreetAndNumber(), property.getSize(), property.getPrice(), formatDateTime, advance);
+		} else {
+			documentum = String.format(documentum, sellerName, buyerName, formatDateTime, property.getCity(),
+					property.getStreetAndNumber(), property.getSize(), property.getPrice(), caution, formatDateTime);
+		}
 		try {
 			Document document = new Document();
 			Paragraph p = new Paragraph(documentum,
@@ -63,6 +43,6 @@ public class CreateDocument {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		System.out.println("itext PDF program executed");
+		System.out.println("PDF generálás sikeres.");
 	}
 }
