@@ -36,7 +36,7 @@ public class JDBCProperty {
 		} catch (SQLException e) {
 			System.err.println("Sikertelen feltöltés");
 		}
-		System.out.println("Sikeres feltöltés");
+		
 		connection.close();
 	}
 
