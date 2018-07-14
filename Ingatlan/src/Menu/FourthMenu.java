@@ -95,20 +95,20 @@ public class FourthMenu {
 		boolean isValid = false;
 		int index = 0;
 		System.out.println(
-				"Kérem válasszon az alábbi menüből.\n1 - Saját adatok módosítása\n2 - Másik felhasználó adatainak módosítása");
+				"	Kérem válasszon az alábbi menüből.\n	1 - Saját adatok módosítása\n	2 - Másik felhasználó adatainak módosítása");
 		do {
 			try {
-				System.out.print("Kérem adja meg a menü sorszámát: ");
+				System.out.print("	Kérem adja meg a menü sorszámát: ");
 				index = scanner.nextInt();
 				scanner.nextLine();
 				if (index == 1 || index == 2) {
 					isValid = true;
 				} else {
-					System.out.println("Nincs ilyen menüpont.");
+					System.out.println("	Nincs ilyen menüpont.");
 				}
 			} catch (Exception e) {
 				scanner.nextLine();
-				System.out.println("A megadott input érvénytelen.");
+				System.out.println("	A megadott adat érvénytelen.");
 			}
 		} while (!isValid);
 		return index;
@@ -118,7 +118,7 @@ public class FourthMenu {
 User newUser = new User(scanner);
 		new JDBCUser().uploadUser(newUser.getName(), newUser.getPassword(), newUser.getEmail(),
 				newUser.getStatus().toString());
-		System.out.print("\nAz új felhasználó adatai: ");
+		System.out.print("\n	Az új felhasználó adatai: ");
 		new JDBCUser().listNewUserData();
 		System.out.println();
 	}
@@ -126,20 +126,20 @@ User newUser = new User(scanner);
 	private int chooseUserParameter(Scanner scanner) {
 		boolean isValid = false;
 		int index = 0;
-		System.out.println("\nKérem válasszon\n1 - Felhasználó név\n2 - Jelszó\n3 - E-mail cím\n4 - Státusz\n");
+		System.out.println("\n	Kérem válasszon\n	1 - Felhasználó név\n	2 - Jelszó\n	3 - E-mail cím\n	4 - Státusz\n");
 		do {
 			try {
-				System.out.print("Kérem válasszon a fenti felsorolásból: ");
+				System.out.print("	Kérem válasszon a fenti felsorolásból: ");
 				index = scanner.nextInt();
 				scanner.nextLine();
 				if (index >= 1 && index <= 4) {
 					isValid = true;
 				} else {
-					System.out.println("Nincs ilyen menüpont.");
+					System.out.println("	Nincs ilyen menüpont.");
 				}
 			} catch (Exception e) {
 				scanner.nextLine();
-				System.out.println("A megadott input érvénytelen.");
+				System.out.println("	A megadott input érvénytelen.");
 			}
 		} while (!isValid);
 		return index;

@@ -39,22 +39,22 @@ public class FirstMenu {
 		case 2:
 			System.out.println("		[2] Új ingatlan hozzáadása\n");
 			Property prop = new Property();
-			prop.setClientID(ui.askNumber("Add meg az ügyfél azonosítóját: "));
-			prop.setUserID(ui.askNumber("Add meg a saját felhasználói azonosítódat: "));
+			prop.setClientID(ui.askNumber("	Add meg az ügyfél azonosítóját: "));
+			prop.setUserID(ui.askNumber("	Add meg a saját felhasználói azonosítódat: "));
 			PropertyType pt = ui.askPropertyType();
 			while (pt == null) {
 				System.err.println("Kötelező választani.");
 				pt = ui.askPropertyType();
 			}
 			prop.setPropertyType(pt);
-			prop.setSize(ui.askNumber("Add meg az ingatlan területét négyzetméterben: "));
+			prop.setSize(ui.askNumber("	Add meg az ingatlan területét négyzetméterben: "));
 			if (prop.getPropertyType() == PropertyType.HOUSE || prop.getPropertyType() == PropertyType.OFFICE) {
-				prop.setGroundSize(ui.askNumber("Add meg az udvar méretét négyzetméterben: "));
+				prop.setGroundSize(ui.askNumber("	Add meg az udvar méretét négyzetméterben: "));
 			}
-			prop.setNumberOfRooms(ui.askNumber("Add meg a szobák számát: "));
-			prop.setNumberOfHalfRooms(ui.askNumber("Add meg a félszobák számát: "));
+			prop.setNumberOfRooms(ui.askNumber("	Add meg a szobák számát: "));
+			prop.setNumberOfHalfRooms(ui.askNumber("	Add meg a félszobák számát: "));
 			prop.setPrice(ui.askPrice());
-			prop.setStreetAndNumber(ui.askString("Add meg a címet:"));
+			prop.setStreetAndNumber(ui.askString("	Add meg a címet:"));
 			City city = ui.askCity();
 			while (city == null) {
 				System.err.println("Kötelező választani.");
@@ -85,7 +85,7 @@ public class FirstMenu {
 				cond = ui.askCondition();
 			}
 			prop.setCondition(cond);
-			prop.setDescription(ui.askString("Add meg az ingatlan leírását: "));
+			prop.setDescription(ui.askString("	Add meg az ingatlan leírását: "));
 			AdvertisingStatus status = ui.askAdvertisingType();
 			while (status == null) {
 				System.err.println("Kötelező választani.");
@@ -124,10 +124,10 @@ public class FirstMenu {
 		int menuChoice = Integer.parseInt(choice);
 		switch (menuChoice) {
 		case 1:
-			System.out.println("Keresési feltételek megadása: ");
-			System.out.println("Ha nem ad meg értéket, akkor azt a feltételt kihagyja.\n");
-			String searchClientID = ui.askString("Adjon meg egy ügyfél azonosítót: ");
-			String searchUserID = ui.askString("Adjon meg egy felhasználó azonosítót: ");
+			System.out.println("	Keresési feltételek megadása: ");
+			System.out.println("	Ha nem ad meg értéket, akkor azt a feltételt kihagyja.\n");
+			String searchClientID = ui.askString("	Adjon meg egy ügyfél azonosítót: ");
+			String searchUserID = ui.askString("	Adjon meg egy felhasználó azonosítót: ");
 			PropertyType pt = ui.askPropertyType();
 			String searchPropertyType = pt == null ? "" : pt.getTextual();
 			String searchSizeMin = Integer.toString(ui.askLimitOfValue("területének", "minimumát négyzetméterben"));
@@ -135,7 +135,7 @@ public class FirstMenu {
 			do {
 				searchSizeMax = Integer.toString(ui.askLimitOfValue("területének", "maximumát négyzetméterben"));
 				if (Integer.parseInt(searchSizeMax)<Integer.parseInt(searchSizeMin)) {
-					System.out.println("Kérem nagyobb értéket adjon meg mint a minimum négyzetméter!");
+					System.out.println("	Kérem nagyobb értéket adjon meg mint a minimum négyzetméter!");
 				}
 			} while (Integer.parseInt(searchSizeMax)<Integer.parseInt(searchSizeMin));			
 			String searchRoomNumberMin = Integer.toString(ui.askLimitOfValue("legalább", "hány szobával rendelkezzen"));
@@ -144,7 +144,7 @@ public class FirstMenu {
 			do {
 				searchPriceMax = Integer.toString(ui.askLimitOfValue("árának","maximumát forintban"));
 				if (Integer.parseInt(searchPriceMax)<Integer.parseInt(searchPriceMin)) {
-					System.out.println("Kérem nagyobb értéket adjon meg mint a minimum ár!");
+					System.out.println("	Kérem nagyobb értéket adjon meg mint a minimum ár!");
 				}
 			} while (Integer.parseInt(searchPriceMax)<Integer.parseInt(searchPriceMin));
 			
@@ -158,7 +158,7 @@ public class FirstMenu {
 			String searchLevel = el == null ? "" : el.getTextual();
 			PropertyCondition cond = ui.askCondition();
 			String searchCondition = cond == null ? "" : cond.getTextual();
-			String searchDescription = ui.askString("Milyen szöveg szerepeljen az ingatlan leírásában: ");
+			String searchDescription = ui.askString("	Milyen szöveg szerepeljen az ingatlan leírásában: ");
 			AdvertisingStatus status = ui.askAdvertisingType();
 			String searchStatus = status == null ? "" : status.getTextual();
 			ArrayList<Property> searchResult = propertyTools.search(searchClientID, searchUserID, searchPropertyType,
@@ -166,7 +166,7 @@ public class FirstMenu {
 					searchMaterial, searchToilet, searchLevel, searchCondition, searchDescription, searchStatus);
 			int n = searchResult.size();
 			if (n == 0) {
-				System.out.println("Nincs megjeleníthető ingatlan");
+				System.out.println("	Nincs megjeleníthető ingatlan");
 			} else {
 				for (int i = 0; i < n; i++) {
 					System.out.println(searchResult.get(i).toString());
@@ -175,55 +175,55 @@ public class FirstMenu {
 			}
 			break;
 		case 2:
-			int propID = ui.askNumber("Adja meg az érdekelt ingatlan azonosítóját: ");
+			int propID = ui.askNumber("	Adja meg az érdekelt ingatlan azonosítóját: ");
 			Property result = propertyTools.getPropertyWithPropertyID(propID);
 			if (result.equals(null)) {
-				System.out.println("Nincs ilyen ingatlan.");
+				System.out.println("	Nincs ilyen ingatlan.");
 			} else {
 				propertyTools.increaseViews(propID);
 				System.out.println(result.toString());
 			}
 			break;
 		case 3:
-			int updatePropID = ui.askNumber("Adja meg a frissíteni kívánt ingatlan azonosítóját: ");
+			int updatePropID = ui.askNumber("	Adja meg a frissíteni kívánt ingatlan azonosítóját: ");
 			Property updateResult = propertyTools.getPropertyWithPropertyID(updatePropID);
 			if (updateResult.equals(null) || updateResult.getStatus().getTextual().equals("Eladva") || updateResult.getStatus().getTextual().equals("Kiadva")) {
-				System.out.println("Nincs ilyen ingatlan.");
+				System.out.println("	Nincs ilyen ingatlan.");
 				break;
 			} else {
-				System.out.println("Adatok cserélése: ");
-				System.out.println("Ha nem ad meg értéket, az adat nem frissül.\n");
+				System.out.println("	Adatok cserélése: ");
+				System.out.println("	Ha nem ad meg értéket, az adat nem frissül.\n");
 
-				String updateClientID = ui.askString("Ügyfél azonosítót: ");
-				String updateUserID = ui.askString("Felhasználó azonosítót: ");
-				System.out.println("Ingatlan típus: ");
+				String updateClientID = ui.askString("	Ügyfél azonosítót: ");
+				String updateUserID = ui.askString("	Felhasználó azonosítót: ");
+				System.out.println("	Ingatlan típus: ");
 				pt = ui.askPropertyType();
 				String updatePropertyType = pt == null ? "" : pt.getTextual();
-				String updateSize = ui.askString("Terület: ");
-				String updateGroundSize = ui.askString("Udvar terület: ");
-				String updateRoomNumber = ui.askString("Szobaszám: ");
-				String updateHalfRoomNumber = ui.askString("Félszobaszám: ");
-				System.out.println("Ár:");
+				String updateSize = ui.askString("	Terület: ");
+				String updateGroundSize = ui.askString("	Udvar terület: ");
+				String updateRoomNumber = ui.askString("	Szobaszám: ");
+				String updateHalfRoomNumber = ui.askString("	Félszobaszám: ");
+				System.out.println("	Ár:");
 				int price = ui.askPrice();
 				String updatePrice = price == 0 ? "" : Integer.toString(price);
-				String updateStreetAndNumber = ui.askString("Cím: ");
-				System.out.println("Település:");
+				String updateStreetAndNumber = ui.askString("	Cím: ");
+				System.out.println("	Település:");
 				city = ui.askCity();
 				String updateCity = city == null ? "" : city.getTextual();
-				System.out.println("Építési anyag: ");
+				System.out.println("	Építési anyag: ");
 				mat = ui.askMaterial();
 				String updateMaterial = mat == null ? "" : mat.getTextual();
-				System.out.println("WC elhelyezkedés: ");
+				System.out.println("	WC elhelyezkedés: ");
 				wc = ui.askToilet();
 				String updateToilet = wc == null ? "" : wc.getTextual();
-				System.out.println("Energetikai besorolás: ");
+				System.out.println("	Energetikai besorolás: ");
 				el = ui.askEnergeticLevel();
 				String updateLevel = el == null ? "" : el.getTextual();
-				System.out.println("Ingatlan állapot: ");
+				System.out.println("	Ingatlan állapot: ");
 				cond = ui.askCondition();
 				String updateCondition = cond == null ? "" : cond.getTextual();
-				String updateDescription = ui.askString("Leírás: ");
-				System.out.println("Hirdetési állapot: ");
+				String updateDescription = ui.askString("	Leírás: ");
+				System.out.println("	Hirdetési állapot: ");
 				status = ui.askAdvertisingType();
 				String updateStatus = status == null ? "" : status.getTextual();
 				propertyTools.update(updatePropID, updateClientID, updateUserID, updatePropertyType, updateSize,
@@ -231,10 +231,10 @@ public class FirstMenu {
 						updateCity, updateMaterial, updateToilet, updateLevel, updateCondition, updateDescription,
 						updateStatus);
 				updateResult = propertyTools.getPropertyWithPropertyID(updatePropID);
-				System.out.println("A módosított ingatlan: ");
+				System.out.println("	A módosított ingatlan: ");
 				System.out.println(updateResult.toString());
 				if (status.equals(AdvertisingStatus.values()[2]) || status.equals(AdvertisingStatus.values()[3])) {
-					int clientId = ui.askBuyerId("Kérem adja meg a vevő/bérlő azonosítóját: ");
+					int clientId = ui.askBuyerId("	Kérem adja meg a vevő/bérlő azonosítóját: ");
 					System.out.println(new JDBCClient().getClientById(clientId).toString());
 					Client seller = new Client();
 					Client buyer = new Client();

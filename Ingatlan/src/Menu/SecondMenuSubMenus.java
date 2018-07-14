@@ -23,7 +23,7 @@ public class SecondMenuSubMenus {
 			System.out.println("	{3} Ügyfelek listázása");
 			return 3;
 		case 4:
-			System.out.println("				{4} Adatok módosítása ID alapján");
+			System.out.println("	{4} Adatok módosítása ID alapján");
 			return 4;
 		case 5:
 			System.out.println("	{5} Vissza a főmenübe");
@@ -44,7 +44,7 @@ public class SecondMenuSubMenus {
 		} while (!valid.isValidMenuChoice(subMenuChoice, 2));
 		switch (Integer.parseInt(subMenuChoice)) {
 		case 1:
-			System.out.println("	{1} Mentés");
+			System.out.println("	{1} Hozzáadás");
 			return 1;
 		case 2:
 			System.out.println("	{2} Vissza a főmenübe");

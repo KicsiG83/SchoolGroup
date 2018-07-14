@@ -207,13 +207,13 @@ public class Property {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return "Property [propertyID=" + propertyID + ", clientID=" + clientID + ", userID=" + userID
-				+ ", propertyType=" + propertyType.getTextual() + ", size=" + size + ", groundSize=" + groundSize
-				+ ", numberOfRooms=" + numberOfRooms + ", numberOfHalfRooms=" + numberOfHalfRooms + ", " + "price(HUF)="
-				+ price + ", price(EUR)=" + (int) (price / oneEuro) + ", streetAndNumber=" + streetAndNumber + ", city="
-				+ city.getTextual() + ", material=" + material.getTextual() + ", wc=" + wc.getTextual() + ", level="
-				+ level.getTextual() + ", condition=" + condition.getTextual() + ", description=" + description
-				+ ", status=" + status.getTextual() + ", countNUmber=" + countNUmber + "]";
+		return "	Az ingatlan adatai: \n	Ingatlan ID: " + propertyID + ", Ügyfél ID: " + clientID + ", Felhasználó ID: " + userID
+				+ ", Ingatlan típusa: " + propertyType.getTextual() + ", Ingatlan mérete: " + size + ", Kert mérete: " + groundSize
+				+ ", Szobák száma: " + numberOfRooms + ", Félszobák száma: " + numberOfHalfRooms + ", " + "Ár (HUF): "
+				+ price + ", Ár (EUR): " + (int) (price / oneEuro) + ", Cím: " + streetAndNumber + ", Város: "
+				+ city.getTextual() + ", Épület anyaga: " + material.getTextual() + ", WC helye: " + wc.getTextual() + ", Energetikai besorolás: "
+				+ level.getTextual() + ", Állapot: " + condition.getTextual() + ", Leírás: " + description
+				+ "; Hirdetés típusa: " + status.getTextual() + ", Megtekintések száma: " + countNUmber;
 	}
 
 }

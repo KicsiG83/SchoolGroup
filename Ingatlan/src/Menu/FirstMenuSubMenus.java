@@ -32,10 +32,10 @@ public class FirstMenuSubMenus {
 		} while (!valid.isValidMenuChoice(subMenuChoice, 2));
 		switch (Integer.parseInt(subMenuChoice)) {
 		case 1:
-			System.out.println("	{1} Mentés");
+			System.out.println("	{1} Létrehozás");
 			break;
 		case 2:
-			System.out.println("	{2} Elvetés");
+			System.out.println("	{2} Visszalépés");
 			break;
 		}
 	}

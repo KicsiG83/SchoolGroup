@@ -19,7 +19,7 @@ public class ThirdMenu {
 			System.out.println("	[1] Eladási statisztikák felhasználónként");
 			ArrayList<String> printMe = stat.getSoldStatistic();
 			if(printMe.size() == 0) {
-				System.out.println("Nincs megjeleníthető adat.");
+				System.out.println("	Nincs megjeleníthető adat.");
 			} else {
 				for(String s : printMe) {
 					System.out.println(s);
@@ -32,7 +32,7 @@ public class ThirdMenu {
 			System.out.println("	[2] Keresési statisztikák");			
 			printMe = stat.getViewCounter();
 			if(printMe.size() == 0) {
-				System.out.println("Nincs megjeleníthető adat.");
+				System.out.println("	Nincs megjeleníthető adat.");
 			} else {
 				for(String s : printMe) {
 					System.out.println(s);

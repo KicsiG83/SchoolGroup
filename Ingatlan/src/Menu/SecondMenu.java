@@ -36,50 +36,50 @@ public class SecondMenu {
 			
 			switch(firstMenuChoice) {
 				case 1:
-					int searchClientID = ui.askNumber("Adja meg az érdekelt ügyfél azonosítóját: ");
+					int searchClientID = ui.askNumber("	Adja meg a megjeleníteni kívánt ügyfél azonosítóját: ");
 					Client result = clientTools.getClientWithClientID(searchClientID);
 					if(result == null) {
-						System.out.println("Nincs ilyen ügyfél.");
+						System.out.println("	Nincs ilyen ügyfél.");
 					} else {
-						System.out.println("\n Ügyféladatok: ");
+						System.out.println("\n	Ügyféladatok: ");
 						System.out.println(result.toString());
 						if(result.isHasPreferences() == true) {
 							SearchPreferences clientPrefs = clientTools.getPreferencesWithClientID(result.getClientID());
-							System.out.println("	" + clientPrefs.toString());
+							System.out.println(clientPrefs.toString());
 							System.out.println();
 						}
 					}
 					System.out.println();
 					break;
 				case 2:
-					String searchClientName = ui.askString("Adja meg az érdekelt ügyfél nevét: ");
+					String searchClientName = ui.askString("	Adja meg az érdekelt ügyfél nevét: ");
 					ArrayList<Client> resultList = clientTools.getClientWithName(searchClientName);
 					if(resultList.size() == 0) {
-						System.out.println("Nincs ilyen ügyfél.");
+						System.out.println("	Nincs ilyen ügyfél.");
 					} else {
 						for(Client item : resultList) {
-							System.out.println("\n Megfelelő ügyfelek: ");
+							System.out.println("\n	Megfelelő ügyfelek: ");
 							System.out.println(item.toString());
 						}
 						System.out.println();
 					}
 					break;
 				case 3:
-					System.out.println("Keresési feltételek megadása: ");
-					System.out.println("Ha nem ad meg értéket, akkor azt a feltételt kihagyja.\n");
-					String searchEmail = ui.askString("Szerepel az e-mail címében: ");
-					String searchPhone = ui.askString("Szerepel a telefonszámában: ");
-					System.out.println("Csak a kiválasztott típusúak: ");
+					System.out.println("	Keresési feltételek megadása: ");
+					System.out.println("	Ha nem ad meg értéket, akkor azt a feltételt kihagyja.\n");
+					String searchEmail = ui.askString("	Szerepel az e-mail címében: ");
+					String searchPhone = ui.askString("	Szerepel a telefonszámában: ");
+					System.out.println("	Csak a kiválasztott típusúak: ");
 					ClientType ct = ui.askCLientType();
 					String searchClientType = ct == null ? "" : ct.toString();
-					String searchComment = ui.askString("Szerepel a kommentjében: ");
+					String searchComment = ui.askString("	Szerepel a kommentjében: ");
 					String searchHasPrefs = ui.askHasPreferencesInString();					
 					resultList = clientTools.search(searchEmail,searchPhone,searchClientType,
 							searchComment,searchHasPrefs);
 					if(resultList.size() == 0) {
-						System.out.println("Nincs ilyen ügyfél.");
+						System.out.println("	Nincs ilyen ügyfél.");
 					} else {
-						System.out.println("\nMegfelelő ügyfelek: ");
+						System.out.println("\n	Megfelelő ügyfelek: ");
 						for(Client item : resultList) {
 							System.out.println(item.toString());
 						}
@@ -95,44 +95,44 @@ public class SecondMenu {
 					System.out.println("					    ╚<5> Visszalépés");
 					String userChoice = ui.askString("													 => a választott 'Ügyfél kezelés' almenü: ");
 					while(!new Validator().isValidMenuChoice(userChoice,5)) {
-						System.out.println("Nincs ilyen lehetőség.");
-						userChoice = ui.askString("Kérem válasszon újra: ");
+						System.out.println("	Nincs ilyen lehetőség.");
+						userChoice = ui.askString("	Kérem válasszon újra: ");
 					}
 					int optionIndex = Integer.parseInt(userChoice);
 					switch(optionIndex) {
 						case 1:
-							int deleteClientID = ui.askNumber("Adja meg a törölni kívánt ügyfél azonosítóját: ");
+							int deleteClientID = ui.askNumber("	Adja meg a törölni kívánt ügyfél azonosítóját: ");
 							Client deleteableClient = clientTools.getClientWithClientID(deleteClientID);
 							if(deleteableClient == null) {
-								System.out.println("Nincs ilyen ügyfél.");
+								System.out.println("	Nincs ilyen ügyfél.");
 								break;
 							} else {
-								System.out.println("Biztos?");
-								System.out.println("1 - Igen, 2 - Mégse");
-								String answerToSaftyQuestion = ui.askString("Válasz: ");
+								System.out.println("	Biztos?");
+								System.out.println("	1 - Igen, 2 - Mégse");
+								String answerToSaftyQuestion = ui.askString("	Válasz: ");
 								if(answerToSaftyQuestion.equals("")) {
 									break;
 								}
 								while(!new Validator().isValidMenuChoice(answerToSaftyQuestion,2)) {
-									System.out.println("Nincs ilyen lehetőség.");
-									userChoice = ui.askString("Kérem válasszon újra: ");
+									System.out.println("	Nincs ilyen lehetőség.");
+									userChoice = ui.askString("	Kérem válasszon újra: ");
 								}
 								if(answerToSaftyQuestion.equals("2")) {
 									break;
 								} else {
 									clientTools.deleteClientWithID(deleteClientID);
-									System.out.println("Ügyfél törölve.");
+									System.out.println("	Ügyfél törölve.");
 								}
 							}
 							break;					
 						case 2:
-							int updateClientID = ui.askNumber("Adja meg a módosítani kívánt ügyfél azonosítóját: ");
+							int updateClientID = ui.askNumber("	Adja meg a módosítani kívánt ügyfél azonosítóját: ");
 							Client ckeckerClient = clientTools.getClientWithClientID(updateClientID);
 							if(ckeckerClient == null) {
-								System.out.println("Nincs ilyen ügyfél.");
+								System.out.println("	Nincs ilyen ügyfél.");
 								break;
 							} else if(ckeckerClient.isHasPreferences()) {
-								System.out.println("Az ügyfélnek már vannak preferenciái.");
+								System.out.println("	Az ügyfélnek már vannak preferenciái.");
 								break;
 							} else {
 								clientTools.hasPreferencesSetTrue(ckeckerClient.getClientID());
@@ -141,27 +141,27 @@ public class SecondMenu {
 								System.out.println();
 								System.out.println(clientTools.getClientWithClientID(updateClientID).toString());
 								SearchPreferences clientPrefs = clientTools.getPreferencesWithClientID(ckeckerClient.getClientID());
-								System.out.println("	" + clientPrefs.toString());
+								System.out.println(clientPrefs.toString());
 								System.out.println();
 							}
 							break;
 						case 3:
-							updateClientID = ui.askNumber("Adja meg a módosítani kívánt ügyfél azonosítóját: ");
+							updateClientID = ui.askNumber("	Adja meg a módosítani kívánt ügyfél azonosítóját: ");
 							ckeckerClient = clientTools.getClientWithClientID(updateClientID);
 							if(ckeckerClient == null) {
-								System.out.println("Nincs ilyen ügyfél.");
+								System.out.println("	Nincs ilyen ügyfél.");
 								break;
 							} else {
-								System.out.println("Adatok bekérése: ");
-								System.out.println("Ha nem ad meg értéket, akkor azt a feltételt kihagyja.\n");
+								System.out.println("	Adatok bekérése: ");
+								System.out.println("	Ha nem ad meg értéket, akkor azt a feltételt kihagyja.\n");
 								String[] updater = new String[5];
-								updater[0] = ui.askString("Új név: ");
-								updater[1] = ui.askString("Új e-mail cím: ");
-								updater[2] = ui.askString("Új telefonszám: ");
-								System.out.println("Ügyféltípus módosítása: ");
+								updater[0] = ui.askString("	Új név: ");
+								updater[1] = ui.askString("	Új e-mail cím: ");
+								updater[2] = ui.askString("	Új telefonszám: ");
+								System.out.println("	Ügyféltípus módosítása: ");
 								ClientType updateCT = ui.askCLientType();
 								updater[3] = updateCT == null ? "" : updateCT.toString();
-								updater[4] = ui.askString("Új komment: ");
+								updater[4] = ui.askString("	Új komment: ");
 								clientTools.updateClient(updateClientID,updater);
 								System.out.println();
 								System.out.println(clientTools.getClientWithClientID(updateClientID).toString());
@@ -169,31 +169,31 @@ public class SecondMenu {
 							}
 							break;
 						case 4:
-							updateClientID = ui.askNumber("Adja meg a módosítani kívánt ügyfél azonosítóját: ");
+							updateClientID = ui.askNumber("	Adja meg a módosítani kívánt ügyfél azonosítóját: ");
 							ckeckerClient = clientTools.getClientWithClientID(updateClientID);
 							if(ckeckerClient == null) {
-								System.out.println("Nincs ilyen ügyfél.");
+								System.out.println("	Nincs ilyen ügyfél.");
 								break;
 							} else {
-								System.out.println("Ügyfélpreferenciák hozzáadása:\n");
-								System.out.println("Ha nem ad meg értéket, akkor azt a feltételt kihagyja.\n");
-								System.out.println("Új ingatlan típus:");
+								System.out.println("	Ügyfélpreferenciák hozzáadása:\n");
+								System.out.println("	Ha nem ad meg értéket, akkor azt a feltételt kihagyja.\n");
+								System.out.println("	Új ingatlan típus:");
 								String[] helper = new String[10];
 								PropertyType pt = ui.askPropertyType();
 								helper[0] = pt == null ? "" : pt.getTextual();
-								helper[1] = ui.askString("Új terület minimum: ");
-								helper[2] = ui.askString("Új terület maximum: ");
-								helper[3] = ui.askString("Új ár minimum: ");
-								helper[4] = ui.askString("Új ár maximum: ");
-								System.out.println("Érdeklődés megváltoztatása: ");
+								helper[1] = ui.askString("	Új terület minimum: ");
+								helper[2] = ui.askString("	Új terület maximum: ");
+								helper[3] = ui.askString("	Új ár minimum: ");
+								helper[4] = ui.askString("	Új ár maximum: ");
+								System.out.println("	Érdeklődés megváltoztatása: ");
 								AdvertisingStatus searchType = ui.askAdvertisingType();
 								helper[5] = searchType == null ? "" : searchType.getTextual();
-								System.out.println("Új város: ");
+								System.out.println("	Új város: ");
 								City city = ui.askCity();
 								helper[6] = city == null ? "" : city.getTextual();
-								helper[7] = ui.askString("Új keresési kulcsszó: ");
-								helper[8] = ui.askString("Új keresési kulcsszó: ");
-								helper[9] = ui.askString("Új keresési kulcsszó: ");
+								helper[7] = ui.askString("	Új keresési kulcsszó: ");
+								helper[8] = ui.askString("	Új keresési kulcsszó: ");
+								helper[9] = ui.askString("	Új keresési kulcsszó: ");
 								clientTools.updatePreferences(updateClientID,helper);
 							}
 							System.out.println();
@@ -214,7 +214,7 @@ public class SecondMenu {
 		case 2:
 			System.out.println("				[2] Új Ügyfél hozzáadása");
 			System.out.println("			   	                 ║");
-			System.out.println("       					         ╠ {1} Mentés");
+			System.out.println("       					         ╠ {1} Létrehozás");
 			System.out.println("       					         ╚ {2} Visszalépés");
 			int secondMenuChoice = sm.secondSubMeu();
 			if(secondMenuChoice == 1) {
@@ -238,13 +238,13 @@ public class SecondMenu {
 	}
 
 	private SearchPreferences settingPreferences(UserInterface ui, Client checkerClient) {
-		System.out.println("Ügyfélpreferenciák hozzáadása:\n");
+		System.out.println("	Ügyfélpreferenciák hozzáadása:\n");
 		SearchPreferences prefs = new SearchPreferences();
 		prefs.setSearchID(0);
 		prefs.setClientID(checkerClient.getClientID());
 		PropertyType pt = ui.askPropertyType();
 		while(pt == null) {
-			System.err.println("Kötelező választani.");
+			System.err.println("	Kötelező választani.");
 			pt = ui.askPropertyType();
 		}
 		prefs.setPropertyType(pt);
@@ -254,13 +254,13 @@ public class SecondMenu {
 		prefs.setPriceMax(ui.askLimitOfValue("árának","maximumát forintban"));
 		AdvertisingStatus status = ui.askAdvertisingType();
 		while(status == null) {
-			System.err.println("Kötelező választani.");
+			System.err.println("	Kötelező választani.");
 			status = ui.askAdvertisingType();
 		}
 		prefs.setSearchType(status);
 		City city = ui.askCity();
 		while(city == null) {
-			System.err.println("Kötelező választani.");
+			System.err.println("	Kötelező választani.");
 			city = ui.askCity();
 		}
 		prefs.setCity(city);
@@ -287,10 +287,10 @@ public class SecondMenu {
 
 	private void settingClient(Scanner scanner, UserInterface ui, Client client, ClientTools clientTools)
 			throws SQLException {
-		client.setName(ui.askString("Kérem adja meg az ügyfél nevét: "));
-		client.setEmail(ui.getEmailAddress("Kérem adja meg az ügyfél e-mail címét: "));
-		client.setPhoneNumber(ui.getPhoneNumber("Kérem adja meg az ügyfél telefonszámát: +36"));
-		client.setComment(ui.askString("Kérem adja meg az ügyfél kommentjét: "));
+		client.setName(ui.askString("	Kérem adja meg az ügyfél nevét: "));
+		client.setEmail(ui.getEmailAddress("	Kérem adja meg az ügyfél e-mail címét: "));
+		client.setPhoneNumber(ui.getPhoneNumber("	Kérem adja meg az ügyfél telefonszámát: +36"));
+		client.setComment(ui.askString("	Kérem adja meg az ügyfél kommentjét: "));
 		client.setClientTypeByUser(scanner);
 		if(client.getClientType()== ClientType.BUYER) {
 			client.setHasPreferences(true);
