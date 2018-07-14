@@ -8,4 +8,7 @@
     <fullyQualifiedTypeName name="Client.Client"/>
     <fullyQualifiedTypeName name="JDBC.JDBCClient"/>
     <fullyQualifiedTypeName name="Helper.ConfigHelper"/>
+    <fullyQualifiedTypeName name="JDBC.JDBCStatistics"/>
+    <fullyQualifiedTypeName name="BusinessLogicLayer.Statistic"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>

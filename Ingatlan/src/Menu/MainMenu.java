@@ -68,13 +68,14 @@ public class MainMenu {
 			secondMenu.secondMenu(user, scanner, subMenuIndex);
 			break;
 		case 3:
-			new ThirdMenu().printThirdMenu();
+			ThirdMenu thirdMenu = new ThirdMenu();
+			thirdMenu.printThirdMenu();
 			do {
 				subMenuChoice = ui.askString(
 						"													 => a választott 'Statisztikák' almenü: ");
 			} while (!valid.isValidMenuChoice(subMenuChoice, 3));
 			subMenuIndex = Integer.parseInt(subMenuChoice);
-			new ThirdMenu().thirdMenu(user, scanner, subMenuIndex);
+			thirdMenu.thirdMenu(user, scanner, subMenuIndex);
 			break;
 		case 4:
 			new FourthMenu().printFourthMenu();
