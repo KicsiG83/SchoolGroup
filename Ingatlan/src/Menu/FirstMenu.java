@@ -94,7 +94,6 @@ public class FirstMenu {
 			prop.setStatus(status);
 			prop.setCountNUmber(0);
 			propertyTools.addPropertyToDB(prop);
-
 			mm.mainMenu(user, scanner);
 			break;
 		case 3:

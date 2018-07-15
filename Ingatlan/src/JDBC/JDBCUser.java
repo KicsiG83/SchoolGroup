@@ -6,10 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import BusinessLogicLayer.Validator;
-import User.Sha256;
-
-public class JDBCUser {
+public class JDBCUser extends User.User {
 
 	public void uploadUser(String name, String password, String email, String status) throws SQLException {
 		String[] userColumns = { name, password, email, status };
@@ -47,7 +44,8 @@ public class JDBCUser {
 
 	public void listOtherUserData(int userId) throws SQLException {
 		Connection connection = new JDBCConnection().createConnection();
-		String listOtherUsers = "SELECT * FROM USER_DATA WHERE USER_ID != '" + userId + "' AND STATUS != 'DELETED' ORDER BY USER_ID ASC";
+		String listOtherUsers = "SELECT * FROM USER_DATA WHERE USER_ID != '" + userId
+				+ "' AND STATUS != 'DELETED' ORDER BY USER_ID ASC";
 		try (PreparedStatement getUserStatment = connection.prepareStatement(listOtherUsers);
 				ResultSet rs = getUserStatment.executeQuery()) {
 			while (rs.next()) {
@@ -131,45 +129,21 @@ public class JDBCUser {
 	private String getUserInputForChangeUserData(Scanner sc, String column) {
 		String userInput = "";
 		boolean isValid = false;
-		if (column.equals("STATUS")) {
-			System.out.println("\nFelhasználói státuszok:\n- Aktív\n- Blokkolt\n- Törölt\n");
-		}
 		do {
-			System.out.print("\nKérem adja meg az új adatot: ");
-			String input = sc.nextLine();
 			if (column.equals("PASSWORD")) {
-				boolean isValidPasword = new Validator().checkPasswordStrength(input);
-				if (isValidPasword) {
-					userInput = new Sha256().getSha256(input);
-					isValid = true;
-				} else {
-					System.out.println("A megadott adat érvénytelen.\nA jelszó legalább 8 karakter hosszú, tartalmaz legalább 1 kis és nagy betűt, valamint legalább 1 számot.");
-					isValid = false;
-				}
+				setPassword(sc);
+				userInput = getPassword();
+				isValid = true;
 			} else if (column.equals("STATUS")) {
-				if (input.toUpperCase().equals("AKTÍV")) {
-					isValid = true;
-					userInput = "ACTIVE";
-				} else if (input.toUpperCase().equals("BLOKKOLT")) {
-					userInput = "BLOCKED";
-					isValid = true;
-				} else if (input.toUpperCase().equals("TÖRÖLT")) {
-					userInput = "DELETED";
-					isValid = true;
-				} else {
-					System.out.println(
-							"\nA megadott státusz ismeretlen.\nKérem válasszon az alábbiak közül: \n- Aktív\n- Blokkolt\n- Törölt");
-				}
+				userInput = setStatus(sc);
+				isValid = true;
 			} else if (column.equals("EMAIL")) {
-				boolean result = new Validator().isValidEmailAddress(input);
-				if (result) {
-					userInput = input;
-					isValid = true;
-				} else {
-					System.out.println("A megadott e-mail cím érvénytelen.");
-				}
+				setEmail(sc);
+				userInput = getEmail();
+				isValid = true;
 			} else {
-				userInput = input;
+				setName(sc);
+				userInput = getName();
 				isValid = true;
 			}
 		} while (!isValid);
@@ -193,11 +167,11 @@ public class JDBCUser {
 		}
 		connection.close();
 	}
-	
+
 	public boolean checkUserById(int userId) throws SQLException {
 		boolean validUser = false;
 		Connection connection = new JDBCConnection().createConnection();
-		String listNewUserData = "SELECT * FROM USER_DATA WHERE USER_ID = '"+ userId + "' AND STATUS != 'DELETED'";
+		String listNewUserData = "SELECT * FROM USER_DATA WHERE USER_ID = '" + userId + "' AND STATUS != 'DELETED'";
 		try (PreparedStatement getUserStatment = connection.prepareStatement(listNewUserData);
 				ResultSet rs = getUserStatment.executeQuery()) {
 			while (rs.next()) {
@@ -208,7 +182,7 @@ public class JDBCUser {
 				System.out.println("ID: " + id + ", név: " + name + ", E-mail cím: " + email + ", Státusz: " + status);
 				validUser = true;
 			}
-			if(!validUser) {
+			if (!validUser) {
 				System.out.println("Nincs ilyen azonosítójú felhasználó!");
 			}
 		} catch (SQLException e) {

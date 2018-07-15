@@ -16,7 +16,7 @@ public class User {
 		setName(sc);
 		setPassword(sc);
 		setEmail(sc);
-		setStatus(sc);
+		setDefaultStatus();
 	}
 
 	public int getUserId() {
@@ -78,26 +78,35 @@ public class User {
 		return status;
 	}
 
-	public void setStatus(Scanner sc) {
+	public String setStatus(Scanner sc) {
 		boolean isValid = false;
 		String userInput = "";
+		System.out.println("Státuszok:\n1 - Aktív\n2 - Blokkolt\n3 - Törölt");
 		do {
-			System.out.print("Kérem adja meg a felhasználó státuszát (Aktív, Blokkolt, Törölt): ");
+			System.out.print("Kérem adja meg a felhasználó státuszát: ");
 			userInput = sc.nextLine();
-			if (!userInput.equals("Aktív") && !userInput.equals("Blokkolt") && !userInput.equals("Törölt")) {
-				System.out.println("A megadott adat érvénytelen.\nA választható státuszok:\n- Aktív\n- Blokkolt\n- Törölt");
+			if (!userInput.matches("^[1-3]{1}$")) {
+				System.out.println("A megadott adat érvénytelen.\nA választható státuszok:\n1 - Aktív\n1 - Blokkolt\n1 - Törölt");
 				isValid = false;
 			} else {
 				isValid = true;
 			}
 		} while (!isValid);
-		if (userInput.equals("Aktív")) {
+		if (userInput.equals("1")) {
+			userInput = UserStatus.ACTIVE.toString();
 			this.status = UserStatus.ACTIVE;
-		} else if (userInput.equals("Blokkolt")) {
+		} else if (userInput.equals("2")) {
+			userInput = UserStatus.BLOCKED.toString();
 			this.status = UserStatus.BLOCKED;
 		} else {
+			userInput = UserStatus.DELETED.toString();
 			this.status = UserStatus.DELETED;
 		}
+		return userInput;
+	}
+
+	public void setDefaultStatus() {
+		this.status = UserStatus.ACTIVE;
 	}
 
 	@Override
