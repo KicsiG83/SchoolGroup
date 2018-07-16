@@ -25,12 +25,12 @@ import User.User;
 
 public class FirstMenu {
 
-	public void firstMenu(User user, Scanner scanner, int subManuChoice)
+	public void firstMenu(User user, Scanner scanner, int subMenuChoice)
 			throws SQLException, MalformedURLException, IOException {
 		UserInterface ui = new UserInterface();
 		MainMenu mm = new MainMenu();
 		PropertyTools propertyTools = new PropertyTools();
-		switch (subManuChoice) {
+		switch (subMenuChoice) {
 		case 1:
 			System.out.println("		[1] Ingatlanok kezelése");
 			propertyEditing(ui, propertyTools);

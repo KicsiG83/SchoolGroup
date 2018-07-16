@@ -135,7 +135,8 @@ public class JDBCUser extends User.User {
 				userInput = getPassword();
 				isValid = true;
 			} else if (column.equals("STATUS")) {
-				userInput = setStatus(sc);
+				setStatus(sc);
+				userInput = getStatus().toString();
 				isValid = true;
 			} else if (column.equals("EMAIL")) {
 				setEmail(sc);

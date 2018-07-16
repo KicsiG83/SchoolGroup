@@ -78,7 +78,7 @@ public class User {
 		return status;
 	}
 
-	public String setStatus(Scanner sc) {
+	public void setStatus(Scanner sc) {
 		boolean isValid = false;
 		String userInput = "";
 		System.out.println("Státuszok:\n1 - Aktív\n2 - Blokkolt\n3 - Törölt");
@@ -102,7 +102,7 @@ public class User {
 			userInput = UserStatus.DELETED.toString();
 			this.status = UserStatus.DELETED;
 		}
-		return userInput;
+//		return userInput;
 	}
 
 	public void setDefaultStatus() {
